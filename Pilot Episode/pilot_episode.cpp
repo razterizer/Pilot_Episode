@@ -18,6 +18,7 @@
 #include "Sky.h"
 #include "../../lib/Terminal Text Lib/Screen.h"
 #include "../../lib/Terminal Text Lib/SpriteHandler.h"
+#include "../../lib/Terminal Text Lib/Delay.h"
 #include "../../lib/Core Lib/Math.h"
 //#include <cstdlib>
 #include <iostream>
@@ -387,7 +388,7 @@ int main(int argc, char** argv)
 ///
 
     //refresh();
-    usleep(delay);
+    Delay::sleep(delay);
 
     anim_ctr++;
 
