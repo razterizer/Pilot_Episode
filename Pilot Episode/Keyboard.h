@@ -7,9 +7,7 @@ bool register_keypresses(Key& curr_key, int& key_ctr, int& arrow_key_ctr, std::a
 {
 
   //int ch = getch();
-  char ch = '\0';
-  if (read(STDIN_FILENO, &ch, 1) == -1 && errno != EAGAIN)
-    die("read");
+  char ch = readKeystroke();
   if (ch == 'q' || ch == 'Q')
     return false;
   if (key_ctr == 0 && ch == 0x1B)
