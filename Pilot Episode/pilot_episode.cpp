@@ -22,10 +22,10 @@
 #include "../../lib/Core Lib/Math.h"
 //#include <cstdlib>
 #include <iostream>
-#include <unistd.h>
+//#include <unistd.h>
 //#include <ncurses.h>
 //#include <SDL2/SDL.h>
-#include <termios.h>
+//#include <termios.h>
 
 // TODO:
 // --1. Seagulls.--
