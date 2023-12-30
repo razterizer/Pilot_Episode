@@ -92,8 +92,7 @@ public:
     //dt = 1.f / static_cast<float>(fps);
     dt = static_cast<float>(delay) / 1e6f;
 
-    float alt_km_f = 0.5f;
-    auto set_alt = [alt_km_f]() -> float { return -alt_km_f * 1e3 / pix_to_m + ground_level + 13 * pix_ar2; };
+    auto set_alt = [&]() -> float { return -alt_km_f * 1e3 / pix_to_m + ground_level + 13 * pix_ar2; };
     plane_data::y_pos = set_alt();
     if (argc >= 3)
     {
@@ -147,6 +146,8 @@ public:
     //enemies_data[0].x_pos = 20;
     //enemies_data[0].y_pos = y_pos;
   }
+  
+  float get_alt_km() const { return alt_km_f; }
 
 private:
 
@@ -375,7 +376,8 @@ private:
   bool shot_fired = false;
   int shot_timeout = 0;
   bool shot_hit = false;
-
+  
+  float alt_km_f = 0.5f;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -386,14 +388,18 @@ int main(int argc, char** argv)
   //noecho();
   //cbreak();
   //keypad(stdscr, true);
+  
+  Game game(argc, argv);
 
   if (argc >= 2 && !strcmp(argv[1], "--help"))
   {
     std::cout << "pilot_episode (\"--help\" | [<frame-delay-us> [<altitude-km>]])" << std::endl;
+    std::cout << "  default values:" << std::endl;
+    std::cout << "    <frame-delay-us> : " << game.get_delay_us() << std::endl;
+    std::cout << "    <altitude-km>    : " << game.get_alt_km() << std::endl;
     return EXIT_SUCCESS;
   }
 
-  Game game(argc, argv);
   game.init();
   game.generate_data();
   game.run();
