@@ -97,8 +97,7 @@ public:
     plane_data::y_pos = set_alt();
     if (argc >= 3)
     {
-      int alt_km_i = atoi(argv[2]);
-      alt_km_f = static_cast<float>(alt_km_f);
+      alt_km_f = atof(argv[2]);
       plane_data::y_pos = set_alt();
     }
   }
