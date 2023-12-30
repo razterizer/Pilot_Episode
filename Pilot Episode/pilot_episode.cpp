@@ -19,6 +19,7 @@
 #include "../../lib/Terminal Text Lib/Screen.h"
 #include "../../lib/Terminal Text Lib/SpriteHandler.h"
 #include "../../lib/Terminal Text Lib/Delay.h"
+#include "../../lib/Terminal Text Lib/GameEngine.h"
 #include "../../lib/Core Lib/Math.h"
 //#include <cstdlib>
 #include <iostream>
@@ -74,129 +75,80 @@
 
 ///////////////////////////////
 
-int main(int argc, char** argv)
+class Game : public GameEngine<>
 {
-  //initscr();
-  //noecho();
-  //cbreak();
-  //keypad(stdscr, true);
-
-  if (argc >= 2 && !strcmp(argv[1], "--help"))
+public:
+  Game(int argc, char** argv)
   {
-    std::cout << "pilot_episode (\"--help\" | [<frame-delay-us> [<altitude-km>]])" << std::endl;
-    return EXIT_SUCCESS;
-  }
+    //if (argc >= 2)
+    //  delay = atoi(argv[1]);
+    //dt = static_cast<float>(delay) / 1e6f;
+    if (argc >= 2)
+      fps = atoi(argv[1]);
+    //dt = 1.f / static_cast<float>(fps);
+    dt = static_cast<float>(delay) / 1e6f;
 
-  enableRawMode();
-
-  Text t;
-  SpriteHandler sh;
-
-  int delay = 60'000;
-  if (argc >= 2)
-    delay = atoi(argv[1]);
-  float dt = static_cast<float>(delay) / 1e6f;
-
-  clear_screen(); return_cursor();
-
-  int key_ctr = 0;
-  bool paused = false;
-
-  Text::Color bg_color = Text::Color::Default;
-  
-  if (argc >= 3)
-  {
-    int alt_km_i = atoi(argv[2]);
-    //int alt_km = 0; // #HACK
-    plane_data::y_pos = -alt_km_i*1e3/pix_to_m + ground_level + 13*pix_ar2;
-  }
-
-
-  int anim_ctr = 0;
-
-  //nodelay(stdscr, TRUE);
-
-  std::array<Key, 3> arrow_key_buffer;
-  int arrow_key_ctr = 0;
-
-  rnd::srand_time();
-
-// Mountain Range
-  generate_mountain_range(mountain_data::mountain_range_height_fields, cloud_limit);
-
-// Grass, Lakes, Sand, Trees
-  ground::GroundData gnd_data;
-
-// Clouds
-  clouds::CloudData cloud_data;
-
-  bool plane_hiding = false;
-
-// Hot Air Balloon
-  std::array<std::pair<int, int>, 20> balloon_rc;
-  std::array<std::pair<int, int>, 200'000> balloon_small_rc;
-  for (size_t i = 0; i < balloon_rc.size(); ++i)
-    balloon_rc[i] = { clouds::rnd_cloud_pos(), clouds::rnd_cloud_pos() };
-  for (size_t i = 0; i < balloon_small_rc.size(); ++i)
-    balloon_small_rc[i] = { math::lerp(rnd::rand(), ground_level - 200, ground_level - 60), clouds::rnd_cloud_pos() };
-  
-// Seagulls
-  std::array<SeagullFlockData, 4'000> seagull_flocks;
-  for (size_t i = 0; i < seagull_flocks.size(); ++i)
-  {
-    auto& flock = seagull_flocks[i];
-    size_t num_birds = std::round(rnd::rand()*15);
-    flock.seagulls.resize(num_birds);
-    flock.x_pos = clouds::rnd_cloud_pos();
-    flock.y_pos = clouds::rnd_seagull_height();
-    flock.x_vel = (rnd::rand() - 0.5f)*30.f;
-    for (size_t j = 0; j < num_birds; ++j)
+    float alt_km_f = 0.5f;
+    auto set_alt = [alt_km_f]() -> float { return -alt_km_f * 1e3 / pix_to_m + ground_level + 13 * pix_ar2; };
+    plane_data::y_pos = set_alt();
+    if (argc >= 3)
     {
-      auto& bird = flock.seagulls[j];
-      bird.x_rel_pos = rnd::rand()*20;
-      bird.y_rel_pos = rnd::rand()*7;
-      bird.type = std::round(rnd::rand());
-      bird.anim_offset = std::round(rnd::rand()*3);
+      int alt_km_i = atoi(argv[2]);
+      alt_km_f = static_cast<float>(alt_km_f);
+      plane_data::y_pos = set_alt();
     }
   }
 
-// Powerups
-  std::array<PowerUpData, 2'000> powerups;
-  for (size_t i = 0; i < powerups.size(); ++i)
+  virtual void generate_data() override
   {
-    auto& pud = powerups[i];
-    pud.x_pos = clouds::rnd_cloud_pos();
-    pud.y_pos = clouds::rnd_cloud_pos();
+    // Mountain Range
+    generate_mountain_range(mountain_data::mountain_range_height_fields, cloud_limit);
+
+    // Hot Air Balloon
+    for (size_t i = 0; i < balloon_rc.size(); ++i)
+      balloon_rc[i] = { clouds::rnd_cloud_pos(), clouds::rnd_cloud_pos() };
+    for (size_t i = 0; i < balloon_small_rc.size(); ++i)
+      balloon_small_rc[i] = { math::lerp(rnd::rand(), ground_level - 200, ground_level - 60), clouds::rnd_cloud_pos() };
+
+    // Seagulls
+    for (size_t i = 0; i < seagull_flocks.size(); ++i)
+    {
+      auto& flock = seagull_flocks[i];
+      size_t num_birds = std::round(rnd::rand() * 15);
+      flock.seagulls.resize(num_birds);
+      flock.x_pos = clouds::rnd_cloud_pos();
+      flock.y_pos = clouds::rnd_seagull_height();
+      flock.x_vel = (rnd::rand() - 0.5f) * 30.f;
+      for (size_t j = 0; j < num_birds; ++j)
+      {
+        auto& bird = flock.seagulls[j];
+        bird.x_rel_pos = rnd::rand() * 20;
+        bird.y_rel_pos = rnd::rand() * 7;
+        bird.type = std::round(rnd::rand());
+        bird.anim_offset = std::round(rnd::rand() * 3);
+      }
+    }
+
+    // Powerups
+    for (size_t i = 0; i < powerups.size(); ++i)
+    {
+      auto& pud = powerups[i];
+      pud.x_pos = clouds::rnd_cloud_pos();
+      pud.y_pos = clouds::rnd_cloud_pos();
+    }
+
+    // Enemies
+    for (size_t i = 0; i < enemies_data.size(); ++i)
+      enemies_data[i] = EnemyData { clouds::rnd_cloud_pos(), clouds::rnd_seagull_height() };
+    // #HACK
+    //enemies_data[0].x_pos = 20;
+    //enemies_data[0].y_pos = y_pos;
   }
 
-// Enemies
-  std::array<EnemyData, 200> enemies_data;
-  for (size_t i = 0; i < enemies_data.size(); ++i)
-    enemies_data[i] = EnemyData { clouds::rnd_cloud_pos(), clouds::rnd_seagull_height() };
-  // #HACK
-  //enemies_data[0].x_pos = 20;
-  //enemies_data[0].y_pos = y_pos;
-  std::array<EnemyData, enemies_data.size()> enemies_data_sorted;
+private:
 
-// Plane Hull
-  std::vector<std::tuple<int, int, bool>> plane_hull; // { r, c, hiding }
-
-// Plane Shooting
-  float x_pos_shot = 0.f;
-  float y_pos_shot = 0.f;
-  float shot_angle = 0.f;
-  bool shot_fired = false;
-  int shot_timeout = 0;
-  bool shot_hit = false;
-
-
-// RT-Loop
-  do
+  virtual bool update() override
   {
-    clear_screen();
-    return_cursor();
-    sh.clear();
-
     if (show_title)
       bg_color = Text::Color::Blue;
     else if (show_instructions)
@@ -205,9 +157,9 @@ int main(int argc, char** argv)
       bg_color = Text::Color::Blue;
 
     Key curr_key = Key::None;
-    
+
     if (!register_keypresses(curr_key, key_ctr, arrow_key_ctr, arrow_key_buffer, paused))
-      break;
+      return false;
 
     if (show_title)
     {
@@ -229,14 +181,14 @@ int main(int argc, char** argv)
     else
     {
       update_plane_controls(sh, arrow_key_buffer, curr_key, ground_level, dt);
-      
+
       draw_hud(sh, ground_level, health, max_health, score);
 
       draw_frame(sh, Text::Color::DarkBlue);
-      
+
       if (health < 0)
         health = 0;
-      
+
       if (health == 0)
       {
         if (game_over_timer == 0)
@@ -256,10 +208,10 @@ int main(int argc, char** argv)
       {
         auto& edi = enemies_data[e_idx];
         edi = enemy_step_ai(sh, edi,
-                            plane_data::x_pos, plane_data::y_pos, plane_data::x_vel, plane_data::y_vel,
-                            plane_hull, plane_hiding,
-                            r_mid + y_pos_shot + 1, c_mid + x_pos_shot + plane_half_len, shot_fired, shot_hit,
-                            anim_ctr, dt, cloud_limit, ground_level);
+          plane_data::x_pos, plane_data::y_pos, plane_data::x_vel, plane_data::y_vel,
+          plane_hull, plane_hiding,
+          r_mid + y_pos_shot + 1, c_mid + x_pos_shot + plane_half_len, shot_fired, shot_hit,
+          anim_ctr, dt, cloud_limit, ground_level);
       }
 
       const float shot_speed = 1.f;
@@ -272,37 +224,37 @@ int main(int argc, char** argv)
       if (curr_key == Key::Fire)
       {
         shot_angle = std::atan2(plane_data::y_vel, plane_data::x_vel);
-        x_pos_shot = 5.f*std::cos(shot_angle);
-        y_pos_shot = 5.f*std::sin(shot_angle)/pix_ar2;
+        x_pos_shot = 5.f * std::cos(shot_angle);
+        y_pos_shot = 5.f * std::sin(shot_angle) / pix_ar2;
         shot_fired = true;
         shot_timeout = 50 / shot_speed; //  ft / (ft/s) -> s
         shot_hit = false;
       }
       else if (shot_fired && shot_timeout > 0)
       {
-        x_pos_shot += shot_speed*std::cos(shot_angle);
-        y_pos_shot += shot_speed*std::sin(shot_angle)/pix_ar2;
+        x_pos_shot += shot_speed * std::cos(shot_angle);
+        y_pos_shot += shot_speed * std::sin(shot_angle) / pix_ar2;
         shot_timeout--;
       }
 
       enemies_data_sorted = enemies_data;
       std::sort(enemies_data_sorted.begin(), enemies_data_sorted.end(),
-                [](const auto& ed0, const auto& ed1) { return ed0.dist < ed1.dist; });
+        [](const auto& ed0, const auto& ed1) { return ed0.dist < ed1.dist; });
 
       for (size_t e_idx = 0; e_idx < enemies_data.size(); ++e_idx)
       {
         const auto& edi = enemies_data_sorted[e_idx];
         draw_enemy_shadow(sh, edi.dist, r_mid, c_mid,
-                          edi.x_pos - plane_data::x_pos,
-                          edi.y_pos - plane_data::y_pos,
-                          edi.state, anim_ctr);
+          edi.x_pos - plane_data::x_pos,
+          edi.y_pos - plane_data::y_pos,
+          edi.state, anim_ctr);
       }
 
       plane_hiding = false;
       draw_clouds_fg(sh,
-                    cloud_data,
-                    plane_data::x_pos, plane_data::y_pos,
-                    plane_hull, plane_hiding);
+        cloud_data,
+        plane_data::x_pos, plane_data::y_pos,
+        plane_hull, plane_hiding);
 
       // #DEBUG
       //int r_offs_dbg = 10;
@@ -315,58 +267,58 @@ int main(int argc, char** argv)
       for (size_t e_idx = 0; e_idx < enemies_data.size(); ++e_idx)
       {
         auto& edi = enemies_data[e_idx];
-        for (int r = 1; r<29; ++r)
+        for (int r = 1; r < 29; ++r)
           draw_enemy(sh,
-                     r,
-                     r_mid + std::round(edi.y_pos - plane_data::y_pos),
-                     c_mid + std::round(edi.x_pos - plane_data::x_pos),
-                     edi.state == EnemyState::DESTROYED, anim_ctr);
+            r,
+            r_mid + std::round(edi.y_pos - plane_data::y_pos),
+            c_mid + std::round(edi.x_pos - plane_data::x_pos),
+            edi.state == EnemyState::DESTROYED, anim_ctr);
         draw_enemy_shot(sh, edi);
         if (edi.plane_explosion_anim_ctr++ < edi.plane_explosion_anim_max)
           draw_explosion(sh, r_mid + std::round(edi.plane_explosion_offs_y), c_mid + std::round(edi.plane_explosion_offs_x), edi.plane_explosion_anim_ctr);
         if (edi.enemy_explosion_anim_ctr++ < edi.enemy_explosion_anim_max)
           draw_explosion(sh,
-                         r_mid + std::round(edi.y_pos - plane_data::y_pos) + 1,
-                         c_mid + std::round(edi.x_pos - plane_data::x_pos) + 2*edi.enemy_explosion_anim_ctr/3,
-                         anim_ctr);
+            r_mid + std::round(edi.y_pos - plane_data::y_pos) + 1,
+            c_mid + std::round(edi.x_pos - plane_data::x_pos) + 2 * edi.enemy_explosion_anim_ctr / 3,
+            anim_ctr);
       }
 
       plane_hull.clear();
-      for (int r = 1; r<29; ++r)
+      for (int r = 1; r < 29; ++r)
         draw_plane(sh, r, r_mid, c_mid, anim_ctr, plane_data::x_mv_dir, plane_data::y_mv_dir, plane_hull);
 
       if (shot_fired)
         draw_shot(sh, shot_hit, shot_angle, x_pos_shot + plane_half_len, y_pos_shot + 1, Text::Color::Black);
 
-      draw_update_seagull_flocks<seagull_flocks.size()>(sh,
-                                seagull_flocks,
-                                plane_data::x_pos, plane_data::y_pos,
-                                x_pos_shot, y_pos_shot, shot_hit, shot_fired,
-                                cloud_limit, ground_level,
-                                anim_ctr, dt);
-      
+      draw_update_seagull_flocks<4000>(sh,
+        seagull_flocks,
+        plane_data::x_pos, plane_data::y_pos,
+        x_pos_shot, y_pos_shot, shot_hit, shot_fired,
+        cloud_limit, ground_level,
+        anim_ctr, dt);
+
       gnd_data.draw(sh, ground_level);
 
-      draw_update_powerup<powerups.size()>(sh,
-                                           powerups,
-                                           plane_hull,
-                                           plane_data::x_pos, plane_data::y_pos,
-                                           cloud_limit, ground_level,
-                                           dt);
+      draw_update_powerup<2000>(sh,
+        powerups,
+        plane_hull,
+        plane_data::x_pos, plane_data::y_pos,
+        cloud_limit, ground_level,
+        dt);
 
       draw_clouds_bg(sh,
-                     cloud_data,
-                     plane_data::x_pos, plane_data::y_pos);
+        cloud_data,
+        plane_data::x_pos, plane_data::y_pos);
 
-      draw_hot_air_balloon<balloon_rc.size()>(sh,
-                          balloon_rc, plane_data::x_pos, plane_data::y_pos, anim_ctr);
+      draw_hot_air_balloon<20>(sh,
+        balloon_rc, plane_data::x_pos, plane_data::y_pos, anim_ctr);
 
       draw_mountain_range(sh, mountain_data::mountain_range_height_fields,
-                          plane_data::x_pos, plane_data::y_pos,
-                          ground_level);
-      
-      draw_hot_air_balloon_small<balloon_small_rc.size()>(sh,
-                                balloon_small_rc, plane_data::x_pos, plane_data::y_pos, anim_ctr);
+        plane_data::x_pos, plane_data::y_pos,
+        ground_level);
+
+      draw_hot_air_balloon_small<200'000>(sh,
+        balloon_small_rc, plane_data::x_pos, plane_data::y_pos, anim_ctr);
 
       draw_sun(sh, 3, 60, plane_data::x_pos);
 
@@ -376,23 +328,72 @@ int main(int argc, char** argv)
       //sh.write_buffer("####", 26, 70, Text::Color::Blue, Text::Color::Black);
       //sh.write_buffer("####", 27, 70, Text::Color::Blue, Text::Color::Black);
     }
-///
+    ///
 
     draw_update_space(sh);
 
-    sh.print_screen_buffer(t, bg_color);
-    //sh.print_screen_buffer_chars();
-    //sh.print_screen_buffer_fg_colors();
-    //sh.print_screen_buffer_bg_colors();
+    return true;
+  }
 
-///
+  //////////////////////////////////////////////////////////////////////////
 
-    //refresh();
-    Delay::sleep(delay);
+  std::array<Key, 3> arrow_key_buffer;
+  int arrow_key_ctr = 0;
 
-    anim_ctr++;
+  // Grass, Lakes, Sand, Trees
+  ground::GroundData gnd_data;
 
-  } while (true);
+  // Clouds
+  clouds::CloudData cloud_data;
+
+  bool plane_hiding = false;
+
+  // Hot Air Balloon
+  std::array<std::pair<int, int>, 20> balloon_rc;
+  std::array<std::pair<int, int>, 200'000> balloon_small_rc;
+
+  // Powerups
+  std::array<PowerUpData, 2'000> powerups;
+
+  // Seagulls
+  std::array<SeagullFlockData, 4'000> seagull_flocks;
+
+  // Enemies
+  std::array<EnemyData, 200> enemies_data;
+  std::array<EnemyData, 200> enemies_data_sorted;
+
+  // Plane Hull
+  std::vector<std::tuple<int, int, bool>> plane_hull; // { r, c, hiding }
+
+  // Plane Shooting
+  float x_pos_shot = 0.f;
+  float y_pos_shot = 0.f;
+  float shot_angle = 0.f;
+  bool shot_fired = false;
+  int shot_timeout = 0;
+  bool shot_hit = false;
+
+};
+
+//////////////////////////////////////////////////////////////////////////
+
+int main(int argc, char** argv)
+{
+  //initscr();
+  //noecho();
+  //cbreak();
+  //keypad(stdscr, true);
+
+  if (argc >= 2 && !strcmp(argv[1], "--help"))
+  {
+    std::cout << "pilot_episode (\"--help\" | [<frame-delay-us> [<altitude-km>]])" << std::endl;
+    return EXIT_SUCCESS;
+  }
+
+  Game game(argc, argv);
+  game.init();
+  game.generate_data();
+  game.run();
 
   return EXIT_SUCCESS;
 }
