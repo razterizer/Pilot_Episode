@@ -125,7 +125,7 @@ void draw_update_seagull_flocks(SpriteHandler<NR, NC>& sh,
       health--;
 
     flock.x_pos += flock.x_vel*dt;
-    if (flock.x_pos < -cloud_limit || flock.x_pos > +cloud_limit)
+    if ((flock.x_pos) < -cloud_limit || (flock.x_pos) > +cloud_limit)
       flock.x_vel *= -1.f;
   }
 }
