@@ -200,7 +200,7 @@ namespace ground
     
       auto format_line = [&](int y_offs, int data_idx, Text::Color& fg_color, Text::Color& bg_color, std::string& str)
       {
-        if (y_offs != 1)
+        if (y_offs != 1 || data_idx == 0)
           return;
         auto& ld = ground::line_type_data_boat[0][data_idx - 1];
         fg_color = std::get<1>(ld);
