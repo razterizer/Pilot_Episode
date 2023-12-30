@@ -80,6 +80,10 @@ class Game : public GameEngine<>
 public:
   Game(int argc, char** argv)
   {
+  #ifndef _WIN32
+    fps = 20;
+    delay = 60'000;
+  #endif
     //if (argc >= 2)
     //  delay = atoi(argv[1]);
     //dt = static_cast<float>(delay) / 1e6f;
