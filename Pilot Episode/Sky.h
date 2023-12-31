@@ -12,6 +12,7 @@ void draw_update_space(SpriteHandler<NR, NC>& sh)
     if (t > 1) t = 1;
     int h_offs = std::round(27*t);
     sh.replace_bg_color(Text::Color::Transparent, Text::Color::DarkBlue, { 1, 1, 77, h_offs });
+    sh.replace_bg_color(Text::Color::Transparent2, Text::Color::DarkBlue, { 1, 1, 77, h_offs });
     if (plane_data::alt_km >= 100) // Kármán line.
     {
       auto t = (plane_data::alt_km - 100)/(400 - 100);
