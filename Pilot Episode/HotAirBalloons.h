@@ -11,7 +11,7 @@ void draw_hot_air_balloon_small(SpriteHandler<NR, NC>& sh,
   {
     auto [r, c] = rc;
     float cc = c - parallax * x_pos;
-    float rr = r - parallax * y_pos;
+    float rr = r - y_pos;
     sh.write_buffer("_", rr, cc + 1, Text::Color::Magenta);
     sh.write_buffer("(&)", rr + 1, cc, Text::Color::Magenta, Text::Color::DarkCyan);
     sh.write_buffer("#", rr + 2, cc + 1, Text::Color::DarkYellow, Text::Color::DarkGray);
@@ -28,7 +28,7 @@ void draw_hot_air_balloon(SpriteHandler<NR, NC>& sh,
   {
     auto [r, c] = rc;
     float cc = c - parallax * x_pos;
-    float rr = r - parallax * y_pos;
+    float rr = r - y_pos;
     sh.write_buffer(str::rep_char('.', 5), rr, cc + 8, Text::Color::Red, Text::Color::DarkRed);
     sh.write_buffer(str::rep_char('!', 13), rr + 1, cc + 4, Text::Color::Green, Text::Color::DarkBlue);
     sh.write_buffer(str::rep_char('"', 19), rr + 2, cc + 1, Text::Color::DarkCyan, Text::Color::Cyan);

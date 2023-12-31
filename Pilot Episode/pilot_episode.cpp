@@ -86,7 +86,7 @@
 // --55. Fix transparency issue between plane and sky at high altitudes.--
 // 56. Fix so that arrow keys work on Windows.
 // 57. Arrow keys make the simulation go faster than ASDW keys. Investigate and fix! Maybe related to (3).
-// 58. Too difficult to find any small hot air balloons, let alone the big ones. Are they really put in the right place at all?
+// --58. Too difficult to find any small hot air balloons, let alone the big ones. Are they really put in the right place at all?--
 // --59. Be able to disable altitude limiting.--
 
 ///////////////////////////////
@@ -132,7 +132,7 @@ public:
     for (size_t i = 0; i < balloon_rc.size(); ++i)
       balloon_rc[i] = { clouds::rnd_cloud_pos(), clouds::rnd_cloud_pos() };
     for (size_t i = 0; i < balloon_small_rc.size(); ++i)
-      balloon_small_rc[i] = { math::lerp(rnd::rand(), ground_level - 200, ground_level - 60), clouds::rnd_cloud_pos() };
+      balloon_small_rc[i] = { rnd::randn(ground_level - 60, 10.f), clouds::rnd_cloud_pos() };
 
     // Seagulls
     for (size_t i = 0; i < seagull_flocks.size(); ++i)
@@ -343,7 +343,7 @@ private:
         plane_data::x_pos, plane_data::y_pos,
         ground_level);
 
-      draw_hot_air_balloon_small<200'000>(sh,
+      draw_hot_air_balloon_small<400>(sh,
         balloon_small_rc, plane_data::x_pos, plane_data::y_pos, anim_ctr);
 
       draw_sun(sh, 3, 60, plane_data::x_pos);
@@ -376,7 +376,7 @@ private:
 
   // Hot Air Balloon
   std::array<std::pair<int, int>, 20> balloon_rc;
-  std::array<std::pair<int, int>, 200'000> balloon_small_rc;
+  std::array<std::pair<int, int>, 400> balloon_small_rc;
 
   // Powerups
   std::array<PowerUpData, 2'000> powerups;
