@@ -257,5 +257,7 @@ void draw_title(SpriteHandler<NR, NC>& sh)
   sh.write_buffer("\\____\\\\_/   \\_/\\____/\\____/\\____/\\____\\", 28, 35, Text::Color::Black, Text::Color::Yellow);
 
   sh.write_buffer("(c) 2022", 29, 65, Text::Color::White);
+  
+  sh.write_buffer("Press space-bar to continue...", 29, 25, Text::Color::White);
 }
 
