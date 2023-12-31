@@ -72,7 +72,7 @@
 // --41. Houses, boats, cars.--
 // 42. Far away balloons on the horizon.
 // --43. Do not require 100% of the plane to be in the clouds in order to be hidden.--
-// 44. There seems to be a bug that causes the plane speed to jump from maximum at about 100 kn to about 50 kn.
+// --44. There seems to be a bug that causes the plane speed to jump from maximum at about 100 kn to about 50 kn.--
 // 45. Plane can be resurrected in the game-over screen if the plane is hit by a power-up crate.
 // 46. We need a more accurate cross-hair control.
 // 47. Maybe have a larger delay between shots triggered by an UFO.

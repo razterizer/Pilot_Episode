@@ -210,10 +210,11 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
   
   plane_data::x_mv_dir = plane_data::x_vel < -1 ? -1 : (plane_data::x_vel > 1 ? 1 : 0);
   plane_data::y_mv_dir = plane_data::y_vel < -1 ? -1 : (plane_data::y_vel > 1 ? 1 : 0);
-  if (std::abs(plane_data::x_vel) > 50)
-    plane_data::x_vel = plane_data::x_mv_dir*30;
-  if (std::abs(plane_data::y_vel) > 50/pix_ar2)
-    plane_data::y_vel = plane_data::y_mv_dir*30/pix_ar2;
+  const int max_vel = 50;
+  if (std::abs(plane_data::x_vel) > max_vel)
+    plane_data::x_vel = plane_data::x_mv_dir*max_vel;
+  if (std::abs(plane_data::y_vel) > max_vel/pix_ar2)
+    plane_data::y_vel = plane_data::y_mv_dir*max_vel/pix_ar2;
   plane_data::x_pos += plane_data::x_vel*dt;
   plane_data::y_pos += plane_data::y_vel*dt;
   if (plane_data::y_pos > ground_level)
