@@ -119,7 +119,7 @@ public:
     if (argc >= 4)
     {
       if (strcmp(argv[3], "off") == 0)
-        enable_alt_hard_limit = false;
+        enable_alt_limiting = false;
     }
   }
 
