@@ -15,3 +15,6 @@ const float plane_half_len = 5.5f;
 const float plane_half_len_2 = 5.f;
 const float cloud_limit = 4000.f;
 const float ground_level = 5000.f;
+const int alt_soft_limit_ft = 40'000;
+const int alt_hard_limit_ft = 51'000;
+const bool enable_alt_hard_limit = true;

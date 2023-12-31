@@ -5,10 +5,10 @@ template<int NR, int NC>
 void draw_update_space(SpriteHandler<NR, NC>& sh)
 {
   //if (alt_km >= 85) // End of mesosphere.
-  if (plane_data::alt_ft > 40'000) // A cessna can fly up to a height of 51'000 ft.
+  if (plane_data::alt_ft > alt_soft_limit_ft) // A cessna can fly up to a height of 51'000 ft.
   {
     //auto t = (alt_km - 85)/(100 - 85);
-    auto t = (plane_data::alt_ft - 40'000)/(51'000 - 40'000);
+    auto t = (plane_data::alt_ft - alt_soft_limit_ft)/(alt_hard_limit_ft - alt_soft_limit_ft);
     if (t > 1) t = 1;
     int h_offs = std::round(27*t);
     sh.replace_bg_color(Text::Color::Transparent, Text::Color::DarkBlue, { 1, 1, 77, h_offs });
