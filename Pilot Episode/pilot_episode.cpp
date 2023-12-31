@@ -78,7 +78,7 @@
 // 47. Maybe have a larger delay between shots triggered by an UFO.
 // 48. Perhaps make it a bit easier to pursuit an UFO?
 // 49. Add sailboats as well?
-// 50. Let the pilot get a blackout if climbing for too long and too fast, then stalling and falling for 1000 feet or so and if too close to the ground, then crash.
+// --50. Let the pilot get a blackout if climbing for too long and too fast, then stalling and falling for 1000 feet or so and if too close to the ground, then crash.--
 // 51. Add smoke when plane is very damaged. Re-use the particle system from LapSim Lite.
 // --52. Perhaps include a message "Press space-bar to continue..." at the bottom of the title screen to let users understand how to continue to the next screen.--
 // --53. Eventually remove the info: "Be aware! The controls are a bit wonky so be careful of pressing a key too long!".--

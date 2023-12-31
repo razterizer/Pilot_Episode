@@ -154,6 +154,7 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
 {
   auto it_begin = std::begin(arrow_key_buffer);
   auto it_end = std::end(arrow_key_buffer);
+  bool pressing_up = false;
   if (std::any_of(it_begin, it_end, [](auto v) { return v != Key::None; }))
   {
     if (std::any_of(it_begin, it_end, [](auto v) { return v == Key::Left; }))
@@ -179,6 +180,7 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
       plane_data::y_vel -= plane_data::y_acc * dt;
       plane_data::x_vel *= 0.9f;
       sh.write_buffer("U", 1, 2, Text::Color::Cyan);
+      pressing_up = true;
     }
     //switch (arrow_curr)
     //{
@@ -210,15 +212,85 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
   
   plane_data::x_mv_dir = plane_data::x_vel < -1 ? -1 : (plane_data::x_vel > 1 ? 1 : 0);
   plane_data::y_mv_dir = plane_data::y_vel < -1 ? -1 : (plane_data::y_vel > 1 ? 1 : 0);
-  const int max_vel = 50;
-  if (std::abs(plane_data::x_vel) > max_vel)
-    plane_data::x_vel = plane_data::x_mv_dir*max_vel;
-  if (std::abs(plane_data::y_vel) > max_vel/pix_ar2)
-    plane_data::y_vel = plane_data::y_mv_dir*max_vel/pix_ar2;
+  
+  bool at_max_vel = false;
+  if (std::abs(plane_data::x_vel) > plane_data::vel_max)
+    plane_data::x_vel = plane_data::x_mv_dir*plane_data::vel_max;
+  if (std::abs(plane_data::y_vel) > plane_data::vel_max/pix_ar2)
+  {
+    plane_data::y_vel = plane_data::y_mv_dir*plane_data::vel_max/pix_ar2;
+    if (plane_data::y_mv_dir == -1)
+      at_max_vel = true;
+  }
+  
+  auto& curr_timer = plane_data::state_timer[static_cast<int>(plane_data::blackout_state)];
+  const auto& curr_time = plane_data::state_time[static_cast<int>(plane_data::blackout_state)];
+  curr_timer += dt;
+  switch (plane_data::blackout_state)
+  {
+    case plane_data::BlackoutState::Normal:
+      if (at_max_vel)
+      {
+        plane_data::blackout_state = plane_data::BlackoutState::WarnIn;
+        curr_timer = 0.f;
+      }
+      break;
+      
+    case plane_data::BlackoutState::WarnIn:
+      if (curr_timer > curr_time)
+      {
+        if (at_max_vel || pressing_up)
+        {
+          plane_data::blackout_state = plane_data::BlackoutState::Blackout;
+          curr_timer = 0.f;
+        }
+        else
+        {
+          plane_data::blackout_state = plane_data::BlackoutState::Normal;
+          curr_timer = 0.f;
+        }
+      }
+      break;
+      
+    case plane_data::BlackoutState::Blackout:
+      plane_data::y_vel = 40.f;
+      if (curr_timer > curr_time)
+      {
+        plane_data::blackout_state = plane_data::BlackoutState::WarnOut;
+        curr_timer = 0.f;
+      }
+      break;
+      
+    case plane_data::BlackoutState::WarnOut:
+      plane_data::y_vel = 43.f;
+      if (curr_timer > curr_time)
+      {
+        plane_data::blackout_state = plane_data::BlackoutState::Stall;
+        curr_timer = 0.f;
+      }
+      break;
+      
+    case plane_data::BlackoutState::Stall:
+      plane_data::y_vel = plane_data::vel_max_stall;
+      if (curr_timer > curr_time)
+      {
+        plane_data::blackout_state = plane_data::BlackoutState::Normal;
+        curr_timer = 0.f;
+      }
+      break;
+      
+    default:
+      break;
+  }
+    
   plane_data::x_pos += plane_data::x_vel*dt;
   plane_data::y_pos += plane_data::y_vel*dt;
   if (plane_data::y_pos > ground_level)
+  {
     plane_data::y_pos = ground_level;
+    if (plane_data::y_vel == plane_data::vel_max_stall)
+      health = 0; // Crash.
+  }
   if (enable_alt_limiting && plane_data::alt_ft > alt_hard_limit_ft)
     plane_data::y_pos = -(alt_hard_limit_ft/pix_to_ft - ground_level - 13*pix_ar2);
 }

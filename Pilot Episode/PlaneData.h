@@ -15,4 +15,10 @@ namespace plane_data
   float alt_px = 0.f;
   float alt_ft = 0.f;
   float alt_km = 0.f;
+  enum class BlackoutState { Normal, AccUp, WarnIn, Blackout, WarnOut, Stall, NUM_ITEMS };
+  BlackoutState blackout_state = BlackoutState::Normal;
+  std::array<float, static_cast<int>(BlackoutState::NUM_ITEMS)> state_time { 0.f, 5.f, 2.f, 5.f, 1.f, 6.f };
+  std::array<float, static_cast<int>(BlackoutState::NUM_ITEMS)> state_timer { 0.f };
+  const int vel_max = 50;
+  const float vel_max_stall = 45.f;
 }
