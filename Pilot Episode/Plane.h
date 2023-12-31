@@ -218,7 +218,7 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
   plane_data::y_pos += plane_data::y_vel*dt;
   if (plane_data::y_pos > ground_level)
     plane_data::y_pos = ground_level;
-  if (enable_alt_hard_limit && plane_data::alt_ft > alt_hard_limit_ft)
+  if (enable_alt_limiting && plane_data::alt_ft > alt_hard_limit_ft)
     plane_data::y_pos = -(alt_hard_limit_ft/pix_to_ft - ground_level - 13*pix_ar2);
 }
 
