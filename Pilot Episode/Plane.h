@@ -231,8 +231,24 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
     case plane_data::BlackoutState::Normal:
       if (at_max_vel)
       {
-        plane_data::blackout_state = plane_data::BlackoutState::WarnIn;
+        plane_data::blackout_state = plane_data::BlackoutState::AccUp;
         curr_timer = 0.f;
+      }
+      break;
+      
+    case plane_data::BlackoutState::AccUp:
+      if (curr_timer > curr_time)
+      {
+        if (at_max_vel || pressing_up)
+        {
+          plane_data::blackout_state = plane_data::BlackoutState::WarnIn;
+          curr_timer = 0.f;
+        }
+        else
+        {
+          plane_data::blackout_state = plane_data::BlackoutState::Normal;
+          curr_timer = 0.f;
+        }
       }
       break;
       

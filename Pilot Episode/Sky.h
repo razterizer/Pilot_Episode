@@ -11,6 +11,11 @@ void draw_sky(SpriteHandler<NR, NC>& sh)
     sh.replace_bg_color(Text::Color::Transparent, Text::Color::DarkRed, { 1, 1, 77, 27 });
     sh.replace_bg_color(Text::Color::Transparent2, Text::Color::DarkRed, { 1, 1, 77, 27 });
   }
+  else if (plane_data::blackout_state == plane_data::BlackoutState::Stall)
+  {
+    sh.replace_bg_color(Text::Color::Transparent, Text::Color::DarkYellow, { 1, 1, 77, 27 });
+    sh.replace_bg_color(Text::Color::Transparent2, Text::Color::DarkYellow, { 1, 1, 77, 27 });
+  }
   else if (plane_data::blackout_state == plane_data::BlackoutState::Blackout)
   {
     sh.replace_fg_color(Text::Color::Black, { 1, 1, 77, 27 });
