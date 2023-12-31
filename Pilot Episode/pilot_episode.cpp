@@ -31,7 +31,7 @@
 // TODO:
 // --1. Seagulls.--
 // --2. Hide from enemies in the clouds.--
-// 3. Proper keyboard controller.
+// 3. Proper keyboard controller (definition of done?...).
 // 4. Can we avoid flooding the terminal screen buffer and instead always draw from the true first row?
 // --5. Fix buggy shooting.--
 // --6. Plane should be able to shoot the enemies as well.--
@@ -72,6 +72,22 @@
 // --41. Houses, boats, cars.--
 // 42. Far away balloons on the horizon.
 // --43. Do not require 100% of the plane to be in the clouds in order to be hidden.--
+// 44. There seems to be a bug that causes the plane speed to jump from maximum at about 100 kn to about 50 kn.
+// 45. Plane can be resurrected in the game-over screen if the plane is hit by a power-up crate.
+// 46. We need a more accurate cross-hair control.
+// 47. Maybe have a larger delay between shots triggered by an UFO.
+// 48. Perhaps make it a bit easier to pursuit an UFO?
+// 49. Add sailboats as well?
+// 50. Let the pilot get a blackout if climbing for too long and too fast, then stalling and falling for 1000 feet or so and if too close to the ground, then crash.
+// 51. Add smoke when plane is very damaged. Re-use the particle system from LapSim Lite.
+// --52. Perhaps include a message "Press space-bar to continue..." at the bottom of the title screen to let users understand how to continue to the next screen.--
+// --53. Eventually remove the info: "Be aware! The controls are a bit wonky so be careful of pressing a key too long!".--
+// 54. Make the "PAUSED"-message less fast. Maybe delay-based rather than FPS-bound.
+// --55. Fix transparency issue between plane and sky at high altitudes.--
+// 56. Fix so that arrow keys work on Windows.
+// 57. Arrow keys make the simulation go faster than ASDW keys. Investigate and fix! Maybe related to (3).
+// 58. Too difficult to find any small hot air balloons, let alone the big ones. Are they really put in the right place at all?
+// --59. Be able to disable altitude limiting.--
 
 ///////////////////////////////
 
@@ -377,7 +393,7 @@ private:
   int shot_timeout = 0;
   bool shot_hit = false;
   
-  float alt_km_f = 0.5f;
+  float alt_km_f = 0.5f; // 14 = very high up.
 };
 
 //////////////////////////////////////////////////////////////////////////
