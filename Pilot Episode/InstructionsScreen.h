@@ -38,9 +38,6 @@ void draw_instructions(SpriteHandler<NR, NC>& sh)
   sh.write_buffer(" space-bar : fire", 24, 2, Text::Color::White);
   sh.write_buffer(" q : quit", 25, 2, Text::Color::White);
 
-  sh.write_buffer("Be aware! The controls are a bit wonky so be careful of ", 26, 2, Text::Color::White);
-  sh.write_buffer(" pressing a key too long!", 27, 2, Text::Color::White);
-
   sh.write_buffer("Press space-bar to begin...", 29, 25, Text::Color::White);
 }
 
