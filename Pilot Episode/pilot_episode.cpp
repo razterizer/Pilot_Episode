@@ -115,6 +115,12 @@ public:
       alt_km_f = atof(argv[2]);
       plane_data::y_pos = set_alt();
     }
+    
+    if (argc >= 4)
+    {
+      if (strcmp(argv[3], "off") == 0)
+        enable_alt_hard_limit = false;
+    }
   }
 
   virtual void generate_data() override
@@ -409,10 +415,11 @@ int main(int argc, char** argv)
 
   if (argc >= 2 && !strcmp(argv[1], "--help"))
   {
-    std::cout << "pilot_episode (\"--help\" | [<frame-delay-us> [<altitude-km>]])" << std::endl;
+    std::cout << "pilot_episode (\"--help\" | [<frame-delay-us> [<altitude-km> [<altitude-limiting \"on\"|\"off\">]]])" << std::endl;
     std::cout << "  default values:" << std::endl;
-    std::cout << "    <frame-delay-us> : " << game.get_delay_us() << std::endl;
-    std::cout << "    <altitude-km>    : " << game.get_alt_km() << std::endl;
+    std::cout << "    <frame-delay-us>    : " << game.get_delay_us() << std::endl;
+    std::cout << "    <altitude-km>       : " << game.get_alt_km() << std::endl;
+    std::cout << "    <altitude-limiting> : off" << std::endl;
     return EXIT_SUCCESS;
   }
 
