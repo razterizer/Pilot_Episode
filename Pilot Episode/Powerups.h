@@ -88,13 +88,16 @@ void draw_update_powerup(SpriteHandler<NR, NC>& sh, std::array<PowerUpData, N>& 
       else if (pc > plane_c_max)
         plane_c_max = pc;
     }
-    if (r+6 <= plane_r_max && plane_r_min <= r+10
-        && c+1 <= plane_c_max && plane_c_min <= c+9)
+    if (health > 0)
     {
-      reset_pud(pud);
-      health += 5;
-      if (health > max_health)
-        health = max_health;
+      if (r+6 <= plane_r_max && plane_r_min <= r+10
+          && c+1 <= plane_c_max && plane_c_min <= c+9)
+      {
+        reset_pud(pud);
+        health += 5;
+        if (health > max_health)
+          health = max_health;
+      }
     }
   }
 }
