@@ -356,7 +356,7 @@ private:
     }
     ///
 
-    draw_update_space(sh);
+    draw_sky(sh);
 
     return true;
   }

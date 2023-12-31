@@ -2,7 +2,7 @@
 
 
 template<int NR, int NC>
-void draw_update_space(SpriteHandler<NR, NC>& sh)
+void draw_sky(SpriteHandler<NR, NC>& sh)
 {
   //if (alt_km >= 85) // End of mesosphere.
   if (plane_data::alt_ft > alt_soft_limit_ft) // A cessna can fly up to a height of 51'000 ft.
