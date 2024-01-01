@@ -1,6 +1,7 @@
 #pragma once
 #include "Enums.h"
 #include "../../lib/Terminal Text Lib/Screen.h"
+#include "../../lib/Core Lib/StlUtils.h"
 
 #define HILITE_PLANE_SURFACES
 
@@ -223,6 +224,14 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
       at_max_vel = true;
   }
   
+  auto reset_stall_breakout_data = []()
+  {
+    plane_data::frame_idx = 0;
+    plane_data::firing_time = 0.f;
+    plane_data::firing_toggles_full = false;
+    stlutils::memclr(plane_data::fire_toggles);
+  };
+  
   auto& curr_timer = plane_data::state_timer[static_cast<int>(plane_data::blackout_state)];
   const auto& curr_time = plane_data::state_time[static_cast<int>(plane_data::blackout_state)];
   curr_timer += dt;
@@ -292,6 +301,31 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
       {
         plane_data::blackout_state = plane_data::BlackoutState::Normal;
         curr_timer = 0.f;
+        reset_stall_breakout_data();
+      }
+      else
+      {
+        // Stall breakout / recovery by pressing rapidly on the space-bar.
+        plane_data::fire_prev = plane_data::fire_curr;
+        plane_data::fire_curr = curr_key == Key::Fire;
+        plane_data::fire_toggles[plane_data::frame_idx] = !plane_data::fire_curr && plane_data::fire_prev;
+        plane_data::frame_idx++;
+        if (plane_data::frame_idx == plane_data::fire_toggles.size())
+        {
+          plane_data::frame_idx = 0;
+          plane_data::firing_toggles_full = true;
+        }
+        else if (!plane_data::firing_toggles_full)
+          plane_data::firing_time += dt;
+          
+        auto num_fire_toggles = static_cast<float>(stlutils::count(plane_data::fire_toggles, true));
+        auto fire_toggle_rate = num_fire_toggles / plane_data::firing_time;
+        if (plane_data::firing_time > 0.f && fire_toggle_rate >= 9.f)
+        {
+          plane_data::blackout_state = plane_data::BlackoutState::Normal;
+          curr_timer = 0.f;
+          reset_stall_breakout_data();
+        }
       }
       break;
       
