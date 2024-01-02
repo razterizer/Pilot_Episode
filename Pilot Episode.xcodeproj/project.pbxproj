@@ -43,7 +43,7 @@
 		070D10FD2911484900543913 /* Sky.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sky.h; sourceTree = "<group>"; };
 		07844E3E28FDEBAA00B30C0D /* Pilot Episode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Pilot Episode"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07844E4828FDEBEB00B30C0D /* pilot_episode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pilot_episode.cpp; sourceTree = "<group>"; };
-		07844E4A28FDECEC00B30C0D /* pilot_episode.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = pilot_episode.sh; sourceTree = "<group>"; };
+		07844E4A28FDECEC00B30C0D /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +95,7 @@
 				070D10EF29110E2400543913 /* Globals.h */,
 				070D10EE29110DCC00543913 /* Powerups.h */,
 				070D10ED29110C6100543913 /* Seagulls.h */,
-				07844E4A28FDECEC00B30C0D /* pilot_episode.sh */,
+				07844E4A28FDECEC00B30C0D /* build.sh */,
 			);
 			path = "Pilot Episode";
 			sourceTree = "<group>";
