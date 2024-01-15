@@ -21,11 +21,11 @@ namespace plane_data
   std::array<float, static_cast<int>(BlackoutState::NUM_ITEMS)> state_timer { 0.f };
   const int vel_max = 50;
   const float vel_max_stall = 45.f;
-  bool fire_curr = false;
-  bool fire_prev = false;
-  std::array<bool, 25> fire_toggles;
+  bool fix_curr = false;
+  bool fix_prev = false;
+  std::array<bool, 25> fix_press_toggles;
   int frame_idx = 0;
-  bool firing_toggles_full = false;
-  float firing_time = 0.f;
-  float firing_rate = 0.f;
+  bool fix_toggles_full = false;
+  float fix_time = 0.f;
+  float fix_press_rate = 0.f;
 }

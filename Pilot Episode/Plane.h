@@ -227,9 +227,9 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
   auto reset_stall_breakout_data = []()
   {
     plane_data::frame_idx = 0;
-    plane_data::firing_time = 0.f;
-    plane_data::firing_toggles_full = false;
-    stlutils::memclr(plane_data::fire_toggles);
+    plane_data::fix_time = 0.f;
+    plane_data::fix_toggles_full = false;
+    stlutils::memclr(plane_data::fix_press_toggles);
   };
   
   auto& curr_timer = plane_data::state_timer[static_cast<int>(plane_data::blackout_state)];
@@ -299,22 +299,22 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
       }
       else
       {
-        // Stall breakout / recovery by pressing rapidly on the space-bar.
-        plane_data::fire_prev = plane_data::fire_curr;
-        plane_data::fire_curr = curr_key == Key::Fire;
-        plane_data::fire_toggles[plane_data::frame_idx] = !plane_data::fire_curr && plane_data::fire_prev;
+        // Stall breakout / recovery by pressing rapidly on the 'F' key.
+        plane_data::fix_prev = plane_data::fix_curr;
+        plane_data::fix_curr = curr_key == Key::Fix;
+        plane_data::fix_press_toggles[plane_data::frame_idx] = !plane_data::fix_curr && plane_data::fix_prev;
         plane_data::frame_idx++;
-        if (plane_data::frame_idx == plane_data::fire_toggles.size())
+        if (plane_data::frame_idx == plane_data::fix_press_toggles.size())
         {
           plane_data::frame_idx = 0;
-          plane_data::firing_toggles_full = true;
+          plane_data::fix_toggles_full = true;
         }
-        else if (!plane_data::firing_toggles_full)
-          plane_data::firing_time += dt;
+        else if (!plane_data::fix_toggles_full)
+          plane_data::fix_time += dt;
           
-        auto num_fire_toggles = static_cast<float>(stlutils::count(plane_data::fire_toggles, true));
-        auto fire_toggle_rate = num_fire_toggles / plane_data::firing_time;
-        if (plane_data::firing_time > 0.f && fire_toggle_rate >= 9.f)
+        auto num_fire_toggles = static_cast<float>(stlutils::count(plane_data::fix_press_toggles, true));
+        auto fire_toggle_rate = num_fire_toggles / plane_data::fix_time;
+        if (plane_data::fix_time > 0.f && fire_toggle_rate >= 9.f)
         {
           plane_data::blackout_state = plane_data::BlackoutState::Normal;
           curr_timer = 0.f;
