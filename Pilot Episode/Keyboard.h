@@ -56,6 +56,10 @@ bool register_keypresses(Key& curr_key, int& key_ctr, int& arrow_key_ctr, std::a
   {
     curr_key = Key::Fire;
   }
+  else if (ch == 'f' || ch == 'F')
+  {
+    curr_key = Key::Fix;
+  }
   else if (ch == 'p' || ch == 'P')
   {
      paused = !paused;
