@@ -79,7 +79,7 @@
 // 48. Perhaps make it a bit easier to pursuit an UFO?
 // 49. Add sailboats as well?
 // --50. Let the pilot get a blackout if climbing for too long and too fast, then stalling and falling for 1000 feet or so and if too close to the ground, then crash.--
-// 51. Add smoke when plane is very damaged. Re-use the particle system from LapSim Lite.
+// --51. Add smoke when plane is very damaged. Re-use the particle system from LapSim Lite.--
 // --52. Perhaps include a message "Press space-bar to continue..." at the bottom of the title screen to let users understand how to continue to the next screen.--
 // --53. Eventually remove the info: "Be aware! The controls are a bit wonky so be careful of pressing a key too long!".--
 // 54. Make the "PAUSED"-message less fast. Maybe delay-based rather than FPS-bound.
@@ -308,6 +308,8 @@ private:
             c_mid + std::round(edi.x_pos - plane_data::x_pos) + 2 * edi.enemy_explosion_anim_ctr / 3,
             anim_ctr);
       }
+
+      generate_engine_smoke(sh, { r_mid + 2, c_mid + 5 }, dt, time);
 
       plane_hull.clear();
       for (int r = 1; r < 29; ++r)
