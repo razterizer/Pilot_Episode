@@ -34,9 +34,11 @@ void draw_instructions(SpriteHandler<NR, NC>& sh)
   sh.write_buffer(" cyan     o       : UFO evades.", 20, 2, Text::Color::White);
 
   sh.write_buffer("Controls:", 22, 2, Text::Color::White);
-  sh.write_buffer(" a,d,s,w = <,>,v,^-arrows : controls the plane", 23, 2, Text::Color::White);
-  sh.write_buffer(" space-bar : fire", 24, 2, Text::Color::White);
-  sh.write_buffer(" q : quit", 25, 2, Text::Color::White);
+  sh.write_buffer(" a,d,s,w = <,>,v,^-arrows : controls the plane.", 23, 2, Text::Color::White);
+  sh.write_buffer(" space-bar : shoot.", 24, 2, Text::Color::White);
+  sh.write_buffer(" f : fix stall. Press repeatedly to get out of stall.", 25, 2, Text::Color::White);
+  sh.write_buffer(" p : pause.", 26, 2, Text::Color::White);
+  sh.write_buffer(" q : quit.", 27, 2, Text::Color::White);
 
   sh.write_buffer("Press space-bar to begin...", 29, 25, Text::Color::White);
 }
