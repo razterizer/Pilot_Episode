@@ -309,7 +309,7 @@ private:
             anim_ctr);
       }
 
-      generate_engine_smoke(sh, { r_mid + 2, c_mid + 5 }, dt, time);
+      generate_engine_smoke(sh, { r_mid + 1, c_mid + 5 }, dt, time);
 
       plane_hull.clear();
       for (int r = 1; r < 29; ++r)
