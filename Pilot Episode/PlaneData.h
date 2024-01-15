@@ -1,5 +1,6 @@
 #pragma once
 #include "../../lib/Terminal Text Lib/Screen.h"
+#include "../../lib/Terminal Text Lib/ParticleSystem.h"
 
 namespace plane_data
 {
@@ -28,4 +29,6 @@ namespace plane_data
   bool fix_toggles_full = false;
   float fix_time = 0.f;
   float fix_press_rate = 0.f;
+  
+  ParticleHandler smoke_engine(500);
 }
