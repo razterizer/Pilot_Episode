@@ -17,7 +17,24 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
   const float vel_x = 0.f, vel_y = 0.f, acc = -10.f, spread = 13.f, life_time = 2.f;
   const int cluster_size = 10;
   plane_data::smoke_engine.update(rc_plane_engine, trig, vel_x, vel_y, acc, spread, life_time, cluster_size, dt, time);
-  plane_data::smoke_engine.draw(sh, "&", Text::Color::LightGray, Text::Color::DarkGray, time);
+  ColorGradient smoke_fg
+  {
+    {
+      { 0.f, Text::Color::Red },
+      { 0.1f, Text::Color::Yellow },
+      { 0.25f, Text::Color::LightGray },
+      { 0.9f, Text::Color::DarkGray },
+    }
+  };
+  ColorGradient smoke_bg
+  {
+    {
+      { 0.f, Text::Color::DarkRed },
+      { 0.2f, Text::Color::DarkGray },
+      { 0.9f, Text::Color::Black },
+    }
+  };
+  plane_data::smoke_engine.draw(sh, "&", smoke_fg, smoke_bg, time);
 }
 
 template<int NR, int NC>
