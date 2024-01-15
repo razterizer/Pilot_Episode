@@ -1,9 +1,24 @@
 #pragma once
 #include "Enums.h"
 #include "../../lib/Terminal Text Lib/Screen.h"
+#include "../../lib/Terminal Text Lib/RC.h"
 #include "../../lib/Core Lib/StlUtils.h"
 
 #define HILITE_PLANE_SURFACES
+
+template<int NR, int NC>
+void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
+                    const RC& rc_plane_engine,
+                    float dt, float time)
+{
+  bool trig = (plane_data::blackout_state == plane_data::BlackoutState::WarnOut
+    || plane_data::blackout_state == plane_data::BlackoutState::Stall);
+
+  const float vel_x = 0.f, vel_y = 0.f, acc = -10.f, spread = 13.f, life_time = 2.f;
+  const int cluster_size = 10;
+  plane_data::smoke_engine.update(rc_plane_engine, trig, vel_x, vel_y, acc, spread, life_time, cluster_size, dt, time);
+  plane_data::smoke_engine.draw(sh, "&", Text::Color::LightGray, Text::Color::DarkGray, time);
+}
 
 template<int NR, int NC>
 void draw_plane(SpriteHandler<NR, NC>& sh,
