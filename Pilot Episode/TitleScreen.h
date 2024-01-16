@@ -52,7 +52,9 @@ void draw_title(SpriteHandler<NR, NC>& sh)
   sh.write_buffer("#####", 3, 34, Text::Color::DarkRed, Text::Color::Red);
   sh.write_buffer("////", 3, 39, Text::Color::DarkBlue);
   sh.write_buffer("####", 3, 43, Text::Color::DarkRed, Text::Color::Red);
-  sh.write_buffer("////", 3, 47, Text::Color::DarkBlue);
+  sh.write_buffer("//", 3, 47, Text::Color::DarkBlue);
+  sh.write_buffer("\\", 3, 49, Text::Color::Cyan);
+  sh.write_buffer("/", 3, 50, Text::Color::DarkBlue);
   sh.write_buffer("#####", 3, 51, Text::Color::DarkRed, Text::Color::Red);
   sh.write_buffer("__ ..", 3, 66, Text::Color::DarkBlue);
   sh.write_buffer("///", 3, 74, Text::Color::DarkGray, Text::Color::LightGray);
@@ -62,9 +64,13 @@ void draw_title(SpriteHandler<NR, NC>& sh)
   sh.write_buffer(".,", 4, 17, Text::Color::DarkBlue);
   sh.write_buffer("((((((((((((((", 4, 19, Text::Color::DarkYellow, Text::Color::Yellow);
   sh.write_buffer("###", 4, 33, Text::Color::DarkRed, Text::Color::Red);
-  sh.write_buffer("///////", 4, 36, Text::Color::DarkBlue);
+  sh.write_buffer("///", 4, 36, Text::Color::DarkBlue);
+  sh.write_buffer("\\", 4, 39, Text::Color::Cyan);
+  sh.write_buffer("///", 4, 40, Text::Color::DarkBlue);
   sh.write_buffer("####", 4, 43, Text::Color::DarkRed, Text::Color::Red);
-  sh.write_buffer("//////", 4, 47, Text::Color::DarkBlue);
+  sh.write_buffer("///", 4, 47, Text::Color::DarkBlue);
+  sh.write_buffer("\\", 4, 50, Text::Color::Cyan);
+  sh.write_buffer("//", 4, 51, Text::Color::DarkBlue);
   sh.write_buffer("####.", 4, 53, Text::Color::DarkRed, Text::Color::Red);
   sh.write_buffer("____ . .", 4, 62, Text::Color::DarkBlue);
   sh.write_buffer("////", 4, 73, Text::Color::DarkGray, Text::Color::LightGray);
@@ -73,7 +79,9 @@ void draw_title(SpriteHandler<NR, NC>& sh)
   sh.write_buffer("...", 5, 18, Text::Color::DarkBlue);
   sh.write_buffer("(((((((((((", 5, 21, Text::Color::DarkYellow, Text::Color::Yellow);
   sh.write_buffer("###", 5, 32, Text::Color::DarkRed, Text::Color::Red);
-  sh.write_buffer("////////", 5, 35, Text::Color::DarkBlue);
+  sh.write_buffer("//", 5, 35, Text::Color::DarkBlue);
+  sh.write_buffer("\\", 5, 37, Text::Color::Cyan);
+  sh.write_buffer("/////", 5, 38, Text::Color::DarkBlue);
   sh.write_buffer("####", 5, 43, Text::Color::DarkRed, Text::Color::Red);
   sh.write_buffer("////////", 5, 47, Text::Color::DarkBlue);
   sh.write_buffer("###.", 5, 55, Text::Color::DarkRed, Text::Color::Red);
