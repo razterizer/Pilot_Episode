@@ -231,7 +231,7 @@ void draw_title(SpriteHandler<NR, NC>& sh)
   sh.write_buffer("  ", 22, 10, Text::Color::LightGray, Text::Color::White);
   sh.write_buffer(")", 22, 12, Text::Color::White, Text::Color::Cyan);
   sh.write_buffer("/", 22, 42, Text::Color::DarkMagenta, Text::Color::Cyan);
-  sh.write_buffer("                    ", 22, 43, Text::Color::DarkMagenta, Text::Color::Magenta);
+  sh.write_buffer("  ________________  ", 22, 43, Text::Color::DarkMagenta, Text::Color::Magenta);
   sh.write_buffer("\\", 22, 63, Text::Color::DarkMagenta, Text::Color::Cyan);
   sh.write_buffer(".___", 22, 65, Text::Color::DarkBlue);
 
