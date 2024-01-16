@@ -259,7 +259,7 @@ void draw_title(SpriteHandler<NR, NC>& sh)
   sh.write_buffer("|  \\  |  \\/|| ||    \\| / \\|| | \\||  \\  ", 26, 35, Text::Color::Black, Text::Color::Yellow);
 
   sh.write_buffer("|  __/| || |_/\\| \\_/| | |  ", 27, 6, Text::Color::Black, Text::Color::Yellow);
-  sh.write_buffer("|  /_ |  __/| |\\___ || \\_/|| |_/||  /  ", 27, 35, Text::Color::Black, Text::Color::Yellow);
+  sh.write_buffer("|  /_ |  __/| |\\___ || \\_/|| |_/||  /_ ", 27, 35, Text::Color::Black, Text::Color::Yellow);
 
   sh.write_buffer("\\_/   \\_/\\____/\\____/ \\_/  ", 28, 6, Text::Color::Black, Text::Color::Yellow);
   sh.write_buffer("\\____\\\\_/   \\_/\\____/\\____/\\____/\\____\\", 28, 35, Text::Color::Black, Text::Color::Yellow);
