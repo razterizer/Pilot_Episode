@@ -11,10 +11,15 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
                     const RC& rc_plane_engine,
                     float dt, float time)
 {
-  bool trig = (plane_data::blackout_state == plane_data::BlackoutState::WarnOut
-    || plane_data::blackout_state == plane_data::BlackoutState::Stall);
+  //bool trig = (plane_data::blackout_state == plane_data::BlackoutState::WarnOut
+  //  || plane_data::blackout_state == plane_data::BlackoutState::Stall);
+  
+  auto health_ratio = static_cast<float>(health) / static_cast<float>(max_health);
+  const float c_health_ratio_threshold = 0.3f;
+  bool trig = health_ratio <= c_health_ratio_threshold && health > 0;
 
-  const float vel_x = 0.f, vel_y = 0.f, acc = -10.f, spread = 13.f, life_time = 2.f;
+  const float vel_x = -0.5f*plane_data::x_vel, vel_y = -0.8f*plane_data::y_vel;
+  const float acc = -10.f, spread = 13.f, life_time = math::linmap(health_ratio, 0.f, c_health_ratio_threshold, 2.f, 0.1f);
   const int cluster_size = 10;
   plane_data::smoke_engine.update(rc_plane_engine, trig, vel_x, vel_y, acc, spread, life_time, cluster_size, dt, time);
   ColorGradient smoke_fg
