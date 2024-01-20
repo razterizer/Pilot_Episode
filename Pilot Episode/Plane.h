@@ -22,24 +22,45 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
   const float acc = -10.f, spread = 13.f, life_time = math::linmap(health_ratio, 0.f, c_health_ratio_threshold, 2.f, 0.1f);
   const int cluster_size = 10;
   plane_data::smoke_engine.update(rc_plane_engine, trig, vel_x, vel_y, acc, spread, life_time, cluster_size, dt, time);
-  ColorGradient smoke_fg
+  ColorGradient smoke_fg_0
+  {
+    {
+      { 0.f, Text::Color::Red },
+      { 0.15f, Text::Color::Yellow },
+      { 0.3f, Text::Color::LightGray },
+      { 0.85f, Text::Color::DarkGray },
+    }
+  };
+  ColorGradient smoke_fg_1
   {
     {
       { 0.f, Text::Color::Red },
       { 0.1f, Text::Color::Yellow },
-      { 0.25f, Text::Color::LightGray },
-      { 0.9f, Text::Color::DarkGray },
+      { 0.25f, Text::Color::DarkGray },
+      { 0.9f, Text::Color::LightGray },
     }
   };
-  ColorGradient smoke_bg
+  ColorGradient smoke_bg_0
   {
     {
       { 0.f, Text::Color::DarkRed },
-      { 0.2f, Text::Color::DarkGray },
+      { 0.3f, Text::Color::DarkGray },
       { 0.9f, Text::Color::Black },
     }
   };
-  plane_data::smoke_engine.draw(sh, "&", smoke_fg, smoke_bg, time);
+  ColorGradient smoke_bg_1
+  {
+    {
+      { 0.f, Text::Color::DarkRed },
+      { 0.2f, Text::Color::Black },
+      { 0.9f, Text::Color::DarkGray },
+    }
+  };
+  std::vector<std::pair<float, std::pair<ColorGradient, ColorGradient>>> smoke_color_gradients;
+  smoke_color_gradients.emplace_back(0.5f, std::pair { smoke_fg_0, smoke_bg_0 });
+  smoke_color_gradients.emplace_back(0.6f, std::pair { smoke_fg_1, smoke_bg_1 });
+  std::vector<std::string> smoke_txt { "&", "*", "&", "%", "&", "@" };
+  plane_data::smoke_engine.draw(sh, smoke_txt, smoke_color_gradients, time);
 }
 
 template<int NR, int NC>
