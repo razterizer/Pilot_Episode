@@ -226,7 +226,10 @@ private:
     {
       draw_instructions(sh);
       if (curr_key == Key::Fire)
+      {
         show_instructions = false;
+        chip_tune.stop_tune_async();
+      }
     }
     else if (paused)
       draw_paused(sh, anim_ctr);
