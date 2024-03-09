@@ -172,7 +172,7 @@ public:
     
     try
     {
-      if (chip_tune.load_tune("../../sound_test/sound_test/chiptune2.txt"))
+      if (chip_tune.load_tune("chiptune2.txt"))
       {
           //chip_tune.play_tune();
           chip_tune.play_tune_async();
