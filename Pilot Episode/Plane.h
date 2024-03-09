@@ -3,6 +3,8 @@
 #include "../../lib/Terminal Text Lib/Screen.h"
 #include "../../lib/Terminal Text Lib/RC.h"
 #include "../../lib/Core Lib/StlUtils.h"
+#include "../../lib/8-Bit Audio Emulator Lib/AudioSourceHandler.h"
+#include "../../lib/8-Bit Audio Emulator Lib/WaveformGeneration.h"
 
 #define HILITE_PLANE_SURFACES
 
@@ -208,6 +210,7 @@ void draw_crosshair(SpriteHandler<NR, NC>& sh, float x_vel, float y_vel)
 
 template<int NR, int NC>
 void update_plane_controls(SpriteHandler<NR, NC>& sh,
+                           audio::AudioStreamSource* src_fx, audio::WaveformGeneration& wave_gen,
                            const std::array<Key, 3>& arrow_key_buffer, Key curr_key,
                            float ground_level, float dt)
 {
@@ -254,6 +257,11 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
   else if (curr_key == Key::Fire)
   {
     sh.write_buffer("F", 2, 2, Text::Color::Cyan);
+    auto duration = 0.1f;
+    auto wd = wave_gen.generate_waveform(audio::WaveformType::NOISE, duration, 200.f);
+    src_fx->update_buffer(wd);
+    src_fx->stop();
+    src_fx->play();
   }
   else
   {

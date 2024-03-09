@@ -124,6 +124,11 @@ public:
         enable_alt_limiting = false;
     }
   }
+  
+  ~Game()
+  {
+    audio.remove_source(src_fx);
+  }
 
   virtual void generate_data() override
   {
@@ -183,6 +188,8 @@ public:
     {
       std::cerr << "Caught exception: " << e.what() << std::endl;
     }
+    
+    src_fx = audio.create_stream_source();
   }
   
   float get_alt_km() const { return alt_km_f; }
@@ -225,7 +232,7 @@ private:
       draw_paused(sh, anim_ctr);
     else
     {
-      update_plane_controls(sh, arrow_key_buffer, curr_key, ground_level, dt);
+      update_plane_controls(sh, src_fx, wave_gen, arrow_key_buffer, curr_key, ground_level, dt);
 
       draw_hud(sh, ground_level, health, max_health, score);
 
@@ -425,6 +432,7 @@ private:
   audio::AudioSourceHandler audio;
   audio::WaveformGeneration wave_gen;
   audio::ChipTuneEngine chip_tune { audio, wave_gen };
+  audio::AudioStreamSource* src_fx = nullptr;
 };
 
 //////////////////////////////////////////////////////////////////////////
