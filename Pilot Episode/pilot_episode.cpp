@@ -20,6 +20,8 @@
 #include "../../lib/Terminal Text Lib/SpriteHandler.h"
 #include "../../lib/Terminal Text Lib/Delay.h"
 #include "../../lib/Terminal Text Lib/GameEngine.h"
+#include "../../lib/8-Bit Audio Emulator Lib/AudioSourceHandler.h"
+#include "../../lib/8-Bit Audio Emulator Lib/ChipTuneEngine.h"
 #include "../../lib/Core Lib/Math.h"
 //#include <cstdlib>
 #include <iostream>
@@ -167,6 +169,20 @@ public:
     // #HACK
     //enemies_data[0].x_pos = 20;
     //enemies_data[0].y_pos = y_pos;
+    
+    try
+    {
+      if (chip_tune.load_tune("../../sound_test/sound_test/chiptune2.txt"))
+      {
+          //chip_tune.play_tune();
+          chip_tune.play_tune_async();
+          chip_tune.wait_for_completion();
+      }
+    }
+    catch (const std::exception& e)
+    {
+      std::cerr << "Caught exception: " << e.what() << std::endl;
+    }
   }
   
   float get_alt_km() const { return alt_km_f; }
@@ -185,7 +201,10 @@ private:
     Key curr_key = Key::None;
 
     if (!register_keypresses(curr_key, key_ctr, arrow_key_ctr, arrow_key_buffer, paused))
+    {
+      chip_tune.stop_tune_async();
       return false;
+    }
 
     if (show_title)
     {
@@ -402,6 +421,10 @@ private:
   bool shot_hit = false;
   
   float alt_km_f = 0.5f; // 14 = very high up.
+  
+  audio::AudioSourceHandler audio;
+  audio::WaveformGeneration wave_gen;
+  audio::ChipTuneEngine chip_tune { audio, wave_gen };
 };
 
 //////////////////////////////////////////////////////////////////////////
