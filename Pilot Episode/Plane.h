@@ -370,9 +370,9 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
         else if (!plane_data::fix_toggles_full)
           plane_data::fix_time += dt;
           
-        auto num_fire_toggles = static_cast<float>(stlutils::count(plane_data::fix_press_toggles, true));
-        auto fire_toggle_rate = num_fire_toggles / plane_data::fix_time;
-        if (plane_data::fix_time > 0.f && fire_toggle_rate >= 9.f)
+        auto num_fix_toggles = static_cast<float>(stlutils::count(plane_data::fix_press_toggles, true));
+        auto fix_toggle_rate = num_fix_toggles / plane_data::fix_time;
+        if (plane_data::fix_time > 0.f && fix_toggle_rate >= 9.f)
         {
           plane_data::blackout_state = plane_data::BlackoutState::Normal;
           curr_timer = 0.f;
