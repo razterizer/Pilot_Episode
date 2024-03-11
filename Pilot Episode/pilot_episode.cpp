@@ -18,7 +18,6 @@
 #include "Sky.h"
 #include "../../lib/Terminal Text Lib/Screen.h"
 #include "../../lib/Terminal Text Lib/SpriteHandler.h"
-#include "../../lib/Terminal Text Lib/Delay.h"
 #include "../../lib/Terminal Text Lib/GameEngine.h"
 #include "../../lib/8-Bit Audio Emulator Lib/AudioSourceHandler.h"
 #include "../../lib/8-Bit Audio Emulator Lib/ChipTuneEngine.h"
