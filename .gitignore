@@ -1,3 +1,5 @@
+### XCode ###
+
 # Ignore Xcode worspace settings
 *.xcsettings
 
@@ -15,3 +17,10 @@ bin_windows/
 
 # Ignore breakpoints list
 *.xcbkptlist
+
+### Visual Studio ###
+
+.vs/
+
+x64/
+x86/
