@@ -4,9 +4,9 @@ A cross-platform (Lin/Mac/Win) terminal-based shooter game.
 ## Build & Run Instructions (Windows)
 
 You need the following header-only libraries that I've made:
-https://github.com/razterizer/Core-Lib
-https://github.com/razterizer/Consolation
-https://github.com/razterizer/8Beat
+* https://github.com/razterizer/Core-Lib
+* https://github.com/razterizer/Consolation
+* https://github.com/razterizer/8Beat
 
 Make sure the folder structure looks like this:
 ```
