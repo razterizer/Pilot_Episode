@@ -12,6 +12,7 @@ A cross-platform (Lin/Mac/Win) terminal-based shooter game.
 ![image](https://github.com/razterizer/Pilot_Episode/assets/32767250/18ba7d45-6b5c-42ba-9cce-c233609ce947)
 
 https://www.youtube.com/watch?v=6ycg91F3Pn4
+
 https://www.youtube.com/watch?v=MCauEDtP2ZU
 
 
