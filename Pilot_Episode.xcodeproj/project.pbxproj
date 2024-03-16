@@ -42,7 +42,7 @@
 		070D10FB29113DDB00543913 /* PlaneData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaneData.h; sourceTree = "<group>"; };
 		070D10FC2911441200543913 /* Hud.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hud.h; sourceTree = "<group>"; };
 		070D10FD2911484900543913 /* Sky.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sky.h; sourceTree = "<group>"; };
-		0760B6ED2B9C37FE0032CACD /* chiptune2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chiptune2.txt; sourceTree = "<group>"; };
+		0760B6ED2B9C37FE0032CACD /* chiptune2.ct */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chiptune2.ct; sourceTree = "<group>"; };
 		07844E3E28FDEBAA00B30C0D /* Pilot_Episode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Pilot_Episode; sourceTree = BUILT_PRODUCTS_DIR; };
 		07844E4828FDEBEB00B30C0D /* pilot_episode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pilot_episode.cpp; sourceTree = "<group>"; };
 		07844E4A28FDECEC00B30C0D /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
@@ -81,7 +81,7 @@
 		07844E4028FDEBAA00B30C0D /* Pilot_Episode */ = {
 			isa = PBXGroup;
 			children = (
-				0760B6ED2B9C37FE0032CACD /* chiptune2.txt */,
+				0760B6ED2B9C37FE0032CACD /* chiptune2.ct */,
 				07844E4828FDEBEB00B30C0D /* pilot_episode.cpp */,
 				070D10EC29110BD300543913 /* Clouds.h */,
 				070D10FD2911484900543913 /* Sky.h */,
