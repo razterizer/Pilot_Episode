@@ -1,6 +1,6 @@
 #pragma once
-#include "../../lib/Terminal Text Lib/Screen.h"
-#include "../../lib/Terminal Text Lib/ParticleSystem.h"
+#include "../../lib/Consolation/Screen.h"
+#include "../../lib/Consolation/ParticleSystem.h"
 
 namespace plane_data
 {

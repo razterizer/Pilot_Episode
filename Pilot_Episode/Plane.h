@@ -1,10 +1,10 @@
 #pragma once
 #include "Enums.h"
-#include "../../lib/Terminal Text Lib/Screen.h"
-#include "../../lib/Terminal Text Lib/RC.h"
-#include "../../lib/Core Lib/StlUtils.h"
-#include "../../lib/8-Bit Audio Emulator Lib/AudioSourceHandler.h"
-#include "../../lib/8-Bit Audio Emulator Lib/WaveformGeneration.h"
+#include "../../lib/Consolation/Screen.h"
+#include "../../lib/Consolation/RC.h"
+#include "../../lib/Core/StlUtils.h"
+#include "../../lib/8Beat/AudioSourceHandler.h"
+#include "../../lib/8Beat/WaveformGeneration.h"
 
 #define HILITE_PLANE_SURFACES
 
