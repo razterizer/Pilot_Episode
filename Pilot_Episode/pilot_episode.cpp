@@ -16,12 +16,12 @@
 #include "InstructionsScreen.h"
 #include "Hud.h"
 #include "Sky.h"
-#include "../../lib/Terminal Text Lib/Screen.h"
-#include "../../lib/Terminal Text Lib/SpriteHandler.h"
-#include "../../lib/Terminal Text Lib/GameEngine.h"
-#include "../../lib/8-Bit Audio Emulator Lib/AudioSourceHandler.h"
-#include "../../lib/8-Bit Audio Emulator Lib/ChipTuneEngine.h"
-#include "../../lib/Core Lib/Math.h"
+#include "../../lib/Consolation/Screen.h"
+#include "../../lib/Consolation/SpriteHandler.h"
+#include "../../lib/Consolation/GameEngine.h"
+#include "../../lib/8Beat/AudioSourceHandler.h"
+#include "../../lib/8Beat/ChipTuneEngine.h"
+#include "../../lib/Core/Math.h"
 //#include <cstdlib>
 #include <iostream>
 //#include <unistd.h>

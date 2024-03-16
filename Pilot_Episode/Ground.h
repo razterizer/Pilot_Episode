@@ -1,6 +1,6 @@
 #pragma once
 #include "PlaneData.h"
-#include "../../lib/Core Lib/Rand.h"
+#include "../../lib/Core/Rand.h"
 
 
 namespace ground
