@@ -79,6 +79,6 @@
     <None Include="..\build.sh" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\chiptune2.txt" />
+    <Text Include="..\chiptune2.ct" />
   </ItemGroup>
 </Project>
