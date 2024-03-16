@@ -43,7 +43,7 @@
 		070D10FC2911441200543913 /* Hud.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hud.h; sourceTree = "<group>"; };
 		070D10FD2911484900543913 /* Sky.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sky.h; sourceTree = "<group>"; };
 		0760B6ED2B9C37FE0032CACD /* chiptune2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chiptune2.txt; sourceTree = "<group>"; };
-		07844E3E28FDEBAA00B30C0D /* Pilot Episode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Pilot Episode"; sourceTree = BUILT_PRODUCTS_DIR; };
+		07844E3E28FDEBAA00B30C0D /* Pilot_Episode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Pilot_Episode; sourceTree = BUILT_PRODUCTS_DIR; };
 		07844E4828FDEBEB00B30C0D /* pilot_episode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pilot_episode.cpp; sourceTree = "<group>"; };
 		07844E4A28FDECEC00B30C0D /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		07A763382B5C795B00705D31 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -64,7 +64,7 @@
 		07844E3528FDEBAA00B30C0D = {
 			isa = PBXGroup;
 			children = (
-				07844E4028FDEBAA00B30C0D /* Pilot Episode */,
+				07844E4028FDEBAA00B30C0D /* Pilot_Episode */,
 				07844E3F28FDEBAA00B30C0D /* Products */,
 				07A763372B5C795B00705D31 /* Frameworks */,
 			);
@@ -73,12 +73,12 @@
 		07844E3F28FDEBAA00B30C0D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07844E3E28FDEBAA00B30C0D /* Pilot Episode */,
+				07844E3E28FDEBAA00B30C0D /* Pilot_Episode */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		07844E4028FDEBAA00B30C0D /* Pilot Episode */ = {
+		07844E4028FDEBAA00B30C0D /* Pilot_Episode */ = {
 			isa = PBXGroup;
 			children = (
 				0760B6ED2B9C37FE0032CACD /* chiptune2.txt */,
@@ -103,7 +103,7 @@
 				070D10ED29110C6100543913 /* Seagulls.h */,
 				07844E4A28FDECEC00B30C0D /* build.sh */,
 			);
-			path = "Pilot Episode";
+			path = Pilot_Episode;
 			sourceTree = "<group>";
 		};
 		07A763372B5C795B00705D31 /* Frameworks */ = {
@@ -117,9 +117,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		07844E3D28FDEBAA00B30C0D /* Pilot Episode */ = {
+		07844E3D28FDEBAA00B30C0D /* Pilot_Episode */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07844E4528FDEBAA00B30C0D /* Build configuration list for PBXNativeTarget "Pilot Episode" */;
+			buildConfigurationList = 07844E4528FDEBAA00B30C0D /* Build configuration list for PBXNativeTarget "Pilot_Episode" */;
 			buildPhases = (
 				07844E3A28FDEBAA00B30C0D /* Sources */,
 				07844E3B28FDEBAA00B30C0D /* Frameworks */,
@@ -129,9 +129,9 @@
 			);
 			dependencies = (
 			);
-			name = "Pilot Episode";
+			name = Pilot_Episode;
 			productName = "Pilot Episode";
-			productReference = 07844E3E28FDEBAA00B30C0D /* Pilot Episode */;
+			productReference = 07844E3E28FDEBAA00B30C0D /* Pilot_Episode */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -148,7 +148,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 07844E3928FDEBAA00B30C0D /* Build configuration list for PBXProject "Pilot Episode" */;
+			buildConfigurationList = 07844E3928FDEBAA00B30C0D /* Build configuration list for PBXProject "Pilot_Episode" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -161,7 +161,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				07844E3D28FDEBAA00B30C0D /* Pilot Episode */,
+				07844E3D28FDEBAA00B30C0D /* Pilot_Episode */,
 			);
 		};
 /* End PBXProject section */
@@ -322,7 +322,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07844E3928FDEBAA00B30C0D /* Build configuration list for PBXProject "Pilot Episode" */ = {
+		07844E3928FDEBAA00B30C0D /* Build configuration list for PBXProject "Pilot_Episode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07844E4328FDEBAA00B30C0D /* Debug */,
@@ -331,7 +331,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		07844E4528FDEBAA00B30C0D /* Build configuration list for PBXNativeTarget "Pilot Episode" */ = {
+		07844E4528FDEBAA00B30C0D /* Build configuration list for PBXNativeTarget "Pilot_Episode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07844E4628FDEBAA00B30C0D /* Debug */,
