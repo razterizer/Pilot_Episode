@@ -25,12 +25,38 @@ You need the following header-only libraries that I've made:
 
 Make sure the folder structure looks like this:
 ```
-<my_source_code_dir>/lib/Core               ; Core repo workspace/checkout goes here.
-<my_source_code_dir>/lib/Consolation        ; Consolation repo workspace/checkout goes here.
-<my_source_code_dir>/lib/8Beat              ; 8Beat repo workspace/checkout goes here.
-<my_source_code_dir>Pilot_Episode           ; Pilot_Episode repo workspace/checkout goes here.
+<my_source_code_dir>/lib/Core/               ; Core repo workspace/checkout goes here.
+<my_source_code_dir>/lib/Consolation/        ; Consolation repo workspace/checkout goes here.
+<my_source_code_dir>/lib/8Beat/              ; 8Beat repo workspace/checkout goes here.
+<my_source_code_dir>Pilot_Episode/           ; Pilot_Episode repo workspace/checkout goes here.
 ```
 ### Windows
+
+You also need the following 3rdparty folder with subfolders:
+```
+<my_source_code_dir>/lib/3rdparty/
+<my_source_code_dir>/lib/3rdparty/include/
+<my_source_code_dir>/lib/3rdparty/include/OpenAL_Soft/
+<my_source_code_dir>/lib/3rdparty/lib/
+```
+
+`<my_source_code_dir>/lib/3rdparty/lib/` should contain:
+* `OpenAL32.lib`.
+* `sndfile.lib`.
+* `sndfile.dll`.
+
+The dll `sndfile.dll` should then be copied to where the executable lands.
+
+`<my_source_code_dir>/lib/3rdparty/include/` should contain:
+* `sndfile.h`.
+
+`<my_source_code_dir>/lib/3rdparty/include/OpenAL_Soft/` should contain:
+* `al.h`.
+* `alc.h`.
+* `alext.h`.
+* `efx.h`.
+* `efx-creative.h`.
+* `efx-presets.h`.
 
 Then just open `<my_source_code_dir>/Pilot_Episode/Pilot_Episode/Pilot_Episode.sln` and build and run. That's it!
 
