@@ -55,16 +55,16 @@ namespace ground
       //int N_gnd = static_cast<int>(ground_data.size());
       for (size_t lake_idx = 0; lake_idx < 30; ++lake_idx)
       {
-        int lake_start_idx = std::round(math::lerp(rnd::rand(), 0, N_gnd - 1));
-        int lake_end_idx = lake_start_idx + std::round(math::lerp(rnd::rand(), 10, 150));
+        auto lake_start_idx = math::roundI(math::lerp(rnd::rand(), 0, N_gnd - 1));
+        auto lake_end_idx = lake_start_idx + math::roundI(math::lerp(rnd::rand(), 10, 150));
         lake_end_idx = std::min(lake_end_idx, N_gnd - 1);
         for (int gd_idx = lake_start_idx; gd_idx <= lake_end_idx; ++gd_idx)
           ground_data[gd_idx] = 1;
       }
       for (size_t sand_idx = 0; sand_idx < 7; ++sand_idx)
       {
-        int sand_start_idx = std::round(math::lerp(rnd::rand(), 0, N_gnd - 1));
-        int sand_end_idx = sand_start_idx + std::round(math::lerp(rnd::rand(), 2, 50));
+        auto sand_start_idx = math::roundI(math::lerp(rnd::rand(), 0, N_gnd - 1));
+        auto sand_end_idx = sand_start_idx + math::roundI(math::lerp(rnd::rand(), 2, 50));
         sand_end_idx = std::min(sand_end_idx, N_gnd - 1);
         for (int gd_idx = sand_start_idx; gd_idx <= sand_end_idx; ++gd_idx)
           ground_data[gd_idx] = 2;
@@ -73,13 +73,13 @@ namespace ground
       {
         if (ground_data[gnd_idx] == 0)
         {
-          int tree_rnd = std::round(10*rnd::rand());
+          auto tree_rnd = math::roundI(10*rnd::rand());
           int tree_type = 0;
           if (tree_rnd < 3)
             tree_type = tree_rnd;
           tree_data[gnd_idx] = tree_type;
   
-          int house_rnd = std::round(50*rnd::rand());
+          auto house_rnd = math::roundI(50*rnd::rand());
           int house_type = 0;
           if (house_rnd < 2)
             house_type = house_rnd;
@@ -87,7 +87,7 @@ namespace ground
         }
         if (ground_data[gnd_idx] == 1)
         {
-          int boat_rnd = std::round(70*rnd::rand());
+          auto boat_rnd = math::roundI(70*rnd::rand());
           int boat_type = 0;
           if (boat_rnd < 2)
             boat_type = boat_rnd;

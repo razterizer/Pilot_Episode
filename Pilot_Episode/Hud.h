@@ -36,12 +36,12 @@ void draw_hud(SpriteHandler<NR, NC>& sh,
   std::string gnd_speed_str = "Gnd Speed: ";
   const float ftps_to_knots = 1.f/1.68780986f;
   const float pixps_to_knots = pix_to_ft*ftps_to_knots;
-  gnd_speed_str += std::to_string(static_cast<int>(std::round(std::sqrt(math::sq(plane_data::x_vel) + math::sq(plane_data::z_vel))*pixps_to_knots)));
+  gnd_speed_str += std::to_string(math::roundI(std::sqrt(math::sq(plane_data::x_vel) + math::sq(plane_data::z_vel))*pixps_to_knots));
   gnd_speed_str += " kn,";
   sh.write_buffer(gnd_speed_str, 0, hud_c, Text::Color::Cyan);
   hud_c += 1 + gnd_speed_str.size();
   std::string speed_str = "Speed: ";
-  speed_str += std::to_string(static_cast<int>(std::round(std::sqrt(math::sq(plane_data::x_vel) + math::sq(plane_data::y_vel) + math::sq(plane_data::z_vel))*pixps_to_knots)));
+  speed_str += std::to_string(math::roundI(std::sqrt(math::sq(plane_data::x_vel) + math::sq(plane_data::y_vel) + math::sq(plane_data::z_vel))*pixps_to_knots));
   speed_str += " kn, ";
   sh.write_buffer(speed_str, 0, hud_c, Text::Color::Cyan);
   hud_c += 1 + speed_str.size();

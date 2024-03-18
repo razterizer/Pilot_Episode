@@ -70,8 +70,8 @@ void draw_update_seagull_flocks(SpriteHandler<NR, NC>& sh,
 
     for (auto& bird : flock.seagulls)
     {
-      int r = 4 + std::round(flock.y_pos + bird.y_rel_pos - y_pos);
-      int c = 7 + std::round((bird.killed ? bird.flock_x_pos_killed : flock.x_pos) + bird.x_rel_pos - x_pos);
+      int r = 4 + math::roundI(flock.y_pos + bird.y_rel_pos - y_pos);
+      int c = 7 + math::roundI((bird.killed ? bird.flock_x_pos_killed : flock.x_pos) + bird.x_rel_pos - x_pos);
       flock_centre_r += r;
       flock_centre_c += c;
       int c_begin = c - 1 + bird.type;
@@ -81,8 +81,8 @@ void draw_update_seagull_flocks(SpriteHandler<NR, NC>& sh,
         case 0: draw_seagull(sh, r, c, (bird.killed ? 0 : anim_ctr) + bird.anim_offset); break;
         case 1: draw_seagull_small(sh, r, c, (bird.killed ? 0 : anim_ctr) + bird.anim_offset); break;
       }
-      int shot_r = r_mid + std::round(y_pos_shot + 1);
-      int shot_c = c_mid + std::round(x_pos_shot + plane_half_len);
+      int shot_r = r_mid + math::roundI(y_pos_shot + 1);
+      int shot_c = c_mid + math::roundI(x_pos_shot + plane_half_len);
       if (shot_fired && !bird.killed && r == shot_r && c_begin <= shot_c && shot_c <= c_end)
       {
         bird.killed = true;

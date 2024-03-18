@@ -282,7 +282,7 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
   
   bool at_max_vel = false;
   if (std::abs(plane_data::x_vel) > plane_data::vel_max)
-    plane_data::x_vel = plane_data::x_mv_dir*plane_data::vel_max;
+    plane_data::x_vel = static_cast<float>(plane_data::x_mv_dir*plane_data::vel_max);
   if (std::abs(plane_data::y_vel) > plane_data::vel_max/pix_ar2)
   {
     plane_data::y_vel = plane_data::y_mv_dir*plane_data::vel_max/pix_ar2;

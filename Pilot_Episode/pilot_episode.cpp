@@ -109,11 +109,11 @@ public:
     //dt = 1.f / static_cast<float>(fps);
     dt = static_cast<float>(delay) / 1e6f;
 
-    auto set_alt = [&]() -> float { return -alt_km_f * 1e3 / pix_to_m + ground_level + 13 * pix_ar2; };
+    auto set_alt = [&]() -> float { return -alt_km_f * 1e3f / pix_to_m + ground_level + 13 * pix_ar2; };
     plane_data::y_pos = set_alt();
     if (argc >= 3)
     {
-      alt_km_f = atof(argv[2]);
+      alt_km_f = static_cast<float>(atof(argv[2]));
       plane_data::y_pos = set_alt();
     }
     
@@ -136,15 +136,15 @@ public:
 
     // Hot Air Balloon
     for (size_t i = 0; i < balloon_rc.size(); ++i)
-      balloon_rc[i] = { clouds::rnd_cloud_pos(), clouds::rnd_cloud_pos() };
+      balloon_rc[i] = { static_cast<int>(clouds::rnd_cloud_pos()), static_cast<int>(clouds::rnd_cloud_pos()) };
     for (size_t i = 0; i < balloon_small_rc.size(); ++i)
-      balloon_small_rc[i] = { rnd::randn(ground_level - 60, 10.f), clouds::rnd_cloud_pos() };
+      balloon_small_rc[i] = { static_cast<int>(rnd::randn(ground_level - 60, 10.f)), static_cast<int>(clouds::rnd_cloud_pos()) };
 
     // Seagulls
     for (size_t i = 0; i < seagull_flocks.size(); ++i)
     {
       auto& flock = seagull_flocks[i];
-      size_t num_birds = std::round(rnd::rand() * 15);
+      auto num_birds = math::roundI(rnd::rand() * 15);
       flock.seagulls.resize(num_birds);
       flock.x_pos = clouds::rnd_cloud_pos();
       flock.y_pos = clouds::rnd_seagull_height();
@@ -154,8 +154,8 @@ public:
         auto& bird = flock.seagulls[j];
         bird.x_rel_pos = rnd::rand() * 20;
         bird.y_rel_pos = rnd::rand() * 7;
-        bird.type = std::round(rnd::rand());
-        bird.anim_offset = std::round(rnd::rand() * 3);
+        bird.type = math::roundI(rnd::rand());
+        bird.anim_offset = math::roundI(rnd::rand() * 3);
       }
     }
 
@@ -264,8 +264,8 @@ private:
         edi = enemy_step_ai(sh, edi,
           plane_data::x_pos, plane_data::y_pos, plane_data::x_vel, plane_data::y_vel,
           plane_hull, plane_hiding,
-          r_mid + y_pos_shot + 1, c_mid + x_pos_shot + plane_half_len, shot_fired, shot_hit,
-          anim_ctr, dt, cloud_limit, ground_level);
+          r_mid + static_cast<int>(y_pos_shot) + 1, c_mid + static_cast<int>(x_pos_shot + plane_half_len), shot_fired, shot_hit,
+          anim_ctr, dt, static_cast<int>(cloud_limit), static_cast<int>(ground_level));
       }
 
       const float shot_speed = 1.f;
@@ -281,7 +281,7 @@ private:
         x_pos_shot = 5.f * std::cos(shot_angle);
         y_pos_shot = 5.f * std::sin(shot_angle) / pix_ar2;
         shot_fired = true;
-        shot_timeout = 50 / shot_speed; //  ft / (ft/s) -> s
+        shot_timeout = static_cast<int>(50 / shot_speed); //  ft / (ft/s) -> s
         shot_hit = false;
       }
       else if (shot_fired && shot_timeout > 0)
@@ -324,16 +324,16 @@ private:
         for (int r = 1; r < 29; ++r)
           draw_enemy(sh,
             r,
-            r_mid + std::round(edi.y_pos - plane_data::y_pos),
-            c_mid + std::round(edi.x_pos - plane_data::x_pos),
+            r_mid + math::roundI(edi.y_pos - plane_data::y_pos),
+            c_mid + math::roundI(edi.x_pos - plane_data::x_pos),
             edi.state == EnemyState::DESTROYED, anim_ctr);
         draw_enemy_shot(sh, edi);
         if (edi.plane_explosion_anim_ctr++ < edi.plane_explosion_anim_max)
-          draw_explosion(sh, r_mid + std::round(edi.plane_explosion_offs_y), c_mid + std::round(edi.plane_explosion_offs_x), edi.plane_explosion_anim_ctr);
+          draw_explosion(sh, r_mid + math::roundI(edi.plane_explosion_offs_y), c_mid + math::roundI(edi.plane_explosion_offs_x), edi.plane_explosion_anim_ctr);
         if (edi.enemy_explosion_anim_ctr++ < edi.enemy_explosion_anim_max)
           draw_explosion(sh,
-            r_mid + std::round(edi.y_pos - plane_data::y_pos) + 1,
-            c_mid + std::round(edi.x_pos - plane_data::x_pos) + 2 * edi.enemy_explosion_anim_ctr / 3,
+            r_mid + math::roundI(edi.y_pos - plane_data::y_pos) + 1,
+            c_mid + math::roundI(edi.x_pos - plane_data::x_pos) + 2 * edi.enemy_explosion_anim_ctr / 3,
             anim_ctr);
       }
 

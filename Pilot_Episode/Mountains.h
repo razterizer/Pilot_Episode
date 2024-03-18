@@ -44,7 +44,7 @@ void generate_mountain_range(std::vector<MountainHFData>& mountain_range_height_
   float scale = 1.f;
   std::vector<float> xx, yy;
   int i = 2; // Each mountain is N = 64 samples wide.
-  float epsilon = 0.1f/pow(2.f, i); // (eps, N) : (0.1, 16), (0.05, 32), (0.025, 64), (0.1/2^i, 16*(1+i))
+  float epsilon = 0.1f/static_cast<float>(pow(2.f, i)); // (eps, N) : (0.1, 16), (0.05, 32), (0.025, 64), (0.1/2^i, 16*(1+i))
 
   auto fractal_f = [](std::vector<float>& xv, std::vector<float>& yv,
                       float x0, float x1, float y0, float y1,
@@ -72,7 +72,7 @@ void generate_mountain_range(std::vector<MountainHFData>& mountain_range_height_
     const float mountain_height = rnd_mountain_height();
     for (auto y : yy)
       mountain_hfd.height_field.emplace_back(y*mountain_height);
-    mountain_hfd.c0 = rnd_cloud_pos();
+    mountain_hfd.c0 = static_cast<int>(rnd_cloud_pos());
     mountain_hfd.parallax = parallax;
     parallax *= 0.95f;
     
@@ -123,7 +123,7 @@ void draw_mountain_range(SpriteHandler<NR, NC>& sh,
     int N = static_cast<int>(mountain_hfd.height_field.size());
     for (int hf_idx = 0; hf_idx < N; ++hf_idx)
     {
-      int c = hf_idx + mountain_hfd.c0 - std::round(mountain_hfd.parallax * x_pos);
+      int c = hf_idx + mountain_hfd.c0 - math::roundI(mountain_hfd.parallax * x_pos);
       if (1 <= c && c <= 79)
       {
         int height_prev = hf_idx >= 1 ? mountain_hfd.height_field[hf_idx - 1] : -1;
@@ -131,7 +131,7 @@ void draw_mountain_range(SpriteHandler<NR, NC>& sh,
         int height_next = hf_idx < N - 1 ? mountain_hfd.height_field[hf_idx + 1] : -1;
         for (int h_idx = 0; h_idx < height; ++h_idx)
         {
-          int r = ground_level - std::round(y_pos) - h_idx + 28;
+          int r = static_cast<int>(ground_level - std::round(y_pos)) - h_idx + 28;
           if (height_prev <= h_idx)
             sh.write_buffer("/", r, c, fg_color, bg_color);
           else if (height_next <= h_idx)
