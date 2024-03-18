@@ -48,8 +48,8 @@ void draw_update_powerup(SpriteHandler<NR, NC>& sh, std::array<PowerUpData, N>& 
     //     +---+---+
     float x_diff = pud.x_pos - x_pos;
     float y_diff = pud.y_pos - y_pos;
-    int r = r_mid + std::round(y_diff);
-    int c = c_mid + std::round(x_diff);
+    int r = r_mid + math::roundI(y_diff);
+    int c = c_mid + math::roundI(x_diff);
     sh.write_buffer("/", r+0, c+1, Text::Color::Black, Text::Color::Cyan);
     sh.write_buffer("^^^^^^^", r+0, c+1, Text::Color::Black, Text::Color::White);
     sh.write_buffer("\\", r+0, c+8, Text::Color::Black, Text::Color::Cyan);

@@ -6,7 +6,7 @@ void draw_shot(SpriteHandler<NR, NC>& sh, bool shot_hit, float shot_angle, float
   if (!shot_hit)
   {
     std::string bullet = "*";
-    const float deg2rad = M_PI/180.f;
+    const float deg2rad = math::c_pi/180.f; // #FIXME: Use math::deg2rad() instead.
     const float ang_step = 22.5f*deg2rad;
     if (-9*ang_step < shot_angle && shot_angle <= -7*ang_step)
       bullet = "-";
@@ -27,8 +27,8 @@ void draw_shot(SpriteHandler<NR, NC>& sh, bool shot_hit, float shot_angle, float
     else if (7*ang_step < shot_angle && shot_angle <= 9*ang_step)
       bullet = "-";
     sh.write_buffer(bullet,
-        r_mid + std::round(bullet_offs_y),
-        c_mid + std::round(bullet_offs_x),
+        r_mid + math::roundI(bullet_offs_y),
+        c_mid + math::roundI(bullet_offs_x),
         color, Text::Color::Transparent2);
   }
 }

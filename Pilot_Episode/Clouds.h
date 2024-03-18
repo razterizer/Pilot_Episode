@@ -38,7 +38,7 @@ namespace clouds
         parallax *= parallax_rate;
       }
       for (size_t i = 0; i < cloud_type.size(); ++i)
-        cloud_type[i] = std::round(rnd::rand());
+        cloud_type[i] = math::roundI(rnd::rand());
     }
   };
 }
@@ -203,8 +203,8 @@ void draw_cloud_f(int cloud_type, SpriteHandler<NR, NC>& sh,
                   float parallax, float ground_level,
                   std::vector<std::tuple<int, int, bool>>& plane_hull)
 {
-  int r = std::round(cloud_y_pos - parallax*plane_y_pos);
-  int c = std::round(cloud_x_pos - parallax*plane_x_pos);
+  int r = math::roundI(cloud_y_pos - parallax*plane_y_pos);
+  int c = math::roundI(cloud_x_pos - parallax*plane_x_pos);
   //if (r > ground_level - 1000) // #FIXME
   //  return;
   switch (cloud_type)

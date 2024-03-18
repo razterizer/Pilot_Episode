@@ -64,8 +64,8 @@ EnemyData enemy_step_ai(SpriteHandler<NR, NC>& sh, EnemyData ed,
 
   auto& es = ed.state;
 
-  int enemy_r = r_mid + std::round(ed.y_pos - y_pos_plane);
-  int enemy_c = c_mid + std::round(ed.x_pos - x_pos_plane);
+  int enemy_r = r_mid + math::roundI(ed.y_pos - y_pos_plane);
+  int enemy_c = c_mid + math::roundI(ed.x_pos - x_pos_plane);
   if (es != EnemyState::DESTROYED
       && plane_shot_fired
       && (enemy_r + 1) == plane_shot_r
@@ -194,7 +194,7 @@ EnemyData enemy_step_ai(SpriteHandler<NR, NC>& sh, EnemyData ed,
         ed.bullet_offs_x = enemy_half_len + ed.x_pos + ed.x_pos_shot - x_pos_plane;
         ed.bullet_offs_y = (ed.y_pos + 1) + ed.y_pos_shot - y_pos_plane;
         if (std::any_of(plane_hull.begin(), plane_hull.end(),
-             [&ed](const auto& rch) { return std::get<0>(rch) == r_mid + std::round(ed.bullet_offs_y) && std::get<1>(rch) == c_mid + std::round(ed.bullet_offs_x); }))
+             [&ed](const auto& rch) { return std::get<0>(rch) == r_mid + math::roundI(ed.bullet_offs_y) && std::get<1>(rch) == c_mid + math::roundI(ed.bullet_offs_x); }))
         {
           ed.shot_hit = true;
           health--;
@@ -255,8 +255,8 @@ EnemyData enemy_step_ai(SpriteHandler<NR, NC>& sh, EnemyData ed,
     sh.write_buffer("XP: " + std::to_string(x_pos_plane), 5, 5, Text::Color::Black);
     sh.write_buffer("YP: " + std::to_string(y_pos_plane), 6, 5, Text::Color::Black);
     sh.write_buffer("D: " + std::to_string(ed.dist), 7, 5, Text::Color::Black);
-    sh.write_buffer("E-R: " + std::to_string(r_mid + std::round(ed.y_pos - y_pos_plane)), 8, 5, Text::Color::Black);
-    sh.write_buffer("E-C: " + std::to_string(c_mid + std::round(ed.x_pos - x_pos_plane)), 9, 5, Text::Color::Black);
+    sh.write_buffer("E-R: " + std::to_string(r_mid + math::roundI(ed.y_pos - y_pos_plane)), 8, 5, Text::Color::Black);
+    sh.write_buffer("E-C: " + std::to_string(c_mid + math::roundI(ed.x_pos - x_pos_plane)), 9, 5, Text::Color::Black);
     sh.write_buffer("XV: " + std::to_string(ed.x_vel), 10, 5, Text::Color::Black);
     sh.write_buffer("YV: " + std::to_string(ed.y_vel), 11, 5, Text::Color::Black);
     sh.write_buffer("XA: " + std::to_string(ed.x_acc), 12, 5, Text::Color::Black);
@@ -266,9 +266,9 @@ EnemyData enemy_step_ai(SpriteHandler<NR, NC>& sh, EnemyData ed,
     //sh.write_buffer("TS: " + std::to_string(ed.time_shooting), 14, 5, Text::Color::Black);
     //sh.write_buffer("SH: " + std::to_string(ed.shot_hit), 15, 5, Text::Color::Black);
     //sh.write_buffer("ST: " + std::to_string(ed.shot_timeout), 16, 5, Text::Color::Black);
-    sh.write_buffer("S-R: " + std::to_string(r_mid + std::round(ed.bullet_offs_y)), 16, 5, Text::Color::Black);
-    sh.write_buffer("S-C: " + std::to_string(c_mid + std::round(ed.bullet_offs_x)), 17, 5, Text::Color::Black);
-    sh.write_buffer("S-A: " + std::to_string(ed.shot_angle*180.f/M_PI), 18, 5, Text::Color::Black);
+    sh.write_buffer("S-R: " + std::to_string(r_mid + math::roundI(ed.bullet_offs_y)), 16, 5, Text::Color::Black);
+    sh.write_buffer("S-C: " + std::to_string(c_mid + math::roundI(ed.bullet_offs_x)), 17, 5, Text::Color::Black);
+    sh.write_buffer("S-A: " + std::to_string(ed.shot_angle*180.f/math::c_pi), 18, 5, Text::Color::Black);
     sh.write_buffer("PS-R: " + std::to_string(plane_shot_r), 19, 5, Text::Color::Black);
     sh.write_buffer("PS-C: " + std::to_string(plane_shot_c), 20, 5, Text::Color::Black);
   }
@@ -311,8 +311,8 @@ void draw_enemy(SpriteHandler<NR, NC>& sh, int r, int r0, int c, bool destroyed,
 template<int NR, int NC>
 void draw_enemy_shadow(SpriteHandler<NR, NC>& sh, float dist, int r_plane, int c_plane, float x_diff, float y_diff, EnemyState es, int anim_ctr)
 {
-  int r = r_plane + std::round(y_diff) + 1;
-  int c = c_plane + std::round(x_diff) + 3;
+  int r = r_plane + math::roundI(y_diff) + 1;
+  int c = c_plane + math::roundI(x_diff) + 3;
   bool r_inside = false;
   bool c_inside = false;
   int anim = anim_ctr % 2;
