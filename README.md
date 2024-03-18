@@ -42,13 +42,6 @@ You also need the following 3rdparty folder with subfolders:
 
 `<my_source_code_dir>/lib/3rdparty/lib/` should contain:
 * `OpenAL32.lib`.
-* `sndfile.lib`.
-* `sndfile.dll`.
-
-The dll `sndfile.dll` should then be copied to where the executable lands.
-
-`<my_source_code_dir>/lib/3rdparty/include/` should contain:
-* `sndfile.h`.
 
 `<my_source_code_dir>/lib/3rdparty/include/OpenAL_Soft/` should contain:
 * `al.h`.
