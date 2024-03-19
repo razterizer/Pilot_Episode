@@ -2,7 +2,7 @@
 
 ## Licensing
 
-Please refer to the information here: https://github.com/razterizer/8Beat/blob/main/README.md
+For 3rd-party license-compatibilities, please refer to the information here: https://github.com/razterizer/8Beat/blob/main/README.md
 
 ## About the Game
 
