@@ -1,4 +1,11 @@
 # Pilot Episode
+
+## Licensing
+
+Please refer to the information here: https://github.com/razterizer/8Beat/blob/main/README.md
+
+## About the Game
+
 A cross-platform (Lin/Mac/Win) terminal-based shooter game.
 
 ![image](https://github.com/razterizer/Pilot_Episode/assets/32767250/9b596d5c-e128-4dba-8fb5-02e9b3d8f412)
