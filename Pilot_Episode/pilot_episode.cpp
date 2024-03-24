@@ -176,7 +176,14 @@ public:
     
     try
     {
-      if (chip_tune.load_tune("chiptune2.ct"))
+      std::string tune_path;
+      const char* xcode_env = std::getenv("RUNNING_FROM_XCODE");
+      if (xcode_env != nullptr)
+        tune_path = "../../../../../../../../Documents/xcode/Pilot_Episode/Pilot_Episode/";
+      else
+        tune_path = "./";
+    
+      if (chip_tune.load_tune(tune_path + "chiptune2.ct"))
       {
           //chip_tune.play_tune();
           chip_tune.play_tune_async();
