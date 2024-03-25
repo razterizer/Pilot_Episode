@@ -1,7 +1,7 @@
 #pragma once
 #include "Enums.h"
-#include "../../lib/Consolation/Screen.h"
-#include "../../lib/Consolation/RC.h"
+#include "../../lib/Termin8or/Screen.h"
+#include "../../lib/Termin8or/RC.h"
 #include "../../lib/Core/StlUtils.h"
 #include "../../lib/8Beat/AudioSourceHandler.h"
 #include "../../lib/8Beat/WaveformGeneration.h"
