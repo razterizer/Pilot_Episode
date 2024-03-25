@@ -1,6 +1,6 @@
 #pragma once
 #include "Globals.h"
-#include "../../lib/Consolation/SpriteHandler.h"
+#include "../../lib/Termin8or/SpriteHandler.h"
 #include "../../lib/Core/Math.h"
 #include "../../lib/Core/Rand.h"
 #include <execution>

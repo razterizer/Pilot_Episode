@@ -1,6 +1,6 @@
 #pragma once
 #include "Enums.h"
-#include "../../lib/Consolation/Keyboard.h"
+#include "../../lib/Termin8or/Keyboard.h"
 
 
 bool register_keypresses(Key& curr_key, int& key_ctr, int& arrow_key_ctr, std::array<Key, 3>& arrow_key_buffer, bool& paused)
