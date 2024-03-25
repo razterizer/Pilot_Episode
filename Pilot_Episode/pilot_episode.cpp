@@ -176,12 +176,14 @@ public:
     
     try
     {
-      std::string tune_path;
+      std::string tune_path = "./";
+#ifndef _WIN32
       const char* xcode_env = std::getenv("RUNNING_FROM_XCODE");
       if (xcode_env != nullptr)
-        tune_path = "../../../../../../../../Documents/xcode/Pilot_Episode/Pilot_Episode/";
+        tune_path = "../../../../../../../../Documents/xcode/Pilot_Episode/Pilot_Episode/"; // #FIXME: Find a better solution!
       else
         tune_path = "./";
+#endif
     
       if (chip_tune.load_tune(tune_path + "chiptune2.ct"))
       {
