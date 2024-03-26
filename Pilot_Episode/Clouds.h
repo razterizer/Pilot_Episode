@@ -1,8 +1,8 @@
 #pragma once
 #include "Globals.h"
-#include "Termin8or/SpriteHandler.h"
-#include "Core/Math.h"
-#include "Core/Rand.h"
+#include "../../lib/Termin8or/SpriteHandler.h"
+#include "../../lib/Core/Math.h"
+#include "../../lib/Core/Rand.h"
 #include <execution>
 
 
