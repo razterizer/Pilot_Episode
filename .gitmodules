@@ -1,9 +1,0 @@
-[submodule "Pilot_Episode/Core"]
-	path = Pilot_Episode/Core
-	url = https://github.com/razterizer/Core
-[submodule "Pilot_Episode/Termin8or"]
-	path = Pilot_Episode/Termin8or
-	url = https://github.com/razterizer/Termin8or
-[submodule "Pilot_Episode/8Beat"]
-	path = Pilot_Episode/8Beat
-	url = https://github.com/razterizer/8Beat
