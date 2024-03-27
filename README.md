@@ -27,13 +27,13 @@ https://www.youtube.com/watch?v=MCauEDtP2ZU
 
 You need the following header-only libraries that I've made:
 * https://github.com/razterizer/Core
-* https://github.com/razterizer/Consolation
+* https://github.com/razterizer/Termin8or
 * https://github.com/razterizer/8Beat
 
 Make sure the folder structure looks like this:
 ```
 <my_source_code_dir>/lib/Core/               ; Core repo workspace/checkout goes here.
-<my_source_code_dir>/lib/Consolation/        ; Consolation repo workspace/checkout goes here.
+<my_source_code_dir>/lib/Termin8or/          ; Termin8or repo workspace/checkout goes here.
 <my_source_code_dir>/lib/8Beat/              ; 8Beat repo workspace/checkout goes here.
 <my_source_code_dir>Pilot_Episode/           ; Pilot_Episode repo workspace/checkout goes here.
 ```
