@@ -79,3 +79,5 @@ Make sure you have OpenAL-Soft installed: `sudo apt install libopenal-dev`.
 Then goto `<my_source_code_dir>/Pilot_Episode/Pilot_Episode/` and build with `./build.sh l`.
 
 Then run by typing `./bin_linux/pilot_episode`.
+
+**Warning: ** On Ubuntu the frame refresh seems broken somehow. I'm not sure why, but there seems to be a bug in `Termin8or` when running on Ubuntu. Feel free to fix it if you want and then just make a pull request. That would be much appreciated.
