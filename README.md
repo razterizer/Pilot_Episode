@@ -29,13 +29,15 @@ You need the following header-only libraries that I've made:
 * https://github.com/razterizer/Core
 * https://github.com/razterizer/Termin8or
 * https://github.com/razterizer/8Beat
+* https://github.com/razterizer/AudioLibSwitcher_OpenAL ; Will be changed to something like AudioLibSwitcher_libsoundio in the future.
 
 Make sure the folder structure looks like this:
 ```
-<my_source_code_dir>/lib/Core/               ; Core repo workspace/checkout goes here.
-<my_source_code_dir>/lib/Termin8or/          ; Termin8or repo workspace/checkout goes here.
-<my_source_code_dir>/lib/8Beat/              ; 8Beat repo workspace/checkout goes here.
-<my_source_code_dir>Pilot_Episode/           ; Pilot_Episode repo workspace/checkout goes here.
+<my_source_code_dir>/lib/Core/                   ; Core repo workspace/checkout goes here.
+<my_source_code_dir>/lib/Termin8or/              ; Termin8or repo workspace/checkout goes here.
+<my_source_code_dir>/lib/8Beat/                  ; 8Beat repo workspace/checkout goes here.
+<my_source_code_dir>/lib/AudioLibSwitcher_OpenAL ; AudioLibSwitcher_OpenAL repo workspace/checkout goes here.
+<my_source_code_dir>Pilot_Episode/               ; Pilot_Episode repo workspace/checkout goes here.
 ```
 ### Windows
 
@@ -57,6 +59,8 @@ You also need the following 3rdparty folder with subfolders:
 * `efx.h`.
 * `efx-creative.h`.
 * `efx-presets.h`.
+
+I will change the audio library to something like `libsoundio` in the future though for licensing reasons.
 
 Then just open `<my_source_code_dir>/Pilot_Episode/Pilot_Episode/Pilot_Episode.sln` and build and run. That's it!
 
