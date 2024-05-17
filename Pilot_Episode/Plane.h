@@ -257,8 +257,18 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
   else if (curr_key == Key::Fire)
   {
     sh.write_buffer("F", 2, 2, Text::Color::Cyan);
-    auto duration = 0.1f;
-    auto wd = wave_gen.generate_waveform(audio::WaveformType::NOISE, duration, 200.f);
+    auto duration = 0.2f;
+    audio::WaveformGenerationParams params;
+    params.noise_filter_order = 2;
+    params.noise_filter_rel_bw = 0.6f;
+    params.noise_filter_slot_dur_s = 1e-2f;
+    params.freq_slide_vel = -4.f;
+    auto wd = wave_gen.generate_waveform(audio::WaveformType::NOISE, duration, 3400.f, params);
+    wd = audio::WaveformHelper::envelope_adsr(wd,
+      audio::Attack { audio::ADSRMode::LOG, 5, 0.f, 0.5f },
+      audio::Decay { audio::ADSRMode::LIN, 8 },
+      audio::Sustain { 0.6f },
+      audio::Release { audio::ADSRMode::LOG, 50 } );
     src_fx->update_buffer(wd);
     src_fx->stop();
     src_fx->play();
