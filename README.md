@@ -34,7 +34,7 @@ Run the following command from `<my_source_code_dir>`.
 ```
 This will make sure you are running the latest stable versions that work with `Pilot_Episode`.
 
-This script was created by Thibaut.
+This script was created by [Thibaut Buchert](https://github.com/thibautbuchert).
 
 ### Repo Dependencies Option 2
 
