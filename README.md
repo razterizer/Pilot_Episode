@@ -68,7 +68,7 @@ Then just open `<my_source_code_dir>/Pilot_Episode/Pilot_Episode/Pilot_Episode.s
 
 Make sure you have OpenAL-Soft installed: `brew install openal-soft`.
 
-Then goto `<my_source_code_dir>/Pilot_Episode/Pilot_Episode/` and build with `./build.sh l`.
+Then goto `<my_source_code_dir>/Pilot_Episode/Pilot_Episode/` and build with `./build.sh`.
 
 Then run by typing `./bin_linux/pilot_episode`.
 
@@ -76,6 +76,6 @@ Then run by typing `./bin_linux/pilot_episode`.
 
 Make sure you have OpenAL-Soft installed: `sudo apt install libopenal-dev`.
 
-Then goto `<my_source_code_dir>/Pilot_Episode/Pilot_Episode/` and build with `./build.sh l`.
+Then goto `<my_source_code_dir>/Pilot_Episode/Pilot_Episode/` and build with `./build.sh`.
 
 Then run by typing `./bin_linux/pilot_episode`.
