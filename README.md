@@ -34,6 +34,8 @@ Run the following command from `<my_source_code_dir>`.
 ```
 This will make sure you are running the latest stable versions that work with `Pilot_Episode`.
 
+This script was created by Thibaut.
+
 ### Repo Dependencies Option 2
 
 You need the following header-only libraries that I've made:
