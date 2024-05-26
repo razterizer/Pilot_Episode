@@ -338,12 +338,14 @@ private:
             edi.state == EnemyState::DESTROYED, anim_ctr);
         draw_enemy_shot(sh, edi);
         if (edi.plane_explosion_anim_ctr++ < edi.plane_explosion_anim_max)
-          draw_explosion(sh, r_mid + math::roundI(edi.plane_explosion_offs_y), c_mid + math::roundI(edi.plane_explosion_offs_x), edi.plane_explosion_anim_ctr);
+          draw_explosion(sh, r_mid + math::roundI(edi.plane_explosion_offs_y), c_mid + math::roundI(edi.plane_explosion_offs_x), edi.plane_explosion_anim_ctr,
+              src_fx, 0);
         if (edi.enemy_explosion_anim_ctr++ < edi.enemy_explosion_anim_max)
           draw_explosion(sh,
             r_mid + math::roundI(edi.y_pos - plane_data::y_pos) + 1,
             c_mid + math::roundI(edi.x_pos - plane_data::x_pos) + 2 * edi.enemy_explosion_anim_ctr / 3,
-            anim_ctr);
+            anim_ctr,
+            src_fx, 1);
       }
 
       generate_engine_smoke(sh, { r_mid + 1, c_mid + 5 }, dt, time);
@@ -356,6 +358,7 @@ private:
         draw_shot(sh, shot_hit, shot_angle, x_pos_shot + plane_half_len, y_pos_shot + 1, Text::Color::Black);
 
       draw_update_seagull_flocks<4000>(sh,
+        src_fx,
         seagull_flocks,
         plane_data::x_pos, plane_data::y_pos,
         x_pos_shot, y_pos_shot, shot_hit, shot_fired,
