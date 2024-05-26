@@ -126,7 +126,9 @@ public:
   
   ~Game()
   {
-    audio.remove_source(src_fx);
+    audio.remove_source(src_fx_0);
+    audio.remove_source(src_fx_1);
+    audio.remove_source(src_fx_2);
   }
 
   virtual void generate_data() override
@@ -197,7 +199,9 @@ public:
       std::cerr << "Caught exception: " << e.what() << std::endl;
     }
     
-    src_fx = audio.create_stream_source();
+    src_fx_0 = audio.create_stream_source();
+    src_fx_1 = audio.create_stream_source();
+    src_fx_2 = audio.create_stream_source();
   }
   
   float get_alt_km() const { return alt_km_f; }
@@ -243,7 +247,7 @@ private:
       draw_paused(sh, anim_ctr);
     else
     {
-      update_plane_controls(sh, src_fx, wave_gen, arrow_key_buffer, curr_key, ground_level, dt);
+      update_plane_controls(sh, src_fx_0, wave_gen, arrow_key_buffer, curr_key, ground_level, dt);
 
       draw_hud(sh, ground_level, health, max_health, score);
 
@@ -271,7 +275,7 @@ private:
       {
         auto& edi = enemies_data[e_idx];
         edi = enemy_step_ai(sh, edi,
-          src_fx,
+          src_fx_0,
           plane_data::x_pos, plane_data::y_pos, plane_data::x_vel, plane_data::y_vel,
           plane_hull, plane_hiding,
           r_mid + static_cast<int>(y_pos_shot) + 1, c_mid + static_cast<int>(x_pos_shot + plane_half_len), shot_fired, shot_hit,
@@ -340,16 +344,16 @@ private:
         draw_enemy_shot(sh, edi);
         if (edi.plane_explosion_anim_ctr++ < edi.plane_explosion_anim_max)
           draw_explosion(sh, r_mid + math::roundI(edi.plane_explosion_offs_y), c_mid + math::roundI(edi.plane_explosion_offs_x), edi.plane_explosion_anim_ctr,
-              src_fx, 0);
+              src_fx_0, 0);
         if (edi.enemy_explosion_anim_ctr++ < edi.enemy_explosion_anim_max)
           draw_explosion(sh,
             r_mid + math::roundI(edi.y_pos - plane_data::y_pos) + 1,
             c_mid + math::roundI(edi.x_pos - plane_data::x_pos) + 2 * edi.enemy_explosion_anim_ctr / 3,
             anim_ctr,
-            src_fx, 1);
+            src_fx_0, 1);
       }
 
-      generate_engine_smoke(sh, { r_mid + 1, c_mid + 5 }, dt, time);
+      generate_engine_smoke(sh, src_fx_1, src_fx_2, { r_mid + 1, c_mid + 5 }, dt, time);
 
       plane_hull.clear();
       for (int r = 1; r < 29; ++r)
@@ -359,7 +363,7 @@ private:
         draw_shot(sh, shot_hit, shot_angle, x_pos_shot + plane_half_len, y_pos_shot + 1, Text::Color::Black);
 
       draw_update_seagull_flocks<4000>(sh,
-        src_fx,
+        src_fx_0,
         seagull_flocks,
         plane_data::x_pos, plane_data::y_pos,
         x_pos_shot, y_pos_shot, shot_hit, shot_fired,
@@ -447,7 +451,9 @@ private:
   audio::AudioSourceHandler audio;
   audio::WaveformGeneration wave_gen;
   audio::ChipTuneEngine chip_tune { audio, wave_gen };
-  audio::AudioStreamSource* src_fx = nullptr;
+  audio::AudioStreamSource* src_fx_0 = nullptr;
+  audio::AudioStreamSource* src_fx_1 = nullptr;
+  audio::AudioStreamSource* src_fx_2 = nullptr;
 };
 
 //////////////////////////////////////////////////////////////////////////

@@ -3,13 +3,16 @@
 #include "../../lib/Termin8or/Screen.h"
 #include "../../lib/Termin8or/RC.h"
 #include "../../lib/Core/StlUtils.h"
+#include "../../lib/Core/OneShot.h"
 #include "../../lib/8Beat/AudioSourceHandler.h"
 #include "../../lib/8Beat/WaveformGeneration.h"
+#include "../../lib/8Beat/SFX.h"
 
 #define HILITE_PLANE_SURFACES
 
 template<int NR, int NC>
 void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
+                    audio::AudioStreamSource* src_fx_0, audio::AudioStreamSource* src_fx_1,
                     const RC& rc_plane_engine,
                     float dt, float time)
 {
@@ -19,6 +22,67 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
   auto health_ratio = static_cast<float>(health) / static_cast<float>(max_health);
   const float c_health_ratio_threshold = 0.3f;
   bool trig = health_ratio <= c_health_ratio_threshold && health > 0;
+  
+  static OneShot sfx_trigger_0, sfx_trigger_1;
+  static float trg_timestamp_0 = time;
+  static float trg_timestamp_1 = time;
+  if (trig)
+  {
+    using namespace audio;
+    
+    static std::vector<float> vp
+    {
+      -0.600187f,
+      -0.5f, //-1.03877f,
+      1.96662f,
+      2.95216f,
+      3.90852f,
+      2.f,
+      0.401617f,
+      5.f, //2.33024f,
+      6.68507f,
+      1.68941f,
+      -0.283106f,
+      -0.88113f,
+      0.594106f,
+      2.89542f,
+      2.0655f,
+      1.75611f,
+      -0.0594333f,
+    };
+    
+    ADSR adsr
+    {
+      Attack { ADSRMode::LIN, rnd::rand_float(20, 70), 0.f, 1.f },
+      Decay { ADSRMode::LIN, rnd::rand_float(0, 5), 1.f },
+      Sustain { 1.f },
+      Release { ADSRMode::LIN, rnd::rand_float(20, 70) }
+    };
+    float vol = rnd::rand_float(0.4f, 1.f) * health_ratio / c_health_ratio_threshold;
+    
+    if (time - trg_timestamp_0 > 0.2 + rnd::rand_float(-0.02, 0.02) && sfx_trigger_0.once())
+    {
+      sfx_trigger_1.reset();
+      trg_timestamp_0 = time;
+      
+      auto wd = SFX::generate(SFXType::EXPLOSION, vp);
+      wd = WaveformHelper::envelope_adsr(wd, adsr);
+      src_fx_0->update_buffer(wd);
+      src_fx_0->set_volume(vol);
+      src_fx_0->play();
+    }
+    if (time - trg_timestamp_0 > 0.2 + rnd::rand_float(-0.02, 0.02) && sfx_trigger_1.once())
+    {
+      sfx_trigger_0.reset();
+      trg_timestamp_1 = time;
+      
+      auto wd = SFX::generate(SFXType::EXPLOSION, vp);
+      wd = WaveformHelper::envelope_adsr(wd, adsr);
+      src_fx_1->update_buffer(wd);
+      src_fx_1->set_volume(vol);
+      src_fx_1->play();
+    }
+  }
 
   const float vel_x = -0.5f*plane_data::x_vel, vel_y = -0.8f*plane_data::y_vel;
   const float acc = -10.f, spread = 13.f, life_time = math::linmap(health_ratio, 0.f, c_health_ratio_threshold, 2.f, 0.1f);
