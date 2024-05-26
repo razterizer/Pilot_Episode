@@ -1,5 +1,7 @@
 #pragma once
 #include "Effects.h"
+#include "../../lib/8Beat/AudioSourceHandler.h"
+#include "../../lib/8Beat/SFX.h"
 
 
 enum class EnemyState { PATROL, HUNT, SHOOT, EVADE, DESTROYED };
@@ -41,6 +43,7 @@ struct EnemyData
 int EnemyData::g_id = -1;
 template<int NR, int NC>
 EnemyData enemy_step_ai(SpriteHandler<NR, NC>& sh, EnemyData ed,
+                        audio::AudioStreamSource* src_fx,
                         float x_pos_plane, float y_pos_plane, float x_vel_plane, float y_vel_plane,
                         const std::vector<std::tuple<int, int, bool>>& plane_hull, bool plane_hiding,
                         int plane_shot_r, int plane_shot_c, bool plane_shot_fired, bool& shot_down,
@@ -172,6 +175,12 @@ EnemyData enemy_step_ai(SpriteHandler<NR, NC>& sh, EnemyData ed,
       const float shot_speed = 1.f;
       if (ed.time_shooting == 0 || ed.shot_hit || ed.shot_timeout == 0)
       {
+        using namespace audio;
+        auto wd = SFX::generate(SFXType::LASER);
+        src_fx->update_buffer(wd);
+        src_fx->stop();
+        src_fx->play();
+        
         if (ed.shot_hit)
         {
           ed.plane_explosion_offs_x = ed.bullet_offs_x;
