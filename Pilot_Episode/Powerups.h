@@ -1,5 +1,6 @@
 #pragma once
 #include "Globals.h"
+#include "../../lib/8Beat/SFX.h"
 
 
 struct PowerUpData
@@ -10,6 +11,7 @@ struct PowerUpData
 };
 template<size_t N, int NR, int NC>
 void draw_update_powerup(SpriteHandler<NR, NC>& sh, std::array<PowerUpData, N>& powerups,
+                         audio::AudioStreamSource* src_fx,
                          std::vector<std::tuple<int, int, bool>>& plane_hull,
                          float x_pos, float y_pos,
                          float cloud_limit, float ground_level,
@@ -97,6 +99,12 @@ void draw_update_powerup(SpriteHandler<NR, NC>& sh, std::array<PowerUpData, N>& 
         health += 5;
         if (health > max_health)
           health = max_health;
+        
+        using namespace audio;
+        auto wd = SFX::generate(SFXType::COIN);
+        src_fx->update_buffer(wd);
+        src_fx->stop();
+        src_fx->play();
       }
     }
   }

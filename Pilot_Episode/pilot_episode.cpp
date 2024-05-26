@@ -374,6 +374,7 @@ private:
 
       draw_update_powerup<2000>(sh,
         powerups,
+        src_fx_0,
         plane_hull,
         plane_data::x_pos, plane_data::y_pos,
         cloud_limit, ground_level,
