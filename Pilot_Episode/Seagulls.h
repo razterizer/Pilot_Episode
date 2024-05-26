@@ -1,5 +1,6 @@
 #pragma once
 #include "Globals.h"
+#include "../../lib/8Beat/AudioSourceHandler.h"
 
 
 template<int NR, int NC>
@@ -57,6 +58,7 @@ struct SeagullFlockData
 
 template<size_t Nf, int NR, int NC>
 void draw_update_seagull_flocks(SpriteHandler<NR, NC>& sh,
+                                audio::AudioStreamSource* src_fx,
                                 std::array<SeagullFlockData, Nf>& seagull_flocks,
                                 float x_pos, float y_pos,
                                 float x_pos_shot, float y_pos_shot, bool& shot_hit, bool shot_fired,
@@ -97,7 +99,7 @@ void draw_update_seagull_flocks(SpriteHandler<NR, NC>& sh,
       if (bird.killed)
       {
         if (bird.explosion_anim_ctr++ < bird.explosion_anim_ctr_max)
-          draw_explosion(sh, r, c, bird.explosion_anim_ctr);
+          draw_explosion(sh, r, c, bird.explosion_anim_ctr, src_fx, 2);
         if (flock.y_pos + bird.y_rel_pos - 23 < ground_level)
         {
           const float y_acc = +5.f;
