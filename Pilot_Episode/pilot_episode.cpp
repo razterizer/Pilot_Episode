@@ -271,6 +271,7 @@ private:
       {
         auto& edi = enemies_data[e_idx];
         edi = enemy_step_ai(sh, edi,
+          src_fx,
           plane_data::x_pos, plane_data::y_pos, plane_data::x_vel, plane_data::y_vel,
           plane_hull, plane_hiding,
           r_mid + static_cast<int>(y_pos_shot) + 1, c_mid + static_cast<int>(x_pos_shot + plane_half_len), shot_fired, shot_hit,
