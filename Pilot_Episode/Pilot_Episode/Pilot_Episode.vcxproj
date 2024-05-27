@@ -149,7 +149,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\..\..\lib\3rdparty\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)\chiptune2.ct $(TargetDir)</Command>
+      <Command>xcopy $(SolutionDir)\chiptune2.ct $(TargetDir) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -172,7 +172,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\..\..\lib\3rdparty\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)\chiptune2.ct $(TargetDir)</Command>
+      <Command>xcopy $(SolutionDir)\chiptune2.ct $(TargetDir) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
