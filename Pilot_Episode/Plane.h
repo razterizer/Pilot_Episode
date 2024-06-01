@@ -63,7 +63,7 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
     if (time - trg_timestamp_0 > 0.2 + rnd::rand_float(-0.02, 0.02) && sfx_trigger_0.once())
     {
       sfx_trigger_1.reset();
-      trg_timestamp_0 = time;
+      trg_timestamp_1 = time;
       
       auto wd = SFX::generate(SFXType::EXPLOSION, vp);
       wd = WaveformHelper::envelope_adsr(wd, adsr);
@@ -71,10 +71,10 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
       src_fx_0->set_volume(vol);
       src_fx_0->play();
     }
-    if (time - trg_timestamp_0 > 0.2 + rnd::rand_float(-0.02, 0.02) && sfx_trigger_1.once())
+    if (time - trg_timestamp_1 > 0.2 + rnd::rand_float(-0.02, 0.02) && sfx_trigger_1.once())
     {
       sfx_trigger_0.reset();
-      trg_timestamp_1 = time;
+      trg_timestamp_0 = time;
       
       auto wd = SFX::generate(SFXType::EXPLOSION, vp);
       wd = WaveformHelper::envelope_adsr(wd, adsr);
