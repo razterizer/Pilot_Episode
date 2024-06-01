@@ -305,7 +305,10 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HFL2Q84SZB;
 				ENABLE_HARDENED_RUNTIME = YES;
-				HEADER_SEARCH_PATHS = "/opt/homebrew/opt/openal-soft/include/";
+				HEADER_SEARCH_PATHS = (
+					"/opt/homebrew/opt/openal-soft/include/",
+					../lib/,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -318,7 +321,10 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HFL2Q84SZB;
 				ENABLE_HARDENED_RUNTIME = YES;
-				HEADER_SEARCH_PATHS = "/opt/homebrew/opt/openal-soft/include/";
+				HEADER_SEARCH_PATHS = (
+					"/opt/homebrew/opt/openal-soft/include/",
+					../lib/,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
