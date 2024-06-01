@@ -16,18 +16,15 @@
 #include "InstructionsScreen.h"
 #include "Hud.h"
 #include "Sky.h"
+
 #include <Termin8or/Screen.h>
 #include <Termin8or/SpriteHandler.h>
 #include <Termin8or/GameEngine.h>
 #include <8Beat/AudioSourceHandler.h>
 #include <8Beat/ChipTuneEngine.h>
 #include <Core/Math.h>
-//#include <cstdlib>
+
 #include <iostream>
-//#include <unistd.h>
-//#include <ncurses.h>
-//#include <SDL2/SDL.h>
-//#include <termios.h>
 
 // TODO:
 // --1. Seagulls.--
