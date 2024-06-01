@@ -6,7 +6,7 @@ if [[ $os_name == *"Darwin"* ]]; then
   additional_flags="-I../../lib \
   -I/opt/homebrew/opt/openal-soft/include -L/opt/homebrew/opt/openal-soft/lib -lopenal.1.23.1"
 else
-  additional_flags=""
+  additional_flags="-I../../lib"
   export BUILD_PKG_CONFIG_MODULES='openal'
 fi
 
