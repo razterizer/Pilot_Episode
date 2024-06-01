@@ -9,7 +9,7 @@ struct EnemyData
 {
   EnemyData() = default;
   EnemyData(float x, float y)
-   : x_pos(x), y_pos(y), id(++g_id) {}
+   : id(++g_id), x_pos(x), y_pos(y) {}
 
   int id = -1;
   static int g_id;

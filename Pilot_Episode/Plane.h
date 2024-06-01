@@ -280,7 +280,6 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
 {
   auto it_begin = std::begin(arrow_key_buffer);
   auto it_end = std::end(arrow_key_buffer);
-  bool pressing_up = false;
   if (std::any_of(it_begin, it_end, [](auto v) { return v != Key::None; }))
   {
     if (std::any_of(it_begin, it_end, [](auto v) { return v == Key::Left; }))
@@ -306,7 +305,6 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
       plane_data::y_vel -= plane_data::y_acc * dt;
       plane_data::x_vel *= 0.9f;
       sh.write_buffer("U", 1, 2, Text::Color::Cyan);
-      pressing_up = true;
     }
     //switch (arrow_curr)
     //{
