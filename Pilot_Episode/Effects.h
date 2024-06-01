@@ -1,6 +1,6 @@
 #pragma once
-#include "../../lib/8Beat/AudioSourceHandler.h"
-#include "../../lib/8Beat/SFX.h"
+#include <8Beat/AudioSourceHandler.h>
+#include <8Beat/SFX.h>
 
 template<int NR, int NC>
 void draw_shot(SpriteHandler<NR, NC>& sh, bool shot_hit, float shot_angle, float bullet_offs_x, float bullet_offs_y, Text::Color color)

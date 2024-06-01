@@ -1,6 +1,6 @@
 #pragma once
 #include "Globals.h"
-#include "../../lib/8Beat/SFX.h"
+#include <8Beat/SFX.h>
 
 
 struct PowerUpData
