@@ -1,7 +1,7 @@
 #pragma once
 #include "Effects.h"
-#include "../../lib/8Beat/AudioSourceHandler.h"
-#include "../../lib/8Beat/SFX.h"
+#include <8Beat/AudioSourceHandler.h>
+#include <8Beat/SFX.h>
 
 
 enum class EnemyState { PATROL, HUNT, SHOOT, EVADE, DESTROYED };

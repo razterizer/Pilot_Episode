@@ -1,6 +1,6 @@
 #pragma once
 #include "Globals.h"
-#include "../../lib/8Beat/AudioSourceHandler.h"
+#include <8Beat/AudioSourceHandler.h>
 
 
 template<int NR, int NC>
