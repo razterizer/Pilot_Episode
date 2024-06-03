@@ -25,3 +25,5 @@ bin_windows/
 
 x64/
 x86/
+
+*.vcxproj.user
