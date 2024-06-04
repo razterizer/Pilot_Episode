@@ -93,18 +93,16 @@ class Game : public GameEngine<>
 {
 public:
   Game(int argc, char** argv)
+    : GameEngine(true, Text::Color::Blue, Text::Color::Blue, Text::Color::Black)
   {
   #ifndef _WIN32
-    fps = 20;
-    delay = 60'000;
+    GameEngine::set_fps(20);
+    GameEngine::set_delay_us(60'000);
   #endif
     //if (argc >= 2)
-    //  delay = atoi(argv[1]);
-    //dt = static_cast<float>(delay) / 1e6f;
+    //  GameEngine::set_delay_us(atoi(argv[1]));
     if (argc >= 2)
-      fps = atoi(argv[1]);
-    //dt = 1.f / static_cast<float>(fps);
-    dt = static_cast<float>(delay) / 1e6f;
+      GameEngine::set_fps(atoi(argv[1]));
 
     auto set_alt = [&]() -> float { return -alt_km_f * 1e3f / pix_to_m + ground_level + 13 * pix_ar2; };
     plane_data::y_pos = set_alt();
@@ -205,211 +203,190 @@ public:
 
 private:
 
-  virtual bool update() override
+  virtual void update() override
   {
-    if (show_title)
-      bg_color = Text::Color::Blue;
-    else if (show_instructions)
-      bg_color = Text::Color::Black;
-    else
-      bg_color = Text::Color::Blue;
-
-    Key curr_key = Key::None;
-
-    if (!register_keypresses(curr_key, key_ctr, arrow_key_ctr, arrow_key_buffer, paused))
+    Key curr_special_key = register_keypresses(kpd);
+    
+    update_plane_controls(sh, src_fx_0, wave_gen, kpd, curr_special_key, ground_level, dt);
+    
+    draw_hud(sh, ground_level, health, max_health, score);
+    
+    draw_frame(sh, Text::Color::DarkBlue);
+    
+    if (health < 0)
+      health = 0;
+    
+    if (health == 0)
     {
-      chip_tune.stop_tune_async();
-      return false;
+      if (game_over_timer == 0)
+        draw_game_over(sh);
+      else
+        game_over_timer--;
     }
-
-    if (show_title)
+    else if (num_enemies_shot_down == enemies_data.size())
     {
-      draw_title(sh);
-      if (curr_key == Key::Fire)
-      {
-        show_title = false;
-        show_instructions = true;
-      }
+      if (you_won_timer == 0)
+        draw_you_won(sh);
+      else
+        you_won_timer--;
     }
-    else if (show_instructions)
+    
+    for (size_t e_idx = 0; e_idx < enemies_data.size(); ++e_idx)
     {
-      draw_instructions(sh);
-      if (curr_key == Key::Fire)
-      {
-        show_instructions = false;
-        chip_tune.stop_tune_async();
-      }
+      auto& edi = enemies_data[e_idx];
+      edi = enemy_step_ai(sh, edi,
+                          src_fx_0,
+                          plane_data::x_pos, plane_data::y_pos, plane_data::x_vel, plane_data::y_vel,
+                          plane_hull, plane_hiding,
+                          r_mid + static_cast<int>(y_pos_shot) + 1, c_mid + static_cast<int>(x_pos_shot + plane_half_len), shot_fired, shot_hit,
+                          anim_ctr, dt, static_cast<int>(cloud_limit), static_cast<int>(ground_level));
     }
-    else if (paused)
-      draw_paused(sh, anim_ctr);
-    else
+    
+    const float shot_speed = 1.f;
+    if (shot_timeout == 0 || curr_special_key == Key::Fire)
     {
-      update_plane_controls(sh, src_fx_0, wave_gen, arrow_key_buffer, curr_key, ground_level, dt);
-
-      draw_hud(sh, ground_level, health, max_health, score);
-
-      draw_frame(sh, Text::Color::DarkBlue);
-
-      if (health < 0)
-        health = 0;
-
-      if (health == 0)
-      {
-        if (game_over_timer == 0)
-          draw_game_over(sh);
-        else
-          game_over_timer--;
-      }
-      else if (num_enemies_shot_down == enemies_data.size())
-      {
-        if (you_won_timer == 0)
-          draw_you_won(sh);
-        else
-          you_won_timer--;
-      }
-
-      for (size_t e_idx = 0; e_idx < enemies_data.size(); ++e_idx)
-      {
-        auto& edi = enemies_data[e_idx];
-        edi = enemy_step_ai(sh, edi,
-          src_fx_0,
-          plane_data::x_pos, plane_data::y_pos, plane_data::x_vel, plane_data::y_vel,
-          plane_hull, plane_hiding,
-          r_mid + static_cast<int>(y_pos_shot) + 1, c_mid + static_cast<int>(x_pos_shot + plane_half_len), shot_fired, shot_hit,
-          anim_ctr, dt, static_cast<int>(cloud_limit), static_cast<int>(ground_level));
-      }
-
-      const float shot_speed = 1.f;
-      if (shot_timeout == 0 || curr_key == Key::Fire)
-      {
-        x_pos_shot = 0.f;
-        y_pos_shot = 0.f;
-        shot_fired = false;
-      }
-      if (curr_key == Key::Fire)
-      {
-        shot_angle = std::atan2(plane_data::y_vel, plane_data::x_vel);
-        x_pos_shot = 5.f * std::cos(shot_angle);
-        y_pos_shot = 5.f * std::sin(shot_angle) / pix_ar2;
-        shot_fired = true;
-        shot_timeout = static_cast<int>(50 / shot_speed); //  ft / (ft/s) -> s
-        shot_hit = false;
-      }
-      else if (shot_fired && shot_timeout > 0)
-      {
-        x_pos_shot += shot_speed * std::cos(shot_angle);
-        y_pos_shot += shot_speed * std::sin(shot_angle) / pix_ar2;
-        shot_timeout--;
-      }
-
-      enemies_data_sorted = enemies_data;
-      std::sort(enemies_data_sorted.begin(), enemies_data_sorted.end(),
-        [](const auto& ed0, const auto& ed1) { return ed0.dist < ed1.dist; });
-
-      for (size_t e_idx = 0; e_idx < enemies_data.size(); ++e_idx)
-      {
-        const auto& edi = enemies_data_sorted[e_idx];
-        draw_enemy_shadow(sh, edi.dist, r_mid, c_mid,
-          edi.x_pos - plane_data::x_pos,
-          edi.y_pos - plane_data::y_pos,
-          edi.state, anim_ctr);
-      }
-
-      plane_hiding = false;
-      draw_clouds_fg(sh,
-        cloud_data,
-        plane_data::x_pos, plane_data::y_pos,
-        plane_hull, plane_hiding);
-
-      // #DEBUG
-      //int r_offs_dbg = 10;
-      //for (const auto& rch : plane_hull)
-      //  sh.write_buffer(std::get<2>(rch) ? "-" : "*", std::get<0>(rch) + r_offs_dbg, std::get<1>(rch), Text::Color::Black);
-      //sh.write_buffer("Plane Hiding: " + std::to_string(plane_hiding), 27, 3, Text::Color::White);
-
-      draw_crosshair(sh, plane_data::x_vel, plane_data::y_vel);
-
-      for (size_t e_idx = 0; e_idx < enemies_data.size(); ++e_idx)
-      {
-        auto& edi = enemies_data[e_idx];
-        for (int r = 1; r < 29; ++r)
-          draw_enemy(sh,
-            r,
-            r_mid + math::roundI(edi.y_pos - plane_data::y_pos),
-            c_mid + math::roundI(edi.x_pos - plane_data::x_pos),
-            edi.state == EnemyState::DESTROYED, anim_ctr);
-        draw_enemy_shot(sh, edi);
-        if (edi.plane_explosion_anim_ctr++ < edi.plane_explosion_anim_max)
-          draw_explosion(sh, r_mid + math::roundI(edi.plane_explosion_offs_y), c_mid + math::roundI(edi.plane_explosion_offs_x), edi.plane_explosion_anim_ctr,
-              src_fx_0, 0);
-        if (edi.enemy_explosion_anim_ctr++ < edi.enemy_explosion_anim_max)
-          draw_explosion(sh,
-            r_mid + math::roundI(edi.y_pos - plane_data::y_pos) + 1,
-            c_mid + math::roundI(edi.x_pos - plane_data::x_pos) + 2 * edi.enemy_explosion_anim_ctr / 3,
-            anim_ctr,
-            src_fx_0, 1);
-      }
-
-      generate_engine_smoke(sh, src_fx_1, src_fx_2, { r_mid + 1, c_mid + 5 }, dt, time);
-
-      plane_hull.clear();
+      x_pos_shot = 0.f;
+      y_pos_shot = 0.f;
+      shot_fired = false;
+    }
+    if (curr_special_key == Key::Fire)
+    {
+      shot_angle = std::atan2(plane_data::y_vel, plane_data::x_vel);
+      x_pos_shot = 5.f * std::cos(shot_angle);
+      y_pos_shot = 5.f * std::sin(shot_angle) / pix_ar2;
+      shot_fired = true;
+      shot_timeout = static_cast<int>(50 / shot_speed); //  ft / (ft/s) -> s
+      shot_hit = false;
+    }
+    else if (shot_fired && shot_timeout > 0)
+    {
+      x_pos_shot += shot_speed * std::cos(shot_angle);
+      y_pos_shot += shot_speed * std::sin(shot_angle) / pix_ar2;
+      shot_timeout--;
+    }
+    
+    enemies_data_sorted = enemies_data;
+    std::sort(enemies_data_sorted.begin(), enemies_data_sorted.end(),
+              [](const auto& ed0, const auto& ed1) { return ed0.dist < ed1.dist; });
+    
+    for (size_t e_idx = 0; e_idx < enemies_data.size(); ++e_idx)
+    {
+      const auto& edi = enemies_data_sorted[e_idx];
+      draw_enemy_shadow(sh, edi.dist, r_mid, c_mid,
+                        edi.x_pos - plane_data::x_pos,
+                        edi.y_pos - plane_data::y_pos,
+                        edi.state, anim_ctr);
+    }
+    
+    plane_hiding = false;
+    draw_clouds_fg(sh,
+                   cloud_data,
+                   plane_data::x_pos, plane_data::y_pos,
+                   plane_hull, plane_hiding);
+    
+    // #DEBUG
+    //int r_offs_dbg = 10;
+    //for (const auto& rch : plane_hull)
+    //  sh.write_buffer(std::get<2>(rch) ? "-" : "*", std::get<0>(rch) + r_offs_dbg, std::get<1>(rch), Text::Color::Black);
+    //sh.write_buffer("Plane Hiding: " + std::to_string(plane_hiding), 27, 3, Text::Color::White);
+    
+    draw_crosshair(sh, plane_data::x_vel, plane_data::y_vel);
+    
+    for (size_t e_idx = 0; e_idx < enemies_data.size(); ++e_idx)
+    {
+      auto& edi = enemies_data[e_idx];
       for (int r = 1; r < 29; ++r)
-        draw_plane(sh, r, r_mid, c_mid, anim_ctr, plane_data::x_mv_dir, plane_data::y_mv_dir, plane_hull);
-
-      if (shot_fired)
-        draw_shot(sh, shot_hit, shot_angle, x_pos_shot + plane_half_len, y_pos_shot + 1, Text::Color::Black);
-
-      draw_update_seagull_flocks<4000>(sh,
-        src_fx_0,
-        seagull_flocks,
-        plane_data::x_pos, plane_data::y_pos,
-        x_pos_shot, y_pos_shot, shot_hit, shot_fired,
-        cloud_limit, ground_level,
-        anim_ctr, dt);
-
-      gnd_data.draw(sh, ground_level);
-
-      draw_update_powerup<2000>(sh,
-        powerups,
-        src_fx_0,
-        plane_hull,
-        plane_data::x_pos, plane_data::y_pos,
-        cloud_limit, ground_level,
-        dt);
-
-      draw_clouds_bg(sh,
-        cloud_data,
-        plane_data::x_pos, plane_data::y_pos);
-
-      draw_hot_air_balloon<20>(sh,
-        balloon_rc, plane_data::x_pos, plane_data::y_pos, anim_ctr);
-
-      draw_mountain_range(sh, mountain_data::mountain_range_height_fields,
-        plane_data::x_pos, plane_data::y_pos,
-        ground_level);
-
-      draw_hot_air_balloon_small<400>(sh,
-        balloon_small_rc, plane_data::x_pos, plane_data::y_pos, anim_ctr);
-
-      draw_sun(sh, 3, 60, plane_data::x_pos);
-
-      // Space Tests
-      //sh.write_buffer("\u2591\u2592\u2593", 27, 78, Text::Color::Black);
-      //sh.write_buffer("####", 25, 70, Text::Color::Blue, Text::Color::Black);
-      //sh.write_buffer("####", 26, 70, Text::Color::Blue, Text::Color::Black);
-      //sh.write_buffer("####", 27, 70, Text::Color::Blue, Text::Color::Black);
+        draw_enemy(sh,
+                   r,
+                   r_mid + math::roundI(edi.y_pos - plane_data::y_pos),
+                   c_mid + math::roundI(edi.x_pos - plane_data::x_pos),
+                   edi.state == EnemyState::DESTROYED, anim_ctr);
+      draw_enemy_shot(sh, edi);
+      if (edi.plane_explosion_anim_ctr++ < edi.plane_explosion_anim_max)
+        draw_explosion(sh, r_mid + math::roundI(edi.plane_explosion_offs_y), c_mid + math::roundI(edi.plane_explosion_offs_x), edi.plane_explosion_anim_ctr,
+                       src_fx_0, 0);
+      if (edi.enemy_explosion_anim_ctr++ < edi.enemy_explosion_anim_max)
+        draw_explosion(sh,
+                       r_mid + math::roundI(edi.y_pos - plane_data::y_pos) + 1,
+                       c_mid + math::roundI(edi.x_pos - plane_data::x_pos) + 2 * edi.enemy_explosion_anim_ctr / 3,
+                       anim_ctr,
+                       src_fx_0, 1);
     }
+    
+    generate_engine_smoke(sh, src_fx_1, src_fx_2, { r_mid + 1, c_mid + 5 }, dt, time);
+    
+    plane_hull.clear();
+    for (int r = 1; r < 29; ++r)
+      draw_plane(sh, r, r_mid, c_mid, anim_ctr, plane_data::x_mv_dir, plane_data::y_mv_dir, plane_hull);
+    
+    if (shot_fired)
+      draw_shot(sh, shot_hit, shot_angle, x_pos_shot + plane_half_len, y_pos_shot + 1, Text::Color::Black);
+    
+    draw_update_seagull_flocks<4000>(sh,
+                                     src_fx_0,
+                                     seagull_flocks,
+                                     plane_data::x_pos, plane_data::y_pos,
+                                     x_pos_shot, y_pos_shot, shot_hit, shot_fired,
+                                     cloud_limit, ground_level,
+                                     anim_ctr, dt);
+    
+    gnd_data.draw(sh, ground_level);
+    
+    draw_update_powerup<2000>(sh,
+                              powerups,
+                              src_fx_0,
+                              plane_hull,
+                              plane_data::x_pos, plane_data::y_pos,
+                              cloud_limit, ground_level,
+                              dt);
+    
+    draw_clouds_bg(sh,
+                   cloud_data,
+                   plane_data::x_pos, plane_data::y_pos);
+    
+    draw_hot_air_balloon<20>(sh,
+                             balloon_rc, plane_data::x_pos, plane_data::y_pos, anim_ctr);
+    
+    draw_mountain_range(sh, mountain_data::mountain_range_height_fields,
+                        plane_data::x_pos, plane_data::y_pos,
+                        ground_level);
+    
+    draw_hot_air_balloon_small<400>(sh,
+                                    balloon_small_rc, plane_data::x_pos, plane_data::y_pos, anim_ctr);
+    
+    draw_sun(sh, 3, 60, plane_data::x_pos);
+    
+    // Space Tests
+    //sh.write_buffer("\u2591\u2592\u2593", 27, 78, Text::Color::Black);
+    //sh.write_buffer("####", 25, 70, Text::Color::Blue, Text::Color::Black);
+    //sh.write_buffer("####", 26, 70, Text::Color::Blue, Text::Color::Black);
+    //sh.write_buffer("####", 27, 70, Text::Color::Blue, Text::Color::Black);
     ///
-
+    
     draw_sky(sh);
-
-    return true;
+  }
+  
+  virtual void on_quit() override
+  {
+    chip_tune.stop_tune_async();
+  }
+  
+  virtual void draw_title() override
+  {
+    ::draw_title(sh);
+  }
+  
+  virtual void draw_instructions() override
+  {
+    ::draw_instructions(sh);
+  }
+  
+  virtual void on_exit_instructions() override
+  {
+    chip_tune.stop_tune_async();
   }
 
   //////////////////////////////////////////////////////////////////////////
-
-  std::array<Key, 3> arrow_key_buffer;
-  int arrow_key_ctr = 0;
 
   // Grass, Lakes, Sand, Trees
   ground::GroundData gnd_data;

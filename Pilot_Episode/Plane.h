@@ -2,6 +2,7 @@
 #include "Enums.h"
 #include <Termin8or/Screen.h>
 #include <Termin8or/RC.h>
+#include <Termin8or/Keyboard.h>
 #include <Core/StlUtils.h>
 #include <Core/OneShot.h>
 #include <8Beat/AudioSourceHandler.h>
@@ -275,48 +276,35 @@ void draw_crosshair(SpriteHandler<NR, NC>& sh, float x_vel, float y_vel)
 template<int NR, int NC>
 void update_plane_controls(SpriteHandler<NR, NC>& sh,
                            audio::AudioStreamSource* src_fx, audio::WaveformGeneration& wave_gen,
-                           const std::array<Key, 3>& arrow_key_buffer, Key curr_key,
+                           const keyboard::KeyPressData& kpd, Key curr_special_key,
                            float ground_level, float dt)
 {
-  auto it_begin = std::begin(arrow_key_buffer);
-  auto it_end = std::end(arrow_key_buffer);
-  if (std::any_of(it_begin, it_end, [](auto v) { return v != Key::None; }))
+  auto buf_arrow_key = kpd.get_buffered_arrow_key();
+  if (buf_arrow_key == keyboard::SpecialKey::Left)
   {
-    if (std::any_of(it_begin, it_end, [](auto v) { return v == Key::Left; }))
-    {
-      plane_data::x_vel -= plane_data::x_acc * dt;
-      plane_data::y_vel *= 0.9f;
-      sh.write_buffer("L", 2, 1, Text::Color::Cyan);
-    }
-    else if (std::any_of(it_begin, it_end, [](auto v) { return v == Key::Right; }))
-    {
-      plane_data::x_vel += plane_data::x_acc * dt;
-      plane_data::y_vel *= 0.9f;
-      sh.write_buffer("R", 2, 3, Text::Color::Cyan);
-    }
-    else if (std::any_of(it_begin, it_end, [](auto v) { return v == Key::Down; }))
-    {
-      plane_data::y_vel += plane_data::y_acc * dt;
-      plane_data::x_vel *= 0.9f;
-      sh.write_buffer("D", 3, 2, Text::Color::Cyan);
-    }
-    else if (std::any_of(it_begin, it_end, [](auto v) { return v == Key::Up; }))
-    {
-      plane_data::y_vel -= plane_data::y_acc * dt;
-      plane_data::x_vel *= 0.9f;
-      sh.write_buffer("U", 1, 2, Text::Color::Cyan);
-    }
-    //switch (arrow_curr)
-    //{
-    //  case ArrowKey::Left:  x_vel -= x_acc*dt; break;
-    //  case ArrowKey::Right: x_vel += x_acc*dt; break;
-    //  case ArrowKey::Down:  y_vel += y_acc*dt; break;
-    //  case ArrowKey::Up:    y_vel -= y_acc*dt; break;
-    //  default: break;
-    //}
-    //bg_color = Text::Color::Red;
+    plane_data::x_vel -= plane_data::x_acc * dt;
+    plane_data::y_vel *= 0.9f;
+    sh.write_buffer("L", 2, 1, Text::Color::Cyan);
   }
-  else if (curr_key == Key::Fire)
+  else if (buf_arrow_key == keyboard::SpecialKey::Right)
+  {
+    plane_data::x_vel += plane_data::x_acc * dt;
+    plane_data::y_vel *= 0.9f;
+    sh.write_buffer("R", 2, 3, Text::Color::Cyan);
+  }
+  else if (buf_arrow_key == keyboard::SpecialKey::Down)
+  {
+    plane_data::y_vel += plane_data::y_acc * dt;
+    plane_data::x_vel *= 0.9f;
+    sh.write_buffer("D", 3, 2, Text::Color::Cyan);
+  }
+  else if (buf_arrow_key == keyboard::SpecialKey::Up)
+  {
+    plane_data::y_vel -= plane_data::y_acc * dt;
+    plane_data::x_vel *= 0.9f;
+    sh.write_buffer("U", 1, 2, Text::Color::Cyan);
+  }
+  else if (curr_special_key == Key::Fire)
   {
     sh.write_buffer("F", 2, 2, Text::Color::Cyan);
     auto duration = 0.2f;
@@ -439,7 +427,7 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
       {
         // Stall breakout / recovery by pressing rapidly on the 'F' key.
         plane_data::fix_prev = plane_data::fix_curr;
-        plane_data::fix_curr = curr_key == Key::Fix;
+        plane_data::fix_curr = curr_special_key == Key::Fix;
         plane_data::fix_press_toggles[plane_data::frame_idx] = !plane_data::fix_curr && plane_data::fix_prev;
         plane_data::frame_idx++;
         if (plane_data::frame_idx == plane_data::fix_press_toggles.size())
