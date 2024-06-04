@@ -4,8 +4,6 @@ const int max_health = 30;//15;
 int health = max_health;
 int score = 0;
 int num_enemies_shot_down = 0;
-bool show_title = true;
-bool show_instructions = false;
 // Misc
 const float pix_to_ft = 36.0833f/11.f; // 1 character width to feet.
 const float pix_to_m = 11.f/11.f; // 36.0833 ft ~= 11m.
