@@ -93,7 +93,7 @@ class Game : public GameEngine<>
 {
 public:
   Game(int argc, char** argv)
-    : GameEngine(true, Text::Color::Blue, Text::Color::Blue, Text::Color::Black)
+    : GameEngine(argv[0], true, Text::Color::Blue, Text::Color::Blue, Text::Color::Black)
   {
   #ifndef _WIN32
     GameEngine::set_fps(20);
@@ -209,7 +209,7 @@ private:
     
     update_plane_controls(sh, src_fx_0, wave_gen, kpd, curr_special_key, ground_level, dt);
     
-    draw_hud(sh, ground_level, health, max_health, score);
+    draw_hud(sh, ground_level, health, max_health, GameEngine::ref_score());
     
     draw_frame(sh, Text::Color::DarkBlue);
     
@@ -217,19 +217,9 @@ private:
       health = 0;
     
     if (health == 0)
-    {
-      if (game_over_timer == 0)
-        draw_game_over(sh);
-      else
-        game_over_timer--;
-    }
+      GameEngine::set_state_game_over();
     else if (num_enemies_shot_down == enemies_data.size())
-    {
-      if (you_won_timer == 0)
-        draw_you_won(sh);
-      else
-        you_won_timer--;
-    }
+      GameEngine::set_state_you_won();
     
     for (size_t e_idx = 0; e_idx < enemies_data.size(); ++e_idx)
     {
@@ -239,7 +229,9 @@ private:
                           plane_data::x_pos, plane_data::y_pos, plane_data::x_vel, plane_data::y_vel,
                           plane_hull, plane_hiding,
                           r_mid + static_cast<int>(y_pos_shot) + 1, c_mid + static_cast<int>(x_pos_shot + plane_half_len), shot_fired, shot_hit,
-                          anim_ctr, dt, static_cast<int>(cloud_limit), static_cast<int>(ground_level));
+                          anim_ctr, dt,
+                          GameEngine::ref_score(),
+                          static_cast<int>(cloud_limit), static_cast<int>(ground_level));
     }
     
     const float shot_speed = 1.f;
@@ -328,6 +320,7 @@ private:
                                      plane_data::x_pos, plane_data::y_pos,
                                      x_pos_shot, y_pos_shot, shot_hit, shot_fired,
                                      cloud_limit, ground_level,
+                                     GameEngine::ref_score(),
                                      anim_ctr, dt);
     
     gnd_data.draw(sh, ground_level);
