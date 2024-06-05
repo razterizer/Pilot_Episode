@@ -59,7 +59,7 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
       Sustain { 1.f },
       Release { ADSRMode::LIN, rnd::rand_float(20, 70) }
     };
-    float vol = rnd::randn_clamp(1.f, 0.2f, 0.4f, 1.2f) * health_ratio / c_health_ratio_threshold;
+    float vol = rnd::randn_clamp(1.f, 0.2f, 0.4f, 1.2f) * (1.f - health_ratio / c_health_ratio_threshold);
     
     if (time - trg_timestamp_0 > 0.2 + rnd::rand_float(-0.02, 0.02) && sfx_trigger_0.once())
     {
