@@ -48,6 +48,7 @@ EnemyData enemy_step_ai(SpriteHandler<NR, NC>& sh, EnemyData ed,
                         const std::vector<std::tuple<int, int, bool>>& plane_hull, bool plane_hiding,
                         int plane_shot_r, int plane_shot_c, bool plane_shot_fired, bool& shot_down,
                         int anim_ctr, float dt,
+                        int& score,
                         int cloud_limit, int ground_level)
 {
 //#define DEBUG_ENEMY

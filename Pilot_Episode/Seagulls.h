@@ -63,6 +63,7 @@ void draw_update_seagull_flocks(SpriteHandler<NR, NC>& sh,
                                 float x_pos, float y_pos,
                                 float x_pos_shot, float y_pos_shot, bool& shot_hit, bool shot_fired,
                                 float cloud_limit, float ground_level,
+                                int& score,
                                 int anim_ctr, float dt)
 {
   for (auto& flock : seagull_flocks)
