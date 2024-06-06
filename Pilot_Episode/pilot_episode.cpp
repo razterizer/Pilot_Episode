@@ -434,9 +434,9 @@ int main(int argc, char** argv)
   //keypad(stdscr, true);
   
   GameEngineParams params;
-  params.bg_color_default = Text::Color::Blue;
-  params.bg_color_title = Text::Color::Blue;
-  params.bg_color_instructions = Text::Color::Black;
+  params.screen_bg_color_default = Text::Color::Blue;
+  params.screen_bg_color_title = Text::Color::Blue;
+  params.screen_bg_color_instructions = Text::Color::Black;
   
   Game game(argc, argv, params);
 
