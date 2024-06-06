@@ -93,7 +93,7 @@ class Game : public GameEngine<>
 {
 public:
   Game(int argc, char** argv)
-    : GameEngine(argv[0], true, Text::Color::Blue, Text::Color::Blue, Text::Color::Black)
+    : GameEngine(argv[0], Text::Color::Blue, Text::Color::Blue, Text::Color::Black)
   {
   #ifndef _WIN32
     GameEngine::set_fps(20);
