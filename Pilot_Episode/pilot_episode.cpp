@@ -92,8 +92,8 @@
 class Game : public GameEngine<>
 {
 public:
-  Game(int argc, char** argv)
-    : GameEngine(argv[0], Text::Color::Blue, Text::Color::Blue, Text::Color::Black)
+  Game(int argc, char** argv, const GameEngineParams& params)
+    : GameEngine(argv[0], params)
   {
   #ifndef _WIN32
     GameEngine::set_fps(20);
@@ -433,7 +433,12 @@ int main(int argc, char** argv)
   //cbreak();
   //keypad(stdscr, true);
   
-  Game game(argc, argv);
+  GameEngineParams params;
+  params.bg_color_default = Text::Color::Blue;
+  params.bg_color_title = Text::Color::Blue;
+  params.bg_color_instructions = Text::Color::Black;
+  
+  Game game(argc, argv, params);
 
   if (argc >= 2 && !strcmp(argv[1], "--help"))
   {
