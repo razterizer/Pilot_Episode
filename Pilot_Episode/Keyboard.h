@@ -14,6 +14,14 @@ Key register_keypresses(const keyboard::KeyPressData& kpd)
   {
     curr_special_key = Key::Fix;
   }
+  else if (str::to_lower(kpd.curr_key) == 'a')
+    curr_special_key = Key::Left;
+  else if (str::to_lower(kpd.curr_key) == 'd')
+    curr_special_key = Key::Right;
+  else if (str::to_lower(kpd.curr_key) == 's')
+    curr_special_key = Key::Down;
+  else if (str::to_lower(kpd.curr_key) == 'w')
+    curr_special_key = Key::Up;
 
   return curr_special_key;
 }
