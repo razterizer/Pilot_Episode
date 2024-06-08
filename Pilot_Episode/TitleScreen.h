@@ -1,4 +1,5 @@
 #pragma once
+#include <Termin8or/ASCII_Fonts.h>
 
 //    000000000011111111112222222222333333333344444444445555555556666666666677777777778
 //    012345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -35,7 +36,7 @@
 //29//                                                                 (c) 2022       |
 //30//--------------------------------------------------------------------------------+
 template<int NR, int NC>
-void draw_title(SpriteHandler<NR, NC>& sh)
+void draw_title(SpriteHandler<NR, NC>& sh, const ASCII_Fonts::FontDataColl& font_data)
 {
   sh.write_buffer("Rasmus Anthin", 0, 55, Text::Color::Black, Text::Color::Cyan);
   sh.write_buffer("__", 1, 12, Text::Color::DarkBlue);
@@ -250,19 +251,11 @@ void draw_title(SpriteHandler<NR, NC>& sh)
   sh.write_buffer("`", 24, 1, Text::Color::LightGray, Text::Color::DarkCyan);
   sh.write_buffer("_'`~~", 24, 2, Text::Color::DarkGray, Text::Color::LightGray);
   sh.write_buffer("____ ", 24, 7, Text::Color::Black, Text::Color::LightGray);
-  sh.write_buffer("_  _     ____ _____    _____ ____  _  ____  ____  ____  _____", 24, 13, Text::Color::Black);
-
-  sh.write_buffer("/  __\\/ \\/ \\   /  _ Y__ __\\", 25, 6, Text::Color::Black, Text::Color::Yellow);
-  sh.write_buffer("/  __//  __\\/ \\/ ___\\/  _ \\/  _ \\/  __/", 25, 35, Text::Color::Black, Text::Color::Yellow);
-
-  sh.write_buffer("|  \\/|| || |   | / \\| / \\  ", 26, 6, Text::Color::Black, Text::Color::Yellow);
-  sh.write_buffer("|  \\  |  \\/|| ||    \\| / \\|| | \\||  \\  ", 26, 35, Text::Color::Black, Text::Color::Yellow);
-
-  sh.write_buffer("|  __/| || |_/\\| \\_/| | |  ", 27, 6, Text::Color::Black, Text::Color::Yellow);
-  sh.write_buffer("|  /_ |  __/| |\\___ || \\_/|| |_/||  /_ ", 27, 35, Text::Color::Black, Text::Color::Yellow);
-
-  sh.write_buffer("\\_/   \\_/\\____/\\____/ \\_/  ", 28, 6, Text::Color::Black, Text::Color::Yellow);
-  sh.write_buffer("\\____\\\\_/   \\_/\\____/\\____/\\____/\\____\\", 28, 35, Text::Color::Black, Text::Color::Yellow);
+  
+  ASCII_Fonts::draw_text(sh, font_data, "Pilot Episode", 24, 6, ASCII_Fonts::Font::Avatar);
+  //sh.replace_bg_color(Text::Color::Yellow, ttl::Rectangle { 25, 6, 68, 3 });
+  sh.replace_bg_color(Text::Color::Yellow, ttl::Rectangle { 25, 6, 27, 3 });
+  sh.replace_bg_color(Text::Color::Yellow, ttl::Rectangle { 25, 36, 38, 3 });
 
   sh.write_buffer("(c) 2022 - 2024", 29, 64, Text::Color::White);
   

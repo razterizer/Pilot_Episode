@@ -1,22 +1,11 @@
 #pragma once
+#include <Termin8or/ASCII_Fonts.h>
 
 
 template<int NR, int NC>
-void draw_instructions(SpriteHandler<NR, NC>& sh)
+void draw_instructions(SpriteHandler<NR, NC>& sh, const ASCII_Fonts::FontDataColl& font_data)
 {
-  sh.write_buffer("____  _  _     ____ _____    _____ ____  _  ____  ____  ____  _____", 1, 7, Text::Color::White);
-
-  sh.write_buffer("/  __\\/ \\/ \\   /  _ Y__ __\\", 2, 6, Text::Color::White);
-  sh.write_buffer("/  __//  __\\/ \\/ ___\\/  _ \\/  _ \\/  __/", 2, 35, Text::Color::White);
-
-  sh.write_buffer("|  \\/|| || |   | / \\| / \\  ", 3, 6, Text::Color::White);
-  sh.write_buffer("|  \\  |  \\/|| ||    \\| / \\|| | \\||  \\  ", 3, 35, Text::Color::White);
-
-  sh.write_buffer("|  __/| || |_/\\| \\_/| | |  ", 4, 6, Text::Color::White);
-  sh.write_buffer("|  /_ |  __/| |\\___ || \\_/|| |_/||  /  ", 4, 35, Text::Color::White);
-
-  sh.write_buffer("\\_/   \\_/\\____/\\____/ \\_/  ", 5, 6, Text::Color::White);
-  sh.write_buffer("\\____\\\\_/   \\_/\\____/\\____/\\____/\\____\\", 5, 35, Text::Color::White);
+  ASCII_Fonts::draw_text(sh, font_data, "Pilot Episode", 1, 6, ASCII_Fonts::Font::Avatar);
 
   sh.write_buffer("The objective of this game is to shoot as many enemiy UFOs you can.", 7, 2, Text::Color::White);
   sh.write_buffer("You can hide from UFOs in the clouds, just make sure that no part of the plane ", 8, 2, Text::Color::White);

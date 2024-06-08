@@ -20,6 +20,7 @@
 #include <Termin8or/Screen.h>
 #include <Termin8or/SpriteHandler.h>
 #include <Termin8or/GameEngine.h>
+#include <Termin8or/ASCII_Fonts.h>
 #include <8Beat/AudioSourceHandler.h>
 #include <8Beat/ChipTuneEngine.h>
 #include <Core/Math.h>
@@ -197,6 +198,19 @@ public:
     src_fx_0 = audio.create_stream_source();
     src_fx_1 = audio.create_stream_source();
     src_fx_2 = audio.create_stream_source();
+    
+    std::string font_data_path = ASCII_Fonts::get_path_to_font_data();
+    std::cout << font_data_path << std::endl;
+    
+    auto& cs0 = color_schemes.emplace_back();
+    cs0.internal.fg_color = Text::Color::Black;
+    cs0.internal.bg_color = Text::Color::Yellow;
+    auto& cs1 = color_schemes.emplace_back();
+    cs1.internal.fg_color = Text::Color::White;
+    cs1.internal.bg_color = Text::Color::Black;
+    
+    for (auto& cs : color_schemes)
+      font_data.emplace_back(ASCII_Fonts::load_font_data(cs, font_data_path));
   }
   
   float get_alt_km() const { return alt_km_f; }
@@ -366,12 +380,12 @@ private:
   
   virtual void draw_title() override
   {
-    ::draw_title(sh);
+    ::draw_title(sh, font_data[0]);
   }
   
   virtual void draw_instructions() override
   {
-    ::draw_instructions(sh);
+    ::draw_instructions(sh, font_data[1]);
   }
   
   virtual void on_exit_instructions() override
@@ -422,6 +436,9 @@ private:
   audio::AudioStreamSource* src_fx_0 = nullptr;
   audio::AudioStreamSource* src_fx_1 = nullptr;
   audio::AudioStreamSource* src_fx_2 = nullptr;
+  
+  std::vector<ASCII_Fonts::ColorScheme> color_schemes;
+  std::vector<ASCII_Fonts::FontDataColl> font_data;
 };
 
 //////////////////////////////////////////////////////////////////////////
