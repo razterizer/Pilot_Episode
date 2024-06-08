@@ -209,8 +209,7 @@ public:
     cs1.internal.fg_color = Text::Color::White;
     cs1.internal.bg_color = Text::Color::Black;
     
-    for (auto& cs : color_schemes)
-      font_data.emplace_back(ASCII_Fonts::load_font_data(cs, font_data_path));
+    font_data = ASCII_Fonts::load_font_data(font_data_path);
   }
   
   float get_alt_km() const { return alt_km_f; }
@@ -380,12 +379,12 @@ private:
   
   virtual void draw_title() override
   {
-    ::draw_title(sh, font_data[0]);
+    ::draw_title(sh, font_data, color_schemes[0]);
   }
   
   virtual void draw_instructions() override
   {
-    ::draw_instructions(sh, font_data[1]);
+    ::draw_instructions(sh, font_data, color_schemes[1]);
   }
   
   virtual void on_exit_instructions() override
@@ -438,7 +437,7 @@ private:
   audio::AudioStreamSource* src_fx_2 = nullptr;
   
   std::vector<ASCII_Fonts::ColorScheme> color_schemes;
-  std::vector<ASCII_Fonts::FontDataColl> font_data;
+  ASCII_Fonts::FontDataColl font_data;
 };
 
 //////////////////////////////////////////////////////////////////////////
