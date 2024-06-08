@@ -36,7 +36,7 @@
 //29//                                                                 (c) 2022       |
 //30//--------------------------------------------------------------------------------+
 template<int NR, int NC>
-void draw_title(SpriteHandler<NR, NC>& sh, const ASCII_Fonts::FontDataColl& font_data)
+void draw_title(SpriteHandler<NR, NC>& sh, const ASCII_Fonts::FontDataColl& font_data, const ASCII_Fonts::ColorScheme& font_colors)
 {
   sh.write_buffer("Rasmus Anthin", 0, 55, Text::Color::Black, Text::Color::Cyan);
   sh.write_buffer("__", 1, 12, Text::Color::DarkBlue);
@@ -252,7 +252,7 @@ void draw_title(SpriteHandler<NR, NC>& sh, const ASCII_Fonts::FontDataColl& font
   sh.write_buffer("_'`~~", 24, 2, Text::Color::DarkGray, Text::Color::LightGray);
   sh.write_buffer("____ ", 24, 7, Text::Color::Black, Text::Color::LightGray);
   
-  ASCII_Fonts::draw_text(sh, font_data, "Pilot Episode", 24, 6, ASCII_Fonts::Font::Avatar);
+  ASCII_Fonts::draw_text(sh, font_data, font_colors, "Pilot Episode", 24, 6, ASCII_Fonts::Font::Avatar);
   //sh.replace_bg_color(Text::Color::Yellow, ttl::Rectangle { 25, 6, 68, 3 });
   sh.replace_bg_color(Text::Color::Yellow, ttl::Rectangle { 25, 6, 27, 3 });
   sh.replace_bg_color(Text::Color::Yellow, ttl::Rectangle { 25, 36, 38, 3 });

@@ -3,9 +3,9 @@
 
 
 template<int NR, int NC>
-void draw_instructions(SpriteHandler<NR, NC>& sh, const ASCII_Fonts::FontDataColl& font_data)
+void draw_instructions(SpriteHandler<NR, NC>& sh, const ASCII_Fonts::FontDataColl& font_data, const ASCII_Fonts::ColorScheme& font_colors)
 {
-  ASCII_Fonts::draw_text(sh, font_data, "Pilot Episode", 1, 6, ASCII_Fonts::Font::Avatar);
+  ASCII_Fonts::draw_text(sh, font_data, font_colors, "Pilot Episode", 1, 6, ASCII_Fonts::Font::Avatar);
 
   sh.write_buffer("The objective of this game is to shoot as many enemiy UFOs you can.", 7, 2, Text::Color::White);
   sh.write_buffer("You can hide from UFOs in the clouds, just make sure that no part of the plane ", 8, 2, Text::Color::White);
