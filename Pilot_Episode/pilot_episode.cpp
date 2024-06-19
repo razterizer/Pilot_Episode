@@ -456,7 +456,7 @@ int main(int argc, char** argv)
   
   Game game(argc, argv, params);
 
-  if (argc >= 2 && !strcmp(argv[1], "--help"))
+  if (argc >= 2 && strcmp(argv[1], "--help") == 0)
   {
     std::cout << "pilot_episode (\"--help\" | [<frame-delay-us> [<altitude-km> [<altitude-limiting \"on\"|\"off\">]]])" << std::endl;
     std::cout << "  default values:" << std::endl;
