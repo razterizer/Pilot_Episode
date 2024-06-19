@@ -199,7 +199,7 @@ public:
     src_fx_1 = audio.create_stream_source();
     src_fx_2 = audio.create_stream_source();
     
-    std::string font_data_path = ASCII_Fonts::get_path_to_font_data();
+    std::string font_data_path = ASCII_Fonts::get_path_to_font_data(get_exe_folder());
     std::cout << font_data_path << std::endl;
     
     auto& cs0 = color_schemes.emplace_back();
