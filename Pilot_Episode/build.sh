@@ -11,3 +11,8 @@ else
 fi
 
 ../../lib/Core/build.sh pilot_episode "$1" "${additional_flags[@]}"
+
+### Post-Build Actions ###
+
+mkdir bin/fonts/
+cp ../../lib/Termin8or/fonts/* bin/fonts/
