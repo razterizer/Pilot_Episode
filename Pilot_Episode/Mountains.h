@@ -98,24 +98,24 @@ void draw_mountain_range(SpriteHandler<NR, NC>& sh,
 {
   for (const auto& mountain_hfd : mountain_range_height_fields)
   {
-    auto bg_color = Text::Color::LightGray;
-    auto fg_color = Text::Color::DarkGray;
-    auto fg2_color = Text::Color::DarkGray;
+    auto bg_color = Color::LightGray;
+    auto fg_color = Color::DarkGray;
+    auto fg2_color = Color::DarkGray;
     bool is_far = mountain_hfd.parallax < 0.015f;
     bool is_really_far = mountain_hfd.parallax < 0.003f;
     bool is_near = false;
-    auto bush_bg_color = Text::Color::Green;
-    auto bush_fg_color = Text::Color::DarkGreen;
+    auto bush_bg_color = Color::Green;
+    auto bush_fg_color = Color::DarkGreen;
     if (is_really_far)
     {
-      bg_color = Text::Color::Black;
-      fg_color = Text::Color::Black;
-      fg2_color = Text::Color::Black;
+      bg_color = Color::Black;
+      fg_color = Color::Black;
+      fg2_color = Color::Black;
     }
     else if (is_far)
     {
-      bg_color = Text::Color::DarkGray;
-      fg_color = Text::Color::Black;
+      bg_color = Color::DarkGray;
+      fg_color = Color::Black;
     }
     else
       is_near = true;
