@@ -92,35 +92,35 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
   ColorGradient smoke_fg_0
   {
     {
-      { 0.f, Text::Color::Red },
-      { 0.15f, Text::Color::Yellow },
-      { 0.3f, Text::Color::LightGray },
-      { 0.85f, Text::Color::DarkGray },
+      { 0.f, Color::Red },
+      { 0.15f, Color::Yellow },
+      { 0.3f, Color::LightGray },
+      { 0.85f, Color::DarkGray },
     }
   };
   ColorGradient smoke_fg_1
   {
     {
-      { 0.f, Text::Color::Red },
-      { 0.1f, Text::Color::Yellow },
-      { 0.25f, Text::Color::DarkGray },
-      { 0.9f, Text::Color::LightGray },
+      { 0.f, Color::Red },
+      { 0.1f, Color::Yellow },
+      { 0.25f, Color::DarkGray },
+      { 0.9f, Color::LightGray },
     }
   };
   ColorGradient smoke_bg_0
   {
     {
-      { 0.f, Text::Color::DarkRed },
-      { 0.3f, Text::Color::DarkGray },
-      { 0.9f, Text::Color::Black },
+      { 0.f, Color::DarkRed },
+      { 0.3f, Color::DarkGray },
+      { 0.9f, Color::Black },
     }
   };
   ColorGradient smoke_bg_1
   {
     {
-      { 0.f, Text::Color::DarkRed },
-      { 0.2f, Text::Color::Black },
-      { 0.9f, Text::Color::DarkGray },
+      { 0.f, Color::DarkRed },
+      { 0.2f, Color::Black },
+      { 0.9f, Color::DarkGray },
     }
   };
   std::vector<std::pair<float, std::pair<ColorGradient, ColorGradient>>> smoke_color_gradients;
@@ -138,8 +138,8 @@ void draw_plane(SpriteHandler<NR, NC>& sh,
                 std::vector<std::tuple<int, int, bool>>& plane_hull)
 {
   std::string sprite_part;
-  Text::Color sprite_part_fg_color;
-  Text::Color sprite_part_bg_color = Text::Color::Transparent2;
+  Color sprite_part_fg_color;
+  Color sprite_part_bg_color = Color::Transparent2;
   int anim = anim_ctr % 4;
 
   r0 = math::clamp(r0, 2, 29 - 3);
@@ -177,7 +177,7 @@ void draw_plane(SpriteHandler<NR, NC>& sh,
   }
 
   // Draw Propeller
-  sprite_part_fg_color = Text::Color::Black;
+  sprite_part_fg_color = Color::Black;
   if (dr == pr0)
   {
       switch (anim)
@@ -219,26 +219,26 @@ void draw_plane(SpriteHandler<NR, NC>& sh,
         sprite_part = "  __!__    ";
       else
         sprite_part = "   __!__   ";
-      sprite_part_fg_color = Text::Color::DarkYellow;
+      sprite_part_fg_color = Color::DarkYellow;
   }
   else if (dr == p1)
   {
       sprite_part = "/----^----\\";
-      sprite_part_fg_color = Text::Color::DarkYellow;
-      sprite_part_bg_color = Text::Color::Red;
+      sprite_part_fg_color = Color::DarkYellow;
+      sprite_part_bg_color = Color::Red;
   }
   else if (dr == p2)
   {
       sprite_part = "-----o-----";
-      sprite_part_fg_color = Text::Color::DarkYellow;
+      sprite_part_fg_color = Color::DarkYellow;
       //if (y_mv_dir != 0)
-      //  sprite_part_bg_color = Text::Color::Red;
+      //  sprite_part_bg_color = Color::Red;
   }
   else if (dr == p3)
   {
       sprite_part = "\\____v____/";
-      sprite_part_fg_color = Text::Color::DarkYellow;
-      sprite_part_bg_color = Text::Color::Red;
+      sprite_part_fg_color = Color::DarkYellow;
+      sprite_part_bg_color = Color::Red;
   }
   else if (dr == p4)
   {
@@ -248,10 +248,10 @@ void draw_plane(SpriteHandler<NR, NC>& sh,
         sprite_part = "     \" \"   ";
       else
         sprite_part = "    \" \"    ";
-      sprite_part_fg_color = Text::Color::Black;
+      sprite_part_fg_color = Color::Black;
   }
 #ifndef HILITE_PLANE_SURFACES
-  sprite_part_bg_color = Text::Color::Transparent2;
+  sprite_part_bg_color = Color::Transparent2;
 #endif
   sh.write_buffer(sprite_part, r, c, sprite_part_fg_color, sprite_part_bg_color);
   for (size_t i = 0; i < sprite_part.size(); ++i)
@@ -269,7 +269,7 @@ void draw_crosshair(SpriteHandler<NR, NC>& sh, float x_vel, float y_vel)
   float r = r_mid + 1.f + len*y_vel_norm / pix_ar2_sq;
   float c = c_mid + plane_half_len_2 + len*x_vel_norm;
 
-  sh.write_buffer("+", std::round(r), std::round(c), Text::Color::Black, Text::Color::Transparent2);
+  sh.write_buffer("+", std::round(r), std::round(c), Color::Black, Color::Transparent2);
 }
 
 
@@ -284,29 +284,29 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
   {
     plane_data::x_vel -= plane_data::x_acc * dt;
     plane_data::y_vel *= 0.9f;
-    sh.write_buffer("L", 2, 1, Text::Color::Cyan);
+    sh.write_buffer("L", 2, 1, Color::Cyan);
   }
   else if (buf_arrow_key == keyboard::SpecialKey::Right || curr_special_key == Key::Right)
   {
     plane_data::x_vel += plane_data::x_acc * dt;
     plane_data::y_vel *= 0.9f;
-    sh.write_buffer("R", 2, 3, Text::Color::Cyan);
+    sh.write_buffer("R", 2, 3, Color::Cyan);
   }
   else if (buf_arrow_key == keyboard::SpecialKey::Down || curr_special_key == Key::Down)
   {
     plane_data::y_vel += plane_data::y_acc * dt;
     plane_data::x_vel *= 0.9f;
-    sh.write_buffer("D", 3, 2, Text::Color::Cyan);
+    sh.write_buffer("D", 3, 2, Color::Cyan);
   }
   else if (buf_arrow_key == keyboard::SpecialKey::Up || curr_special_key == Key::Up)
   {
     plane_data::y_vel -= plane_data::y_acc * dt;
     plane_data::x_vel *= 0.9f;
-    sh.write_buffer("U", 1, 2, Text::Color::Cyan);
+    sh.write_buffer("U", 1, 2, Color::Cyan);
   }
   else if (curr_special_key == Key::Fire)
   {
-    sh.write_buffer("F", 2, 2, Text::Color::Cyan);
+    sh.write_buffer("F", 2, 2, Color::Cyan);
     auto duration = 0.2f;
     audio::WaveformGenerationParams params;
     params.noise_filter_order = 2;
@@ -327,15 +327,15 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
   {
     plane_data::x_vel *= 0.8f;
     plane_data::y_vel *= 0.8f;
-    //bg_color = Text::Color::Blue;
+    //bg_color = Color::Blue;
     //gotorc(31, 1);
-    //t.print_line("Wind break!", Text::Color::Blue, Text::Color::Black);
+    //t.print_line("Wind break!", Color::Blue, Color::Black);
   }
-  sh.write_buffer("L", 2, 1, Text::Color::DarkCyan);
-  sh.write_buffer("R", 2, 3, Text::Color::DarkCyan);
-  sh.write_buffer("U", 1, 2, Text::Color::DarkCyan);
-  sh.write_buffer("D", 3, 2, Text::Color::DarkCyan);
-  sh.write_buffer("F", 2, 2, Text::Color::DarkCyan);
+  sh.write_buffer("L", 2, 1, Color::DarkCyan);
+  sh.write_buffer("R", 2, 3, Color::DarkCyan);
+  sh.write_buffer("U", 1, 2, Color::DarkCyan);
+  sh.write_buffer("D", 3, 2, Color::DarkCyan);
+  sh.write_buffer("F", 2, 2, Color::DarkCyan);
   
   plane_data::x_mv_dir = plane_data::x_vel < -1 ? -1 : (plane_data::x_vel > 1 ? 1 : 0);
   plane_data::y_mv_dir = plane_data::y_vel < -1 ? -1 : (plane_data::y_vel > 1 ? 1 : 0);

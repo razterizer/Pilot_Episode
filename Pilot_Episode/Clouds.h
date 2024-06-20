@@ -58,14 +58,14 @@ void draw_cloud(SpriteHandler<NR, NC>& sh, int r, int c,
   if (r < 0-5 || r > 29+5)
     return;
 
-  auto white = Text::Color::White;
-  auto light_gray = Text::Color::LightGray;
-  auto dark_gray = Text::Color::DarkGray;
-  //auto light_blue = Text::Color::Blue;
-  //auto dark_blue = Text::Color::DarkBlue;
-  auto light_cyan = Text::Color::Cyan;
-  auto dark_cyan = Text::Color::DarkCyan;
-  //auto black = Text::Color::Black;
+  auto white = Color::White;
+  auto light_gray = Color::LightGray;
+  auto dark_gray = Color::DarkGray;
+  //auto light_blue = Color::Blue;
+  //auto dark_blue = Color::DarkBlue;
+  auto light_cyan = Color::Cyan;
+  auto dark_cyan = Color::DarkCyan;
+  //auto black = Color::Black;
 
   auto register_cloud_line = [&plane_hull](const std::string& str, int r, int c)
   {
@@ -122,14 +122,14 @@ void draw_cloud_big(SpriteHandler<NR, NC>& sh, int r, int c,
   if (r < 0-7 || r > 29+7)
     return;
 
-  auto white = Text::Color::White;
-  auto light_gray = Text::Color::LightGray;
-  auto dark_gray = Text::Color::DarkGray;
-  //auto light_blue = Text::Color::Blue;
-  //auto dark_blue = Text::Color::DarkBlue;
-  auto light_cyan = Text::Color::Cyan;
-  auto dark_cyan = Text::Color::DarkCyan;
-  auto black = Text::Color::Black;
+  auto white = Color::White;
+  auto light_gray = Color::LightGray;
+  auto dark_gray = Color::DarkGray;
+  //auto light_blue = Color::Blue;
+  //auto dark_blue = Color::DarkBlue;
+  auto light_cyan = Color::Cyan;
+  auto dark_cyan = Color::DarkCyan;
+  auto black = Color::Black;
 
   auto register_cloud_line = [&plane_hull](const std::string& str, int r, int c)
   {
