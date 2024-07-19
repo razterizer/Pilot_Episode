@@ -218,7 +218,7 @@ private:
   {
     Key curr_special_key = register_keypresses(kpd);
     
-    update_plane_controls(sh, src_fx_0, wave_gen, kpd, curr_special_key, ground_level, sim_dt);
+    update_plane_controls(sh, src_fx_0, wave_gen, kpd, curr_special_key, ground_level, get_sim_dt_s());
     
     draw_hud(sh, ground_level, health, max_health, GameEngine::ref_score());
     
@@ -240,7 +240,7 @@ private:
                           plane_data::x_pos, plane_data::y_pos, plane_data::x_vel, plane_data::y_vel,
                           plane_hull, plane_hiding,
                           r_mid + static_cast<int>(y_pos_shot) + 1, c_mid + static_cast<int>(x_pos_shot + plane_half_len), shot_fired, shot_hit,
-                          anim_ctr, sim_dt,
+                          anim_ctr, get_sim_dt_s(),
                           GameEngine::ref_score(),
                           static_cast<int>(cloud_limit), static_cast<int>(ground_level));
     }
@@ -316,7 +316,7 @@ private:
                        src_fx_0, 1);
     }
     
-    generate_engine_smoke(sh, src_fx_1, src_fx_2, { r_mid + 1, c_mid + 5 }, sim_dt, sim_time);
+    generate_engine_smoke(sh, src_fx_1, src_fx_2, { r_mid + 1, c_mid + 5 }, get_sim_dt_s(), get_sim_time_s());
     
     plane_hull.clear();
     for (int r = 1; r < 29; ++r)
@@ -332,7 +332,7 @@ private:
                                      x_pos_shot, y_pos_shot, shot_hit, shot_fired,
                                      cloud_limit, ground_level,
                                      GameEngine::ref_score(),
-                                     anim_ctr, sim_dt);
+                                     anim_ctr, get_sim_dt_s());
     
     gnd_data.draw(sh, ground_level);
     
@@ -342,7 +342,7 @@ private:
                               plane_hull,
                               plane_data::x_pos, plane_data::y_pos,
                               cloud_limit, ground_level,
-                              sim_dt);
+                              get_sim_dt_s());
     
     draw_clouds_bg(sh,
                    cloud_data,
