@@ -279,26 +279,26 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
                            const keyboard::KeyPressData& kpd, Key curr_special_key,
                            float ground_level, float dt)
 {
-  auto buf_arrow_key = kpd.get_buffered_arrow_key();
-  if (buf_arrow_key == keyboard::SpecialKey::Left || curr_special_key == Key::Left)
+  auto special_key = keyboard::get_special_key(kpd);
+  if (special_key == keyboard::SpecialKey::Left || curr_special_key == Key::Left)
   {
     plane_data::x_vel -= plane_data::x_acc * dt;
     plane_data::y_vel *= 0.9f;
     sh.write_buffer("L", 2, 1, Color::Cyan);
   }
-  else if (buf_arrow_key == keyboard::SpecialKey::Right || curr_special_key == Key::Right)
+  else if (special_key == keyboard::SpecialKey::Right || curr_special_key == Key::Right)
   {
     plane_data::x_vel += plane_data::x_acc * dt;
     plane_data::y_vel *= 0.9f;
     sh.write_buffer("R", 2, 3, Color::Cyan);
   }
-  else if (buf_arrow_key == keyboard::SpecialKey::Down || curr_special_key == Key::Down)
+  else if (special_key == keyboard::SpecialKey::Down || curr_special_key == Key::Down)
   {
     plane_data::y_vel += plane_data::y_acc * dt;
     plane_data::x_vel *= 0.9f;
     sh.write_buffer("D", 3, 2, Color::Cyan);
   }
-  else if (buf_arrow_key == keyboard::SpecialKey::Up || curr_special_key == Key::Up)
+  else if (special_key == keyboard::SpecialKey::Up || curr_special_key == Key::Up)
   {
     plane_data::y_vel -= plane_data::y_acc * dt;
     plane_data::x_vel *= 0.9f;
