@@ -85,10 +85,10 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
     }
   }
 
-  const float vel_x = -0.5f*plane_data::x_vel, vel_y = -0.8f*plane_data::y_vel;
+  const float vel_c = -0.5f*plane_data::x_vel, vel_r = -0.8f*plane_data::y_vel;
   const float acc = -10.f, spread = 13.f, life_time = math::linmap(health_ratio, 0.f, c_health_ratio_threshold, 2.f, 0.1f);
   const int cluster_size = 10;
-  plane_data::smoke_engine.update(rc_plane_engine, trig, vel_x, vel_y, acc, spread, life_time, cluster_size, dt, time);
+  plane_data::smoke_engine.update(rc_plane_engine, trig, vel_r, vel_c, acc, spread, life_time, cluster_size, dt, time);
   ColorGradient smoke_fg_0
   {
     {
