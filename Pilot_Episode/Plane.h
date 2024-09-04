@@ -89,7 +89,7 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
   const float acc = -10.f, spread = 13.f, life_time = math::linmap(health_ratio, 0.f, c_health_ratio_threshold, 2.f, 0.1f);
   const int cluster_size = 10;
   plane_data::smoke_engine.update(rc_plane_engine, trig, vel_r, vel_c, acc, spread, life_time, cluster_size, dt, time);
-  ColorGradient smoke_fg_0
+  Gradient<Color> smoke_fg_0
   {
     {
       { 0.f, Color::Red },
@@ -98,7 +98,7 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
       { 0.85f, Color::DarkGray },
     }
   };
-  ColorGradient smoke_fg_1
+  Gradient<Color> smoke_fg_1
   {
     {
       { 0.f, Color::Red },
@@ -107,7 +107,7 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
       { 0.9f, Color::LightGray },
     }
   };
-  ColorGradient smoke_bg_0
+  Gradient<Color> smoke_bg_0
   {
     {
       { 0.f, Color::DarkRed },
@@ -115,7 +115,7 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
       { 0.9f, Color::Black },
     }
   };
-  ColorGradient smoke_bg_1
+  Gradient<Color> smoke_bg_1
   {
     {
       { 0.f, Color::DarkRed },
@@ -123,7 +123,7 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
       { 0.9f, Color::DarkGray },
     }
   };
-  std::vector<std::pair<float, std::pair<ColorGradient, ColorGradient>>> smoke_color_gradients;
+  std::vector<std::pair<float, std::pair<Gradient<Color>, Gradient<Color>>>> smoke_color_gradients;
   smoke_color_gradients.emplace_back(0.5f, std::pair { smoke_fg_0, smoke_bg_0 });
   smoke_color_gradients.emplace_back(0.6f, std::pair { smoke_fg_1, smoke_bg_1 });
   std::vector<std::string> smoke_txt { "&", "*", "&", "%", "&", "@" };
