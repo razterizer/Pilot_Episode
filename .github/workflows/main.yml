@@ -20,15 +20,11 @@ jobs:
       # Step 2: Move to the parent directory and fetch dependencies
       - name: Fetch dependencies
         run: |
-          ls
-          cd ..
-          echo ---
-          ls
-          echo ---
-          py ./Pilot_Episode/fetch_dependencies.py Pilot_Episode/dependencies -y
+          python3 --version
+          ./Pilot_Episode/fetch_dependencies.py Pilot_Episode/dependencies -y
       
       # Step 3: Change to the correct directory and build
       - name: Build project
         run: |
-          cd Pilot_Episode/Pilot_Episode
-          ./build.sh
+          # cd Pilot_Episode/Pilot_Episode
+          # ./build.sh
