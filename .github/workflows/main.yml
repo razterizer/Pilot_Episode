@@ -28,8 +28,12 @@ jobs:
           git clone https://github.com/razterizer/8Beat.git
           git clone https://github.com/razterizer/AudioLibSwitcher_OpenAL.git
           git clone https://github.com/razterizer/AudioLibSwitcher.git
+
+      # Step 3: Install OpenAL
+      - name: Install OpenAL
+        run: sudo apt install libopenal-dev
       
-      # Step 3: Change to the correct directory and build
+      # Step 4: Change to the correct directory and build
       - name: Build project
         run: |
           cd Pilot_Episode
