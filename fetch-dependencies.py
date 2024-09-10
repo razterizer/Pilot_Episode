@@ -112,18 +112,33 @@ def parse_dependencies(f) -> Iterator[Dependency]:
 
 if __name__ == '__main__':
     # We will probably have to switch to argparse at some point, but this does the job for now.
-    match sys.argv:
-        case [cmd, *args] if (set(args) & {'-h', '--help', '-help', '/?'}):
-            print(f"usage: {cmd} <dependencies-file>")
-            print(textwrap.dedent("""
-                Downloads dependencies listed in <dependencies-file>. The paths listed in the
-                dependencies file are relative to the current working directory.
-            """))
-            sys.exit(0)
-        case [_, deps_spec]:
-            deps_spec_path = Path(deps_spec)
-        case [cmd, *_]:
-            sys.exit(2)
+    force_yes = False
+    
+    args = sys.argv[1:]  # Exclude the script name
+
+    # Check for '-y' flag in the arguments
+    if '-y' in args:
+        force_yes = True
+        args.remove('-y')
+
+    # Check for help options
+    if set(args) & {'-h', '--help', '-help', '/?'}:
+        print(f"usage: {sys.argv[0]} [-y] <dependencies-file>")
+        print(textwrap.dedent("""
+            Downloads dependencies listed in <dependencies-file>. The paths listed in the
+            dependencies file are relative to the current working directory.
+            Options:
+              -y    Automatically answer 'yes' to prompts.
+        """))
+        sys.exit(0)
+
+    # Ensure exactly one positional argument remains (the dependencies file)
+    if len(args) != 1:
+        print(f"usage: {sys.argv[0]} [-y] <dependencies-file>", file=sys.stderr)
+        sys.exit(2)
+
+    deps_spec = args[0]
+    deps_spec_path = Path(deps_spec)
 
     
     # Use current working directory as the root for relative paths in the dependencies
@@ -224,7 +239,7 @@ if __name__ == '__main__':
         # nothing to do, exit
         sys.exit(0)
 
-    if not yes_no_question('Should I continue?'):
+    if not force_yes and not yes_no_question('Should I continue?'):
         sys.exit(0)
     print()
 
