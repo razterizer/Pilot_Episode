@@ -21,8 +21,12 @@ jobs:
       - name: Fetch dependencies
         run: |
           python3 --version
+          echo start dir ---
           ls
-          echo ---
+          echo cd .. ----
+          cd ..
+          ls
+          echo run script from Pilot_Episode dir ---
           ./Pilot_Episode/fetch_dependencies.py Pilot_Episode/dependencies -y
       
       # Step 3: Change to the correct directory and build
