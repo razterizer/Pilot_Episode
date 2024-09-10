@@ -21,7 +21,7 @@ jobs:
       - name: Fetch dependencies
         run: |
           cd ..
-          ./Pilot_Episode/fetch_dependencies.py Pilot_Episode/dependencies
+          ./Pilot_Episode/fetch_dependencies.py Pilot_Episode/dependencies -y
       
       # Step 3: Change to the correct directory and build
       - name: Build project
