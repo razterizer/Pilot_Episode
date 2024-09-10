@@ -20,7 +20,7 @@ jobs:
       # Step 2: Move to the parent directory and fetch dependencies
       - name: Fetch dependencies
         run: |
-          cd ..
+          # cd ..
           ./Pilot_Episode/fetch_dependencies.py Pilot_Episode/dependencies -y
       
       # Step 3: Change to the correct directory and build
