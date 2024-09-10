@@ -25,7 +25,7 @@
 #include <8Beat/ChipTuneEngine.h>
 #include <Core/Math.h>
 
-#include <iostream>>
+#include <iostream>
 
 // TODO:
 // --1. Seagulls.--
@@ -104,7 +104,7 @@ public:
     //  GameEngine::set_delay_us(atoi(argv[1]));
     if (argc >= 2)
       GameEngine::set_real_fps(atoi(argv[1]));
-
+fdsfsdfasf
     auto set_alt = [&]() -> float { return -alt_km_f * 1e3f / pix_to_m + ground_level + 13 * pix_ar2; };
     plane_data::y_pos = set_alt();
     if (argc >= 3)
