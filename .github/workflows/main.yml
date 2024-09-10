@@ -31,6 +31,6 @@ jobs:
       # Step 3: Change to the correct directory and build
       - name: Build project
         run: |
-          cd Pilot_Episode/Pilot_Episode
+          cd Pilot_Episode
           ls
           build.sh
