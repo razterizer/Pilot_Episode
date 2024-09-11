@@ -38,3 +38,4 @@ jobs:
         run: |
           cd Pilot_Episode
           ./build.sh
+        continue_on_error: false # Ensure errors are not bypassed
