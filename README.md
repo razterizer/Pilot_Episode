@@ -1,5 +1,7 @@
 # Pilot Episode
 
+[![Build Check](https://github.com/razterizer/Pilot_Episode/actions/workflows/main.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/main.yml)
+
 ## Licensing
 
 For 3rd-party license-compatibilities, please refer to the information here: https://github.com/razterizer/8Beat/blob/main/README.md
