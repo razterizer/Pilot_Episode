@@ -96,6 +96,7 @@ public:
   Game(int argc, char** argv, const GameEngineParams& params)
     : GameEngine(argv[0], params)
   {
+TRIGGER_BUILD_ERROR
   #ifndef _WIN32
     GameEngine::set_real_fps(20);
     GameEngine::set_sim_delay_us(60'000);
