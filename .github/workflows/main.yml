@@ -54,8 +54,8 @@ jobs:
           ./Pilot_Episode/fetch-dependencies.py Pilot_Episode/dependencies -y
 
       # Step 3: Install OpenAL
-      # - name: Install OpenAL
-        # run: sudo apt install libopenal-dev
+      - name: Install OpenAL
+        run: sudo apt install libopenal-dev
       
       # Step 4: Change to the correct directory and build
       - name: Build project
