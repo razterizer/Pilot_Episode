@@ -1,5 +1,6 @@
 # Pilot Episode
 
+![GitHub License](https://img.shields.io/github/license/razterizer/Pilot_Episode?color=blue)
 [![Build Check](https://github.com/razterizer/Pilot_Episode/actions/workflows/main.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/main.yml)
 
 ## Licensing
