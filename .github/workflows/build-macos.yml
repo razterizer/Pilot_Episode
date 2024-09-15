@@ -39,3 +39,28 @@ jobs:
           ./build.sh
         continue-on-error: false # Ensure errors are not bypassed
   
+build-macos-with-locked-dependencies:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      # Step 2: Move to the parent directory and fetch dependencies
+      - name: Fetch dependencies
+        run: |
+          cd ..
+          ./Pilot_Episode/fetch-dependencies.py Pilot_Episode/dependencies -y
+
+      # Step 3: Install OpenAL
+      - name: Install OpenAL
+        run: brew install openal-soft
+      
+      # Step 4: Change to the correct directory and build
+      - name: Build project
+        run: |
+          cd Pilot_Episode
+          ./build.sh
+        continue-on-error: false # Ensure errors are not bypassed
+
