@@ -25,8 +25,8 @@ jobs:
           cd lib
           git clone https://github.com/razterizer/Core.git
           git clone https://github.com/razterizer/Termin8or.git
-          # git clone https://github.com/razterizer/8Beat.git
-          # git clone https://github.com/razterizer/AudioLibSwitcher_OpenAL.git --recurse-submodules
+          git clone https://github.com/razterizer/8Beat.git
+          git clone https://github.com/razterizer/AudioLibSwitcher_OpenAL.git --recurse-submodules
 
       # # Step 3: Install OpenAL
       # - name: Install OpenAL
@@ -36,5 +36,5 @@ jobs:
       - name: Run build.bat
         continue-on-error: false # Ensure errors are not bypassed
         run: |
-          cd demo
-          .\build_demo.bat
+          cd Pilot_Episode
+          .\build.bat
