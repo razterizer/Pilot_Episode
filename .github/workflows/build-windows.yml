@@ -28,6 +28,43 @@ jobs:
           git clone https://github.com/razterizer/8Beat.git
           git clone https://github.com/razterizer/AudioLibSwitcher_OpenAL.git --recurse-submodules
 
+      # Step 3: Create 3rdparty directories in D:\a\DungGine
+      - name: Create 3rdparty directories
+        run: |
+          New-Item -ItemType Directory -Force -Path $env:GITHUB_WORKSPACE\..\3rdparty\include\OpenAL_Soft
+          New-Item -ItemType Directory -Force -Path $env:GITHUB_WORKSPACE\..\3rdparty\lib
+
+      # Step 4: Download OpenAL Soft to D:\a\DungGine
+      - name: Download OpenAL Soft
+        run: curl -L https://www.openal-soft.org/openal-binaries/openal-soft-1.23.1-bin.zip -o $env:GITHUB_WORKSPACE\..\openal-soft.zip
+
+      # Step 5: Unzip OpenAL Soft to D:\a\DungGine
+      - name: Unzip OpenAL Soft
+        run: |
+          Expand-Archive -Path $env:GITHUB_WORKSPACE\..\openal-soft.zip -DestinationPath $env:GITHUB_WORKSPACE\..
+
+
+      # Step 6: List contents of source directories to verify files
+      - name: List contents of OpenAL Soft directories
+        run: |
+          Get-ChildItem -Recurse $env:GITHUB_WORKSPACE\..\openal-soft-1.23.1-bin\include
+          Get-ChildItem -Recurse $env:GITHUB_WORKSPACE\..\openal-soft-1.23.1-bin\libs
+          
+      # Step 6: Copy OpenAL Soft files to 3rdparty directories
+      - name: Copy OpenAL Soft files
+        run: |
+          # Copy OpenAL Soft headers
+          Copy-Item -Path $env:GITHUB_WORKSPACE\..\openal-soft-1.23.1-bin\include\AL\* -Destination $env:GITHUB_WORKSPACE\..\3rdparty\include\OpenAL_Soft\ -Force
+          # Copy OpenAL32.lib (assuming it's in the libs folder)
+          Copy-Item -Path $env:GITHUB_WORKSPACE\..\openal-soft-1.23.1-bin\libs\Win32\OpenAL32.lib -Destination $env:GITHUB_WORKSPACE\..\3rdparty\lib\ -Force
+
+      # Step 6b: List contents of 3rdparty includes.
+      - name: List 3rdparty/include files
+      #  run: ls $env:GITHUB_WORKSPACE\..\3rpdarty\include\OpenAL_Soft
+        run: |
+          ls $env:GITHUB_WORKSPACE
+          ls $env:GITHUB_WORKSPACE/..
+
       # # Step 3: Install OpenAL
       # - name: Install OpenAL
       #   run: sudo apt install libopenal-dev
