@@ -35,6 +35,7 @@ jobs:
       # Step 3: Change to the correct directory and build
       - name: Build project
         run: |
+          cd Pilot_Episode
           ./build.sh
         continue-on-error: false # Ensure errors are not bypassed
   
