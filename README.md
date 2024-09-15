@@ -1,7 +1,11 @@
 # Pilot Episode
 
 ![GitHub License](https://img.shields.io/github/license/razterizer/Pilot_Episode?color=blue)
-[![Build Check](https://github.com/razterizer/Pilot_Episode/actions/workflows/main.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/main.yml)
+
+[![build check ubuntu](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-ubuntu.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-ubuntu.yml)
+[![build check macos](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-macos.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-macos.yml)
+[![build check ubuntu](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-windows.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-windows.yml)
+
 
 ## Licensing
 
