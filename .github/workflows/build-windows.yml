@@ -73,5 +73,5 @@ jobs:
       - name: Run build.bat
         continue-on-error: false # Ensure errors are not bypassed
         run: |
-          cd Pilot_Episode
-          .\build.bat
+          cd $env:GITHUB_WORKSPACE\Pilot_Episode
+          build.bat
