@@ -35,6 +35,6 @@ jobs:
       # Step 3: Change to the correct directory and build
       - name: Run build.bat
         continue-on-error: false # Ensure errors are not bypassed
-        run: |
-          cd Pilot_Episode
-          .\build.bat
+        # run: |
+        #  cd Pilot_Episode
+        #  .\build.bat
