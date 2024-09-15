@@ -39,7 +39,7 @@ jobs:
           ./build.sh
         continue-on-error: false # Ensure errors are not bypassed
   
-  build-with-locked-dependencies:
+  build-ubuntu-with-locked-dependencies:
     runs-on: ubuntu-latest
     
     steps:
