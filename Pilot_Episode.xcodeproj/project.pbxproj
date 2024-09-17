@@ -27,6 +27,7 @@
 		0709B9C32C97113C00A43834 /* build-ubuntu.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; name = "build-ubuntu.yml"; path = ".github/workflows/build-ubuntu.yml"; sourceTree = SOURCE_ROOT; };
 		0709B9C42C97113D00A43834 /* build-macos.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; name = "build-macos.yml"; path = ".github/workflows/build-macos.yml"; sourceTree = SOURCE_ROOT; };
 		0709B9C52C97113D00A43834 /* build-windows.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; name = "build-windows.yml"; path = ".github/workflows/build-windows.yml"; sourceTree = SOURCE_ROOT; };
+		0709B9C82C9A235700A43834 /* build.bat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.bat; sourceTree = "<group>"; };
 		070D10EC29110BD300543913 /* Clouds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clouds.h; sourceTree = "<group>"; };
 		070D10ED29110C6100543913 /* Seagulls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Seagulls.h; sourceTree = "<group>"; };
 		070D10EE29110DCC00543913 /* Powerups.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Powerups.h; sourceTree = "<group>"; };
@@ -120,6 +121,7 @@
 				070D10EE29110DCC00543913 /* Powerups.h */,
 				070D10ED29110C6100543913 /* Seagulls.h */,
 				07844E4A28FDECEC00B30C0D /* build.sh */,
+				0709B9C82C9A235700A43834 /* build.bat */,
 			);
 			path = Pilot_Episode;
 			sourceTree = "<group>";
