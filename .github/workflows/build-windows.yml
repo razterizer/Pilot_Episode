@@ -69,9 +69,9 @@ jobs:
       # - name: Install OpenAL
       #   run: sudo apt install libopenal-dev
 
-      # Step 3: Change to the correct directory and build
-      # - name: Run build.bat
-      #   continue-on-error: false # Ensure errors are not bypassed
-      #   run: |
-      #     cd $env:GITHUB_WORKSPACE\Pilot_Episode
-      #     build.bat
+      Step 3: Change to the correct directory and build
+      - name: Run build.bat
+        continue-on-error: false # Ensure errors are not bypassed
+        run: |
+          cd $env:GITHUB_WORKSPACE\Pilot_Episode
+          ./build.bat
