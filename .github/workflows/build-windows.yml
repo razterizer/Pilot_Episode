@@ -74,4 +74,4 @@ jobs:
         continue-on-error: false # Ensure errors are not bypassed
         run: |
           cd $env:GITHUB_WORKSPACE\Pilot_Episode
-      #    ./build.bat
+          ./build.bat
