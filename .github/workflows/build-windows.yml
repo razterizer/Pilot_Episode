@@ -23,6 +23,8 @@ jobs:
           cd ..
           mkdir lib
           cd lib
+          pwd
+          dir
           git clone https://github.com/razterizer/Core.git
           git clone https://github.com/razterizer/Termin8or.git
           git clone https://github.com/razterizer/8Beat.git
