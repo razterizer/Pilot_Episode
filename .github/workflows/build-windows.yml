@@ -66,6 +66,8 @@ jobs:
         run: |
           ls $env:GITHUB_WORKSPACE
           ls $env:GITHUB_WORKSPACE/..
+          ls $env:GITHUB_WORKSPACE/../3rdparty/include
+          ls $env:GITHUB_WORKSPACE/../3rdparty/include/OpenAL_Soft
 
       # # Step 3: Install OpenAL
       # - name: Install OpenAL
