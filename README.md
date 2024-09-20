@@ -4,7 +4,7 @@
 
 [![build check ubuntu](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-ubuntu.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-ubuntu.yml)
 [![build check macos](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-macos.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-macos.yml)
-[![build check ubuntu](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-windows.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-windows.yml)
+[![build check windows](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-windows.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-windows.yml)
 
 
 ## Licensing
