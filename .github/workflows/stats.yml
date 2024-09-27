@@ -1,0 +1,17 @@
+name: GHRS:Stats
+on:
+  schedule:
+    - cron: "0 23 * * *"
+  workflow_dispatch: # Allow for running this manually.
+
+jobs:
+  j1:
+    name: github-repo-stats
+    runs-on: ubuntu-latest
+    steps:
+      - name: GHRS
+        uses: jgehrcke/github-repo-stats@HEAD
+        with:
+          ghpagesprefix: https://jgehrcke.github.io/ghrs-test
+          repository: jgehrcke/github-repo-stats
+          ghtoken: ${{ secrets.ghrs_github_api_token }}
