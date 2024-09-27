@@ -13,5 +13,5 @@ jobs:
         uses: jgehrcke/github-repo-stats@HEAD
         with:
           ghpagesprefix: https://jgehrcke.github.io/ghrs-test
-          repository: jgehrcke/github-repo-stats
+          repository: razterizer/Pilot_Episode
           ghtoken: ${{ secrets.ghrs_github_api_token }}
