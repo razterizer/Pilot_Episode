@@ -53,7 +53,7 @@
 		07844E4828FDEBEB00B30C0D /* pilot_episode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pilot_episode.cpp; sourceTree = "<group>"; };
 		07844E4A28FDECEC00B30C0D /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		07A763382B5C795B00705D31 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
-		07FDE9832CA7242400116BA7 /* stats.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; name = stats.yml; path = .github/workflows/stats.yml; sourceTree = SOURCE_ROOT; };
+		07FDE9842CA7EF1C00116BA7 /* github-repo-stats.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; name = "github-repo-stats.yml"; path = ".github/workflows/github-repo-stats.yml"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +71,7 @@
 		0709B9C22C97111B00A43834 /* workflows */ = {
 			isa = PBXGroup;
 			children = (
-				07FDE9832CA7242400116BA7 /* stats.yml */,
+				07FDE9842CA7EF1C00116BA7 /* github-repo-stats.yml */,
 				0709B9C42C97113D00A43834 /* build-macos.yml */,
 				0709B9C32C97113C00A43834 /* build-ubuntu.yml */,
 				0709B9C52C97113D00A43834 /* build-windows.yml */,
