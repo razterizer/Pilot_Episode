@@ -4,7 +4,7 @@
 template<int NR, int NC>
 void draw_sky(SpriteHandler<NR, NC>& sh)
 {
-  auto sky_bb = ttl::Rectangle { 1, 1, 27, 77 };
+  auto sky_bb = ttl::Rectangle { 1, 1, 28, 78 };
   //if (alt_km >= 85) // End of mesosphere.
   if (plane_data::blackout_state == plane_data::BlackoutState::WarnIn
     || plane_data::blackout_state == plane_data::BlackoutState::WarnOut)

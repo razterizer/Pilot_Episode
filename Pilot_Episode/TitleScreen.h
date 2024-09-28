@@ -253,9 +253,9 @@ void draw_title(SpriteHandler<NR, NC>& sh, const ASCII_Fonts::FontDataColl& font
   sh.write_buffer("____ ", 24, 7, Color::Black, Color::LightGray);
   
   ASCII_Fonts::draw_text(sh, font_data, font_colors, "Pilot Episode", 24, 6, ASCII_Fonts::Font::Avatar);
-  //sh.replace_bg_color(Color::Yellow, ttl::Rectangle { 25, 6, 68, 3 });
-  sh.replace_bg_color(Color::Yellow, ttl::Rectangle { 25, 6, 3, 27 });
-  sh.replace_bg_color(Color::Yellow, ttl::Rectangle { 25, 36, 3, 38 });
+  //sh.replace_bg_color(Color::Yellow, ttl::Rectangle { 25, 6, 69, 4 });
+  sh.replace_bg_color(Color::Yellow, ttl::Rectangle { 25, 6, 4, 28 });
+  sh.replace_bg_color(Color::Yellow, ttl::Rectangle { 25, 36, 4, 39 });
 
   sh.write_buffer("(c) 2022 - 2024", 29, 64, Color::White);
   
