@@ -6,8 +6,12 @@
 [![build check macos](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-macos.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-macos.yml)
 [![build check windows](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-windows.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-windows.yml)
 
-![Top Languages](https://img.shields.io/github/languages/top/razterizer/Pilot_Episode)
-![Languages](https://img.shields.io/github/languages/count/razterizer/Pilot_Episode)
+[!Top Languages](https://img.shields.io/github/languages/top/razterizer/Pilot_Episode)
+[!Languages](https://img.shields.io/github/languages/count/razterizer/Pilot_Episode)
+[!Goto](https://img.shields.io/github/search/razterizer/Pilot_Episode/goto)
+[!Commit Activity](https://img.shields.io/github/commit-activity/t/razterizer/Pilot_Episode)
+[!Last Commit](https://img.shields.io/github/last-commit/razterizer/Pilot_Episode)
+[!Contributors](https://img.shields.io/github/contributors/razterizer/Pilot_Episode)
 
 ## Licensing
 
