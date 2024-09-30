@@ -2,9 +2,9 @@
 
 ![GitHub License](https://img.shields.io/github/license/razterizer/Pilot_Episode?color=blue)
 
-[![build check ubuntu](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-ubuntu.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-ubuntu.yml)
-[![build check macos](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-macos.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-macos.yml)
-[![build check windows](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-windows.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-windows.yml)
+[![build ubuntu](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-ubuntu.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-ubuntu.yml)
+[![build macos](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-macos.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-macos.yml)
+[![build windows](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-windows.yml/badge.svg)](https://github.com/razterizer/Pilot_Episode/actions/workflows/build-windows.yml)
 
 ![Top Languages](https://img.shields.io/github/languages/top/razterizer/Pilot_Episode)
 ![Goto](https://img.shields.io/github/search/razterizer/Pilot_Episode/goto)
