@@ -147,7 +147,7 @@ public:
       flock.x_pos = clouds::rnd_cloud_pos();
       flock.y_pos = clouds::rnd_seagull_height();
       flock.x_vel = (rnd::rand() - 0.5f) * 30.f;
-      for (size_t j = 0; j < num_birds; ++j)
+      for (int j = 0; j < num_birds; ++j)
       {
         auto& bird = flock.seagulls[j];
         bird.x_rel_pos = rnd::rand() * 20;
