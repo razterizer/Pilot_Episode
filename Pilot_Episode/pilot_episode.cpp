@@ -229,7 +229,7 @@ private:
     
     if (health == 0)
       GameEngine::set_state_game_over();
-    else if (num_enemies_shot_down == enemies_data.size())
+    else if (num_enemies_shot_down == static_cast<int>(enemies_data.size()))
       GameEngine::set_state_you_won();
     
     for (size_t e_idx = 0; e_idx < enemies_data.size(); ++e_idx)
