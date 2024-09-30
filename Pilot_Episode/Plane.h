@@ -430,7 +430,7 @@ void update_plane_controls(SpriteHandler<NR, NC>& sh,
         plane_data::fix_curr = curr_special_key == Key::Fix;
         plane_data::fix_press_toggles[plane_data::frame_idx] = !plane_data::fix_curr && plane_data::fix_prev;
         plane_data::frame_idx++;
-        if (plane_data::frame_idx == plane_data::fix_press_toggles.size())
+        if (plane_data::frame_idx == static_cast<int>(plane_data::fix_press_toggles.size()))
         {
           plane_data::frame_idx = 0;
           plane_data::fix_toggles_full = true;
