@@ -37,17 +37,17 @@ void draw_update_powerup(SpriteHandler<NR, NC>& sh, std::array<PowerUpData, N>& 
     if (pud.y_vel > crit_vel)
       pud.y_vel = crit_vel;
 
-    //     /^^^^^^^\
-    //    (         )
-    //     \v^v^v^v/
-    //      \ \ / /
-    //       \ Y /
-    //        \|/
-    //     +---+---+
-    //     |   |   |
-    //     +---+---+
-    //     |ACM|E  |
-    //     +---+---+
+    //     /^^^^^^^\                |
+    //    (         )               |
+    //     \v^v^v^v/                |
+    //      \ \ / /                 |
+    //       \ Y /                  |
+    //        \|/                   |
+    //     +---+---+                |
+    //     |   |   |                |
+    //     +---+---+                |
+    //     |ACM|E  |                |
+    //     +---+---+                |
     float x_diff = pud.x_pos - x_pos;
     float y_diff = pud.y_pos - y_pos;
     int r = r_mid + math::roundI(y_diff);
