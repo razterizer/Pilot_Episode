@@ -61,7 +61,7 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
     };
     float vol = rnd::randn_clamp(1.f, 0.2f, 0.4f, 1.2f) * (1.f - health_ratio / c_health_ratio_threshold);
     
-    if (time - trg_timestamp_0 > 0.2 + rnd::rand_float(-0.02, 0.02) && sfx_trigger_0.once())
+    if (time - trg_timestamp_0 > 0.2f + rnd::rand_float(-0.02f, 0.02f) && sfx_trigger_0.once())
     {
       sfx_trigger_1.reset();
       trg_timestamp_1 = time;
