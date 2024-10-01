@@ -252,7 +252,7 @@ EnemyData enemy_step_ai(SpriteHandler<NR, NC>& sh, EnemyData ed,
         ed.y_pos += ed.y_vel*dt;
       }
       else
-        ed.y_pos = ground_level + 14;
+        ed.y_pos = static_cast<float>(ground_level + 14);
       break;
     }
   }
