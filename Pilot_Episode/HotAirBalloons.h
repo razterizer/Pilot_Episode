@@ -27,8 +27,8 @@ void draw_hot_air_balloon(SpriteHandler<NR, NC>& sh,
   for (const auto& rc : balloon_rc)
   {
     auto [r, c] = rc;
-    float cc = c - parallax * x_pos;
-    float rr = r - y_pos;
+    auto cc = static_cast<int>(c - parallax * x_pos);
+    auto rr = static_cast<int>(r - y_pos);
     sh.write_buffer(str::rep_char('.', 5), rr, cc + 8, Color::Red, Color::DarkRed);
     sh.write_buffer(str::rep_char('!', 13), rr + 1, cc + 4, Color::Green, Color::DarkBlue);
     sh.write_buffer(str::rep_char('"', 19), rr + 2, cc + 1, Color::DarkCyan, Color::Cyan);
