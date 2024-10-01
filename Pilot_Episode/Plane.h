@@ -269,7 +269,7 @@ void draw_crosshair(SpriteHandler<NR, NC>& sh, float x_vel, float y_vel)
   float r = r_mid + 1.f + len*y_vel_norm / pix_ar2_sq;
   float c = c_mid + plane_half_len_2 + len*x_vel_norm;
 
-  sh.write_buffer("+", std::round(r), std::round(c), Color::Black, Color::Transparent2);
+  sh.write_buffer("+", math::roundI(r), math::roundI(c), Color::Black, Color::Transparent2);
 }
 
 
