@@ -191,7 +191,7 @@ EnemyData enemy_step_ai(SpriteHandler<NR, NC>& sh, EnemyData ed,
         }
         if (!plane_hiding)
         {
-          ed.shot_timeout = 50 / shot_speed; // ft / (ft/s) -> s
+          ed.shot_timeout = math::roundI(50 / shot_speed); // ft / (ft/s) -> s
           ed.x_pos_shot = 0.f;
           ed.y_pos_shot = 0.f;
           ed.shot_angle = std::atan2(ed.y_diff, ed.x_diff);
