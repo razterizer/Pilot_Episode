@@ -270,7 +270,7 @@ void draw_clouds_fg(SpriteHandler<NR, NC>& sh,
   {
     return std::get<2>(rch);
   });
-  float num_chars_tot = plane_hull.size();
+  auto num_chars_tot = static_cast<float>(plane_hull.size());
   plane_hiding = num_chars_hidden / num_chars_tot > 0.8f;
 }
 
