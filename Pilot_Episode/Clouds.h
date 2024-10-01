@@ -266,7 +266,7 @@ void draw_clouds_fg(SpriteHandler<NR, NC>& sh,
     draw_cloud_f(cd.cloud_type[6*cloud_idx + 5], sh, cd.cloud_x_pos[cloud_idx], cd.cloud_y_pos[cloud_idx-500], x_pos, y_pos, parallax, ground_level, plane_hull);
   }
 
-  float num_chars_hidden = std::count_if(plane_hull.begin(), plane_hull.end(), [](const auto& rch)
+  auto num_chars_hidden = std::count_if(plane_hull.begin(), plane_hull.end(), [](const auto& rch)
   {
     return std::get<2>(rch);
   });
