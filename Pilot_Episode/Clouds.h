@@ -198,7 +198,7 @@ void draw_cloud_big(SpriteHandler<NR, NC>& sh, int r, int c,
 
 template<int NR, int NC>
 void draw_cloud_f(int cloud_type, SpriteHandler<NR, NC>& sh,
-                  int cloud_x_pos, int cloud_y_pos,
+                  float cloud_x_pos, float cloud_y_pos,
                   float plane_x_pos, float plane_y_pos,
                   float parallax, float ground_level,
                   std::vector<std::tuple<int, int, bool>>& plane_hull)
