@@ -72,7 +72,7 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
       src_fx_0->set_volume(vol);
       src_fx_0->play();
     }
-    if (time - trg_timestamp_1 > 0.2 + rnd::rand_float(-0.02, 0.02) && sfx_trigger_1.once())
+    if (time - trg_timestamp_1 > 0.2f + rnd::rand_float(-0.02f, 0.02f) && sfx_trigger_1.once())
     {
       sfx_trigger_0.reset();
       trg_timestamp_0 = time;
