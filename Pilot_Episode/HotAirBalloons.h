@@ -10,8 +10,8 @@ void draw_hot_air_balloon_small(SpriteHandler<NR, NC>& sh,
   for (const auto& rc : balloon_rc)
   {
     auto [r, c] = rc;
-    float cc = c - parallax * x_pos;
-    float rr = r - y_pos;
+    auto cc = static_cast<int>(c - parallax * x_pos);
+    auto rr = static_cast<int>(r - y_pos);
     sh.write_buffer("_", rr, cc + 1, Color::Magenta);
     sh.write_buffer("(&)", rr + 1, cc, Color::Magenta, Color::DarkCyan);
     sh.write_buffer("#", rr + 2, cc + 1, Color::DarkYellow, Color::DarkGray);
