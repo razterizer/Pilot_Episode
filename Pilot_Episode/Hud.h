@@ -18,9 +18,9 @@ void draw_hud(SpriteHandler<NR, NC>& sh,
     case 0: health_char = ""; break;
   }
   std::string life_str = "H: ["
-    + str::rep_char('#', static_cast<int>(std::floor<float>(health/3.f)))
+    + str::rep_char('#', static_cast<int>(std::floor(health/3.f)))
     + health_char
-    + str::rep_char(' ', static_cast<int>(std::ceil<float>(max_health/3.f) - std::ceil<float>(health/3.f)))
+    + str::rep_char(' ', static_cast<int>(std::ceil(max_health/3.f) - std::ceil(health/3.f)))
     + "]";
   sh.write_buffer(life_str, 0, hud_c, Color::Cyan);
   //sh.write_buffer(std::to_string(health), 5, 5, Color::Black);
