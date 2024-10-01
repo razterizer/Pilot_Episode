@@ -103,7 +103,7 @@ public:
     //if (argc >= 2)
     //  GameEngine::set_delay_us(atoi(argv[1]));
     if (argc >= 2)
-      GameEngine::set_real_fps(atoi(argv[1]));
+      GameEngine::set_real_fps(atof(argv[1]));
     
     auto set_alt = [&]() -> float { return -alt_km_f * 1e3f / pix_to_m + ground_level + 13 * pix_ar2; };
     plane_data::y_pos = set_alt();
