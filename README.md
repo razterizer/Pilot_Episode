@@ -56,6 +56,7 @@ You need the following header-only libraries that I've made:
 * https://github.com/razterizer/Termin8or
 * https://github.com/razterizer/8Beat
 * https://github.com/razterizer/AudioLibSwitcher_OpenAL ; Will be changed to something like AudioLibSwitcher_libsoundio in the future.
+* https://github.com/razterizer/TrainOfThought
 
 Make sure the folder structure looks like this:
 ```
@@ -63,6 +64,7 @@ Make sure the folder structure looks like this:
 <my_source_code_dir>/lib/Termin8or/              ; Termin8or repo workspace/checkout goes here.
 <my_source_code_dir>/lib/8Beat/                  ; 8Beat repo workspace/checkout goes here.
 <my_source_code_dir>/lib/AudioLibSwitcher_OpenAL ; AudioLibSwitcher_OpenAL repo workspace/checkout goes here.
+<my_source_code_dir>/lib/TrainOfThought          ; TrainOfThought repo workspace/checkout goes here.
 <my_source_code_dir>Pilot_Episode/               ; Pilot_Episode repo workspace/checkout goes here.
 ```
 
