@@ -256,7 +256,7 @@ void draw_plane(SpriteHandler<NR, NC>& sh,
   sh.write_buffer(sprite_part, r, c, sprite_part_fg_color, sprite_part_bg_color);
   for (size_t i = 0; i < sprite_part.size(); ++i)
     if (sprite_part[i] != ' ')
-      plane_hull.emplace_back(r, c + i, false);
+      plane_hull.emplace_back(r, c + static_cast<int>(i), false);
 }
 
 template<int NR, int NC>

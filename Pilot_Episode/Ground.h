@@ -117,7 +117,7 @@ namespace ground
           auto r = static_cast<int>(ground_level - y_pos + vertical_offs - y_offs);
           for (int gnd_idx = 0; gnd_idx < N; ++gnd_idx)
           {
-            int c = gnd_idx - N/2 - parallax * x_pos;
+            auto c = static_cast<int>(gnd_idx - N/2 - parallax * x_pos);
             if (1 <= c && c <= 79)
             {
               fg_color = Color::Default;
