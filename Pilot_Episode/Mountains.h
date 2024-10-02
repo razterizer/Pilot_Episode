@@ -71,7 +71,7 @@ void generate_mountain_range(std::vector<MountainHFData>& mountain_range_height_
 
     const float mountain_height = rnd_mountain_height();
     for (auto y : yy)
-      mountain_hfd.height_field.emplace_back(y*mountain_height);
+      mountain_hfd.height_field.emplace_back(math::roundI(y*mountain_height));
     mountain_hfd.c0 = static_cast<int>(rnd_cloud_pos());
     mountain_hfd.parallax = parallax;
     parallax *= 0.95f;
