@@ -114,7 +114,7 @@ namespace ground
         if (ground_level - y_pos <= y_offs + 1)
         {
           const int N = static_cast<int>(N_gnd);
-          int r = ground_level - y_pos + vertical_offs - y_offs;
+          auto r = static_cast<int>(ground_level - y_pos + vertical_offs - y_offs);
           for (int gnd_idx = 0; gnd_idx < N; ++gnd_idx)
           {
             int c = gnd_idx - N/2 - parallax * x_pos;
