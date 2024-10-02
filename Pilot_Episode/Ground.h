@@ -160,7 +160,7 @@ namespace ground
     
       if (ground_level - y_pos <= 1)
       {
-        int r = ground_level - y_pos + vertical_offs;
+        auto r = static_cast<int>(ground_level - y_pos + vertical_offs);
         sh.write_buffer(str::rep_char('#', 78), r, 1, ground::fg_color_grass, ground::bg_color_grass);
       }
     }
