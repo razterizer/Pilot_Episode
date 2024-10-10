@@ -40,6 +40,10 @@ jobs:
           ./build.sh
         continue-on-error: false # Ensure errors are not bypassed
   
+      # Run program
+      - name: Run program
+        run: ./bin/pilot_episode
+
   build-program-with-locked-dependencies:
     runs-on: ubuntu-latest
     
