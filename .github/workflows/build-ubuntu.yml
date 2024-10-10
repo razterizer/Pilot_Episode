@@ -42,7 +42,9 @@ jobs:
   
       # Run program
       - name: Run program
-        run: ./bin/pilot_episode
+        run: |
+             cd Pilot_Episode
+             ./bin/pilot_episode
 
   build-program-with-locked-dependencies:
     runs-on: ubuntu-latest
