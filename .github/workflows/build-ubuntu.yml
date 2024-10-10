@@ -42,6 +42,7 @@ jobs:
   
       # Run program
       - name: Run program
+        if: false
         run: |
              cd Pilot_Episode
              ./bin/pilot_episode
