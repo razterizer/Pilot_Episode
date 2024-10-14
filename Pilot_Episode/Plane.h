@@ -1,6 +1,6 @@
 #pragma once
 #include "Enums.h"
-#include <Termin8or/Screen.h>
+#include <Termin8or/ScreenUtils.h>
 #include <Termin8or/RC.h>
 #include <Termin8or/Keyboard.h>
 #include <Core/StlUtils.h>

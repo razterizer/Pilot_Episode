@@ -1,5 +1,5 @@
 #pragma once
-#include <Termin8or/Screen.h>
+#include <Termin8or/ScreenUtils.h>
 #include <Termin8or/ParticleSystem.h>
 
 namespace plane_data

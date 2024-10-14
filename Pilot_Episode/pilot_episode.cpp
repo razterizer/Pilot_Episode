@@ -17,7 +17,7 @@
 #include "Hud.h"
 #include "Sky.h"
 
-#include <Termin8or/Screen.h>
+#include <Termin8or/ScreenUtils.h>
 #include <Termin8or/SpriteHandler.h>
 #include <Termin8or/GameEngine.h>
 #include <Termin8or/ASCII_Fonts.h>
