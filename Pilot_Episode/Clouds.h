@@ -1,6 +1,6 @@
 #pragma once
 #include "Globals.h"
-#include <Termin8or/SpriteHandler.h>
+#include <Termin8or/ScreenHandler.h>
 #include <Core/Math.h>
 #include <Core/Rand.h>
 #include <execution>
@@ -49,7 +49,7 @@ namespace clouds
 //  ( `       '  )
 //   `_'`~~=~~---'
 template<int NR, int NC>
-void draw_cloud(SpriteHandler<NR, NC>& sh, int r, int c,
+void draw_cloud(ScreenHandler<NR, NC>& sh, int r, int c,
                 std::vector<std::tuple<int, int, bool>>& plane_hull)
 {
   if (c < 1-14 || c > 80+14)
@@ -113,7 +113,7 @@ void draw_cloud(SpriteHandler<NR, NC>& sh, int r, int c,
 // (   (       )'`  ') )
 //  `~-~=--~~==-=~~~-~'
 template<int NR, int NC>
-void draw_cloud_big(SpriteHandler<NR, NC>& sh, int r, int c,
+void draw_cloud_big(ScreenHandler<NR, NC>& sh, int r, int c,
                     std::vector<std::tuple<int, int, bool>>& plane_hull)
 {
   if (c < 1-21 || c > 80+21)
@@ -197,7 +197,7 @@ void draw_cloud_big(SpriteHandler<NR, NC>& sh, int r, int c,
 }
 
 template<int NR, int NC>
-void draw_cloud_f(int cloud_type, SpriteHandler<NR, NC>& sh,
+void draw_cloud_f(int cloud_type, ScreenHandler<NR, NC>& sh,
                   float cloud_x_pos, float cloud_y_pos,
                   float plane_x_pos, float plane_y_pos,
                   float parallax, float ground_level,
@@ -217,7 +217,7 @@ void draw_cloud_f(int cloud_type, SpriteHandler<NR, NC>& sh,
 
 
 template<int NR, int NC>
-void draw_clouds_fg(SpriteHandler<NR, NC>& sh,
+void draw_clouds_fg(ScreenHandler<NR, NC>& sh,
                     const clouds::CloudData& cd,
                     float x_pos, float y_pos,
                     std::vector<std::tuple<int, int, bool>>& plane_hull, bool& plane_hiding)
@@ -275,7 +275,7 @@ void draw_clouds_fg(SpriteHandler<NR, NC>& sh,
 }
 
 template<int NR, int NC>
-void draw_clouds_bg(SpriteHandler<NR, NC>& sh,
+void draw_clouds_bg(ScreenHandler<NR, NC>& sh,
                     const clouds::CloudData& cd,
                     float x_pos, float y_pos)
 {

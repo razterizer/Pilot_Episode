@@ -98,7 +98,7 @@ namespace ground
 
     
     template<typename Lambda, int NR, int NC>
-    void process_ground(SpriteHandler<NR, NC>& sh,
+    void process_ground(ScreenHandler<NR, NC>& sh,
                         float ground_level,
                         float x_pos, float y_pos,
                         float parallax,
@@ -132,7 +132,7 @@ namespace ground
     }
 
     template<int NR, int NC>
-    void draw_ground(SpriteHandler<NR, NC>& sh, float ground_level,
+    void draw_ground(ScreenHandler<NR, NC>& sh, float ground_level,
                      float x_pos, float y_pos)
     {
       const float parallax = 1.f;//1e-1f;
@@ -166,7 +166,7 @@ namespace ground
     }
     
     template<int NR, int NC>
-    void draw_houses(SpriteHandler<NR, NC>& sh, float ground_level,
+    void draw_houses(ScreenHandler<NR, NC>& sh, float ground_level,
                      float x_pos, float y_pos)
     {
       float parallax = 1.f;
@@ -193,7 +193,7 @@ namespace ground
     
     // \===/
     template<int NR, int NC>
-    void draw_boats(SpriteHandler<NR, NC>& sh, float ground_level,
+    void draw_boats(ScreenHandler<NR, NC>& sh, float ground_level,
                     float x_pos, float y_pos)
     {
       float parallax = 1.f;
@@ -219,7 +219,7 @@ namespace ground
     }
     
     template<int NR, int NC>
-    void draw(SpriteHandler<NR, NC>& sh, float ground_level)
+    void draw(ScreenHandler<NR, NC>& sh, float ground_level)
     {
       draw_boats(sh, ground_level, plane_data::x_pos, plane_data::y_pos);
   

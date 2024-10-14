@@ -36,7 +36,7 @@
 //29//                                                                 (c) 2022       |
 //30//--------------------------------------------------------------------------------+
 template<int NR, int NC>
-void draw_title(SpriteHandler<NR, NC>& sh, const ASCII_Fonts::FontDataColl& font_data, const ASCII_Fonts::ColorScheme& font_colors)
+void draw_title(ScreenHandler<NR, NC>& sh, const ASCII_Fonts::FontDataColl& font_data, const ASCII_Fonts::ColorScheme& font_colors)
 {
   sh.write_buffer("Rasmus Anthin", 0, 55, Color::Black, Color::Cyan);
   sh.write_buffer("__", 1, 12, Color::DarkBlue);

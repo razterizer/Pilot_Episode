@@ -42,7 +42,7 @@ struct EnemyData
 };
 int EnemyData::g_id = -1;
 template<int NR, int NC>
-EnemyData enemy_step_ai(SpriteHandler<NR, NC>& sh, EnemyData ed,
+EnemyData enemy_step_ai(ScreenHandler<NR, NC>& sh, EnemyData ed,
                         audio::AudioStreamSource* src_fx,
                         float x_pos_plane, float y_pos_plane, float x_vel_plane, float y_vel_plane,
                         const std::vector<std::tuple<int, int, bool>>& plane_hull, bool plane_hiding,
@@ -290,7 +290,7 @@ EnemyData enemy_step_ai(SpriteHandler<NR, NC>& sh, EnemyData ed,
 //    _
 // <oOOOo>
 template<int NR, int NC>
-void draw_enemy(SpriteHandler<NR, NC>& sh, int r, int r0, int c, bool destroyed, int anim_ctr)
+void draw_enemy(ScreenHandler<NR, NC>& sh, int r, int r0, int c, bool destroyed, int anim_ctr)
 {
   //std::string sprite_part;
   //Color sprite_part_color;
@@ -319,7 +319,7 @@ void draw_enemy(SpriteHandler<NR, NC>& sh, int r, int r0, int c, bool destroyed,
 }
 
 template<int NR, int NC>
-void draw_enemy_shadow(SpriteHandler<NR, NC>& sh, float dist, int r_plane, int c_plane, float x_diff, float y_diff, EnemyState es, int anim_ctr)
+void draw_enemy_shadow(ScreenHandler<NR, NC>& sh, float dist, int r_plane, int c_plane, float x_diff, float y_diff, EnemyState es, int anim_ctr)
 {
   int r = r_plane + math::roundI(y_diff) + 1;
   int c = c_plane + math::roundI(x_diff) + 3;
@@ -365,7 +365,7 @@ void draw_enemy_shadow(SpriteHandler<NR, NC>& sh, float dist, int r_plane, int c
 }
 
 template<int NR, int NC>
-void draw_enemy_shot(SpriteHandler<NR, NC>& sh, EnemyData& ed)
+void draw_enemy_shot(ScreenHandler<NR, NC>& sh, EnemyData& ed)
 {
   if (ed.state == EnemyState::SHOOT)
     draw_shot(sh, ed.shot_hit, ed.shot_angle, ed.bullet_offs_x, ed.bullet_offs_y, Color::Cyan);

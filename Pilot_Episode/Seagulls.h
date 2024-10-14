@@ -4,7 +4,7 @@
 
 
 template<int NR, int NC>
-void draw_seagull(SpriteHandler<NR, NC>& sh, int r, int c, int anim_ctr)
+void draw_seagull(ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr)
 {
   switch (anim_ctr % 5)
   {
@@ -18,7 +18,7 @@ void draw_seagull(SpriteHandler<NR, NC>& sh, int r, int c, int anim_ctr)
 }
 
 template<int NR, int NC>
-void draw_seagull_small(SpriteHandler<NR, NC>& sh, int r, int c, int anim_ctr)
+void draw_seagull_small(ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr)
 {
   switch (anim_ctr % 6)
   {
@@ -57,7 +57,7 @@ struct SeagullFlockData
 
 
 template<size_t Nf, int NR, int NC>
-void draw_update_seagull_flocks(SpriteHandler<NR, NC>& sh,
+void draw_update_seagull_flocks(ScreenHandler<NR, NC>& sh,
                                 audio::AudioStreamSource* src_fx,
                                 std::array<SeagullFlockData, Nf>& seagull_flocks,
                                 float x_pos, float y_pos,

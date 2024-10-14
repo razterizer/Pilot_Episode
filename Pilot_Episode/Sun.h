@@ -2,7 +2,7 @@
 
 
 template<int NR, int NC>
-void draw_sun(SpriteHandler<NR, NC>& sh, int r, int c, float x_pos)
+void draw_sun(ScreenHandler<NR, NC>& sh, int r, int c, float x_pos)
 {
   const float parallax = 5e-3f;
   auto c_offs = static_cast<int>(parallax*x_pos);

@@ -12,7 +12,7 @@
 #define HILITE_PLANE_SURFACES
 
 template<int NR, int NC>
-void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
+void generate_engine_smoke(ScreenHandler<NR, NC>& sh,
                     audio::AudioStreamSource* src_fx_0, audio::AudioStreamSource* src_fx_1,
                     const RC& rc_plane_engine,
                     float dt, float time)
@@ -131,7 +131,7 @@ void generate_engine_smoke(SpriteHandler<NR, NC>& sh,
 }
 
 template<int NR, int NC>
-void draw_plane(SpriteHandler<NR, NC>& sh,
+void draw_plane(ScreenHandler<NR, NC>& sh,
                 int r, int r0, int c,
                 int anim_ctr,
                 int x_mv_dir, int y_mv_dir,
@@ -260,7 +260,7 @@ void draw_plane(SpriteHandler<NR, NC>& sh,
 }
 
 template<int NR, int NC>
-void draw_crosshair(SpriteHandler<NR, NC>& sh, float x_vel, float y_vel)
+void draw_crosshair(ScreenHandler<NR, NC>& sh, float x_vel, float y_vel)
 {
   float dist = std::sqrt(x_vel*x_vel + y_vel*y_vel);
   float x_vel_norm = x_vel / dist;
@@ -274,7 +274,7 @@ void draw_crosshair(SpriteHandler<NR, NC>& sh, float x_vel, float y_vel)
 
 
 template<int NR, int NC>
-void update_plane_controls(SpriteHandler<NR, NC>& sh,
+void update_plane_controls(ScreenHandler<NR, NC>& sh,
                            audio::AudioStreamSource* src_fx, audio::WaveformGeneration& wave_gen,
                            const keyboard::KeyPressData& kpd, Key curr_special_key,
                            float ground_level, float dt)

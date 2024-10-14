@@ -91,7 +91,7 @@ void generate_mountain_range(std::vector<MountainHFData>& mountain_range_height_
 }
 
 template<int NR, int NC>
-void draw_mountain_range(SpriteHandler<NR, NC>& sh,
+void draw_mountain_range(ScreenHandler<NR, NC>& sh,
                          const std::vector<MountainHFData>& mountain_range_height_fields,
                          float x_pos, float y_pos,
                          float ground_level)

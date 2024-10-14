@@ -3,7 +3,7 @@
 
 
 template<int NR, int NC>
-void draw_instructions(SpriteHandler<NR, NC>& sh, const ASCII_Fonts::FontDataColl& font_data, const ASCII_Fonts::ColorScheme& font_colors)
+void draw_instructions(ScreenHandler<NR, NC>& sh, const ASCII_Fonts::FontDataColl& font_data, const ASCII_Fonts::ColorScheme& font_colors)
 {
   ASCII_Fonts::draw_text(sh, font_data, font_colors, "Pilot Episode", 1, 6, ASCII_Fonts::Font::Avatar);
 

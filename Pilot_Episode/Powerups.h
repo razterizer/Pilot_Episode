@@ -10,7 +10,7 @@ struct PowerUpData
   float y_vel = 0.f;
 };
 template<size_t N, int NR, int NC>
-void draw_update_powerup(SpriteHandler<NR, NC>& sh, std::array<PowerUpData, N>& powerups,
+void draw_update_powerup(ScreenHandler<NR, NC>& sh, std::array<PowerUpData, N>& powerups,
                          audio::AudioStreamSource* src_fx,
                          std::vector<std::tuple<int, int, bool>>& plane_hull,
                          float x_pos, float y_pos,

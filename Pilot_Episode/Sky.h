@@ -2,7 +2,7 @@
 
 
 template<int NR, int NC>
-void draw_sky(SpriteHandler<NR, NC>& sh)
+void draw_sky(ScreenHandler<NR, NC>& sh)
 {
   auto sky_bb = ttl::Rectangle { 1, 1, 28, 78 };
   //if (alt_km >= 85) // End of mesosphere.

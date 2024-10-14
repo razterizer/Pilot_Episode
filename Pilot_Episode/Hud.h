@@ -2,7 +2,7 @@
 
 
 template<int NR, int NC>
-void draw_hud(SpriteHandler<NR, NC>& sh,
+void draw_hud(ScreenHandler<NR, NC>& sh,
               float ground_level,
               int health, int max_health,
               int score)

@@ -18,7 +18,7 @@
 #include "Sky.h"
 
 #include <Termin8or/ScreenUtils.h>
-#include <Termin8or/SpriteHandler.h>
+#include <Termin8or/ScreenHandler.h>
 #include <Termin8or/GameEngine.h>
 #include <Termin8or/ASCII_Fonts.h>
 #include <8Beat/AudioSourceHandler.h>
