@@ -34,7 +34,7 @@ A cross-platform (Lin/Mac/Win) terminal-based shooter game.
 
 ![ubuntu_cbbbzvqdup_360](https://github.com/user-attachments/assets/133102d0-6125-4218-84a0-118f47ea0a4d)
 
-![ubuntu_cbbbzvqdup_360](https://github.com/user-attachments/assets/ad6cfce8-1a2b-491c-993d-ee576ec59975)
+![ubuntu_gk3dzzntm0_360](https://github.com/user-attachments/assets/49b55e06-7d3c-4bff-8698-7e3ad5225abf)
 
 https://www.youtube.com/watch?v=6ycg91F3Pn4
 
