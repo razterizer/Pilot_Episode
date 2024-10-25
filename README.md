@@ -32,8 +32,9 @@ A cross-platform (Lin/Mac/Win) terminal-based shooter game.
 ![image](https://github.com/razterizer/Pilot_Episode/assets/32767250/16977fe1-330b-4b41-bfc3-5793161034f4)
 ![image](https://github.com/razterizer/Pilot_Episode/assets/32767250/18ba7d45-6b5c-42ba-9cce-c233609ce947)
 
+![ubuntu_cbbbzvqdup_360](https://github.com/user-attachments/assets/133102d0-6125-4218-84a0-118f47ea0a4d)
+
 ![ubuntu_cbbbzvqdup_360](https://github.com/user-attachments/assets/ad6cfce8-1a2b-491c-993d-ee576ec59975)
-![Uploading ubuntu_gk3dzzntm0_360.gif…]()
 
 https://www.youtube.com/watch?v=6ycg91F3Pn4
 
