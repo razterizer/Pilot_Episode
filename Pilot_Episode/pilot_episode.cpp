@@ -96,10 +96,17 @@ public:
   Game(int argc, char** argv, const GameEngineParams& params)
     : GameEngine(argv[0], params)
   {
-  #ifndef _WIN32
-    GameEngine::set_real_fps(20);
-    GameEngine::set_sim_delay_us(60'000);
-  #endif
+  //#ifndef _WIN32
+    GameEngine::set_real_fps(15);
+    GameEngine::set_sim_delay_us(50'000);
+    GameEngine::set_anim_rate(0, 5); // Enemy AI
+    GameEngine::set_anim_rate(1, 3); // Enemy shadow
+    GameEngine::set_anim_rate(2, 5); // Enemy
+    GameEngine::set_anim_rate(3, 10); // Explosion
+    GameEngine::set_anim_rate(4, 1); // Plane
+    GameEngine::set_anim_rate(5, 3); // Seagulls
+    GameEngine::set_anim_rate(6, 5); // Balloons
+  //#endif
     //if (argc >= 2)
     //  GameEngine::set_delay_us(atoi(argv[1]));
     if (argc >= 2)
@@ -216,9 +223,10 @@ private:
 
   virtual void update() override
   {
-    Key curr_special_key = register_keypresses(kpd);
+    Key curr_special_key = register_keypresses(kpdp);
     
-    update_plane_controls(sh, src_fx_0, wave_gen, kpd, curr_special_key, ground_level, get_sim_dt_s());
+    update_plane_controls(sh, src_fx_0, wave_gen, kpdp, curr_special_key,
+                          ground_level, get_sim_dt_s());
     
     draw_hud(sh, ground_level, health, max_health, GameEngine::ref_score());
     
@@ -240,7 +248,7 @@ private:
                           plane_data::x_pos, plane_data::y_pos, plane_data::x_vel, plane_data::y_vel,
                           plane_hull, plane_hiding,
                           r_mid + static_cast<int>(y_pos_shot) + 1, c_mid + static_cast<int>(x_pos_shot + plane_half_len), shot_fired, shot_hit,
-                          anim_ctr, get_sim_dt_s(),
+                          get_anim_count(0), get_sim_dt_s() * 0.8f,
                           GameEngine::ref_score(),
                           static_cast<int>(cloud_limit), static_cast<int>(ground_level));
     }
@@ -278,7 +286,7 @@ private:
       draw_enemy_shadow(sh, edi.dist, r_mid, c_mid,
                         edi.x_pos - plane_data::x_pos,
                         edi.y_pos - plane_data::y_pos,
-                        edi.state, anim_ctr);
+                        edi.state, get_anim_count(1));
     }
     
     plane_hiding = false;
@@ -295,6 +303,14 @@ private:
     
     draw_crosshair(sh, plane_data::x_vel, plane_data::y_vel);
     
+    std::function<int(int&)> f_update_explosion_anim = [this](int& anim_ctr) -> int
+    {
+      int curr_anim_ctr = anim_ctr;
+      if (get_frame_count() % 3 == 0)
+        anim_ctr++;
+      return curr_anim_ctr;
+    };
+    
     for (size_t e_idx = 0; e_idx < enemies_data.size(); ++e_idx)
     {
       auto& edi = enemies_data[e_idx];
@@ -303,24 +319,24 @@ private:
                    r,
                    r_mid + math::roundI(edi.y_pos - plane_data::y_pos),
                    c_mid + math::roundI(edi.x_pos - plane_data::x_pos),
-                   edi.state == EnemyState::DESTROYED, anim_ctr);
+                   edi.state == EnemyState::DESTROYED, get_anim_count(2));
       draw_enemy_shot(sh, edi);
-      if (edi.plane_explosion_anim_ctr++ < edi.plane_explosion_anim_max)
+      if (f_update_explosion_anim(edi.plane_explosion_anim_ctr) < edi.plane_explosion_anim_max) // #FIXME
         draw_explosion(sh, r_mid + math::roundI(edi.plane_explosion_offs_y), c_mid + math::roundI(edi.plane_explosion_offs_x), edi.plane_explosion_anim_ctr,
                        src_fx_0, 0);
-      if (edi.enemy_explosion_anim_ctr++ < edi.enemy_explosion_anim_max)
+      if (f_update_explosion_anim(edi.enemy_explosion_anim_ctr) < edi.enemy_explosion_anim_max) // #FIXME
         draw_explosion(sh,
                        r_mid + math::roundI(edi.y_pos - plane_data::y_pos) + 1,
                        c_mid + math::roundI(edi.x_pos - plane_data::x_pos) + 2 * edi.enemy_explosion_anim_ctr / 3,
-                       anim_ctr,
+                       get_anim_count(3),
                        src_fx_0, 1);
     }
     
-    generate_engine_smoke(sh, src_fx_1, src_fx_2, { r_mid + 1, c_mid + 5 }, get_sim_dt_s(), get_sim_time_s());
+    generate_engine_smoke(sh, src_fx_1, src_fx_2, { r_mid + 1, c_mid + 5 }, get_sim_dt_s() * 0.5f, get_sim_time_s());
     
     plane_hull.clear();
     for (int r = 1; r < 29; ++r)
-      draw_plane(sh, r, r_mid, c_mid, anim_ctr, plane_data::x_mv_dir, plane_data::y_mv_dir, plane_hull);
+      draw_plane(sh, r, r_mid, c_mid, get_anim_count(4), plane_data::x_mv_dir, plane_data::y_mv_dir, plane_hull);
     
     if (shot_fired)
       draw_shot(sh, shot_hit, shot_angle, x_pos_shot + plane_half_len, y_pos_shot + 1, Color::Black);
@@ -332,7 +348,8 @@ private:
                                      x_pos_shot, y_pos_shot, shot_hit, shot_fired,
                                      cloud_limit, ground_level,
                                      GameEngine::ref_score(),
-                                     anim_ctr, get_sim_dt_s());
+                                     get_anim_count(5), f_update_explosion_anim,
+                                     get_sim_dt_s() * 0.8f);
     
     gnd_data.draw(sh, ground_level);
     
@@ -342,21 +359,21 @@ private:
                               plane_hull,
                               plane_data::x_pos, plane_data::y_pos,
                               cloud_limit, ground_level,
-                              get_sim_dt_s());
+                              get_sim_dt_s() * 0.8f);
     
     draw_clouds_bg(sh,
                    cloud_data,
                    plane_data::x_pos, plane_data::y_pos);
     
     draw_hot_air_balloon<20>(sh,
-                             balloon_rc, plane_data::x_pos, plane_data::y_pos, anim_ctr);
+                             balloon_rc, plane_data::x_pos, plane_data::y_pos, get_anim_count(6));
     
     draw_mountain_range(sh, mountain_data::mountain_range_height_fields,
                         plane_data::x_pos, plane_data::y_pos,
                         ground_level);
     
     draw_hot_air_balloon_small<400>(sh,
-                                    balloon_small_rc, plane_data::x_pos, plane_data::y_pos, anim_ctr);
+                                    balloon_small_rc, plane_data::x_pos, plane_data::y_pos, get_anim_count(6));
     
     draw_sun(sh, 3, 60, plane_data::x_pos);
     

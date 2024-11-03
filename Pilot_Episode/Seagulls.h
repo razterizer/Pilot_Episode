@@ -64,7 +64,8 @@ void draw_update_seagull_flocks(ScreenHandler<NR, NC>& sh,
                                 float x_pos_shot, float y_pos_shot, bool& shot_hit, bool shot_fired,
                                 float cloud_limit, float ground_level,
                                 int& score,
-                                int anim_ctr, float dt)
+                                int anim_ctr, std::function<int(int&)>& expl_anim_func,
+                                float dt)
 {
   for (auto& flock : seagull_flocks)
   {
@@ -99,7 +100,7 @@ void draw_update_seagull_flocks(ScreenHandler<NR, NC>& sh,
       }
       if (bird.killed)
       {
-        if (bird.explosion_anim_ctr++ < bird.explosion_anim_ctr_max)
+        if (expl_anim_func(bird.explosion_anim_ctr) < bird.explosion_anim_ctr_max)
           draw_explosion(sh, r, c, bird.explosion_anim_ctr, src_fx, 2);
         if (flock.y_pos + bird.y_rel_pos - 23 < ground_level)
         {

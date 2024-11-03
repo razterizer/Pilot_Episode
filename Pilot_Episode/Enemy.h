@@ -173,7 +173,7 @@ EnemyData enemy_step_ai(ScreenHandler<NR, NC>& sh, EnemyData ed,
         sh.write_buffer("SHOOT", 2, 5, Color::Green);
 #endif
       // Shoot at plane.
-      const float shot_speed = 1.f;
+      const float shot_speed = 0.6f;
       if (ed.time_shooting == 0 || ed.shot_hit || ed.shot_timeout == 0)
       {
         using namespace audio;

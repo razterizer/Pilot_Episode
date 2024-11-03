@@ -276,10 +276,10 @@ void draw_crosshair(ScreenHandler<NR, NC>& sh, float x_vel, float y_vel)
 template<int NR, int NC>
 void update_plane_controls(ScreenHandler<NR, NC>& sh,
                            audio::AudioStreamSource* src_fx, audio::WaveformGeneration& wave_gen,
-                           const keyboard::KeyPressData& kpd, Key curr_special_key,
+                           const keyboard::KeyPressDataPair& kpdp, Key curr_special_key,
                            float ground_level, float dt)
 {
-  auto special_key = keyboard::get_special_key(kpd);
+  auto special_key = keyboard::get_special_key(kpdp.held);
   if (special_key == keyboard::SpecialKey::Left || curr_special_key == Key::Left)
   {
     plane_data::x_vel -= plane_data::x_acc * dt;
