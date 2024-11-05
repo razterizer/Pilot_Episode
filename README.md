@@ -9,7 +9,7 @@
 
 ![Top Languages](https://img.shields.io/github/languages/top/razterizer/Pilot_Episode)
 ![GitHub repo size](https://img.shields.io/github/repo-size/razterizer/Pilot_Episode)
-![Goto](https://img.shields.io/github/search/razterizer/Pilot_Episode/goto)
+<!-- ![Goto](https://img.shields.io/github/search/razterizer/Pilot_Episode/goto) -->
 ![Commit Activity](https://img.shields.io/github/commit-activity/t/razterizer/Pilot_Episode)
 ![Last Commit](https://img.shields.io/github/last-commit/razterizer/Pilot_Episode?color=blue)
 ![Contributors](https://img.shields.io/github/contributors/razterizer/Pilot_Episode?color=blue)
