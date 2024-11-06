@@ -99,6 +99,9 @@ I will change the audio library to something like `libsoundio` in the future tho
 
 Then just open `<my_source_code_dir>/Pilot_Episode/Pilot_Episode/Pilot_Episode.sln` and build and run. That's it!
 
+You can also build it by going to `<my_source_code_dir>/Pilot_Episode/Pilot_Episode/` and build with `build.bat`.
+Then you run by typing `x64\Release\pilot_episode`.
+
 ### MacOS
 
 Make sure you have OpenAL-Soft installed: `brew install openal-soft`.
