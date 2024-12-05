@@ -47,7 +47,7 @@ There are two options on dealing with repo dependencies:
 
 Run the following command from `<my_source_code_dir>`.
 ```sh
-./Pilot_Episode/fetch-dependencies ./Pilot_Episode/dependencies
+./Pilot_Episode/fetch-dependencies.py ./Pilot_Episode/dependencies
 ```
 This will make sure you are running the latest stable versions that work with `Pilot_Episode`.
 
