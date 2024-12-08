@@ -84,10 +84,10 @@
 		076D86722D05CA96003BF28D /* scripts */ = {
 			isa = PBXGroup;
 			children = (
+				076D86732D05CAC3003BF28D /* fetch-dependencies.py */,
+				076D86742D05CAF2003BF28D /* dependencies */,
 				07844E4A28FDECEC00B30C0D /* build.sh */,
 				0709B9C82C9A235700A43834 /* build.bat */,
-				076D86742D05CAF2003BF28D /* dependencies */,
-				076D86732D05CAC3003BF28D /* fetch-dependencies.py */,
 			);
 			name = scripts;
 			sourceTree = "<group>";
