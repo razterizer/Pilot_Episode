@@ -85,6 +85,7 @@ class Dependency:
     path: Path
     repo: str
     ref: str
+    os: str
 
 
 class CheckoutStatus(NamedTuple):
@@ -99,8 +100,8 @@ def parse_dependencies(f) -> Iterator[Dependency]:
         match d:
             case [] | ['#', *_]:
                 pass
-            case [path, repo, ref]:
-                yield Dependency(Path(path), repo, ref)
+            case [path, repo, ref, os]:
+                yield Dependency(Path(path), repo, ref, os)
             case _:
                 print(f'Error in dependencies file. I do not understand line {i}.', file=sys.stderr)
                 sys.exit(1)
@@ -155,6 +156,18 @@ if __name__ == '__main__':
     error = []
 
     for d in deps:
+        skip = False;
+        # os = 'nt' | 'posix' | 'any'
+        match d.os:
+            case 'win':
+                if not os.name == 'nt':
+                    skip = True;
+            case 'posix':
+                if not os.name == 'posix':
+                    skip = True;
+        if skip:
+          continue;
+    
         dep_wc = (projects_dir / d.path).absolute()
 
         # If the dependency working copy does not exist yet, we can just clone it.
