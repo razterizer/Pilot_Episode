@@ -49,6 +49,8 @@
 		0739DB1E2BB351DE00964E96 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		0739DB1F2BB351DE00964E96 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		0760B6ED2B9C37FE0032CACD /* chiptune2.ct */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chiptune2.ct; sourceTree = "<group>"; };
+		076D86732D05CAC3003BF28D /* fetch-dependencies.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = "fetch-dependencies.py"; sourceTree = SOURCE_ROOT; };
+		076D86742D05CAF2003BF28D /* dependencies */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dependencies; sourceTree = SOURCE_ROOT; };
 		07844E3E28FDEBAA00B30C0D /* Pilot_Episode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Pilot_Episode; sourceTree = BUILT_PRODUCTS_DIR; };
 		07844E4828FDEBEB00B30C0D /* pilot_episode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pilot_episode.cpp; sourceTree = "<group>"; };
 		07844E4A28FDECEC00B30C0D /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
@@ -79,6 +81,17 @@
 			name = workflows;
 			sourceTree = "<group>";
 		};
+		076D86722D05CA96003BF28D /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				07844E4A28FDECEC00B30C0D /* build.sh */,
+				0709B9C82C9A235700A43834 /* build.bat */,
+				076D86742D05CAF2003BF28D /* dependencies */,
+				076D86732D05CAC3003BF28D /* fetch-dependencies.py */,
+			);
+			name = scripts;
+			sourceTree = "<group>";
+		};
 		07844E3528FDEBAA00B30C0D = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +114,7 @@
 		07844E4028FDEBAA00B30C0D /* Pilot_Episode */ = {
 			isa = PBXGroup;
 			children = (
+				076D86722D05CA96003BF28D /* scripts */,
 				0709B9C22C97111B00A43834 /* workflows */,
 				0760B6ED2B9C37FE0032CACD /* chiptune2.ct */,
 				07844E4828FDEBEB00B30C0D /* pilot_episode.cpp */,
@@ -122,8 +136,6 @@
 				070D10EF29110E2400543913 /* Globals.h */,
 				070D10EE29110DCC00543913 /* Powerups.h */,
 				070D10ED29110C6100543913 /* Seagulls.h */,
-				07844E4A28FDECEC00B30C0D /* build.sh */,
-				0709B9C82C9A235700A43834 /* build.bat */,
 			);
 			path = Pilot_Episode;
 			sourceTree = "<group>";
