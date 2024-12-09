@@ -101,12 +101,11 @@ jobs:
       - name: Fetch dependencies
         run: |
           cd ..
-          Pilot_Episode\fetch-dependencies.py Pilot_Episode\dependencies -y
+          ./Pilot_Episode/fetch-dependencies.py Pilot_Episode/dependencies -y
 
       # Step 3: Change to the correct directory and build
-      - name: Build project
-        run: |
-          cd Pilot_Episode
-          build.bat
+      - name: Run build.bat
         continue-on-error: false # Ensure errors are not bypassed
-
+        run: |
+          cd $env:GITHUB_WORKSPACE\Pilot_Episode
+          ./build.bat
