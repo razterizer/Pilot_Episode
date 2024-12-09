@@ -30,31 +30,37 @@ jobs:
           git clone https://github.com/razterizer/8Beat.git
           git clone https://github.com/razterizer/AudioLibSwitcher_OpenAL.git --recurse-submodules
           git clone https://github.com/razterizer/TrainOfThought.git
+          git clone https://github.com/razterizer/3rdparty_OpenAL.git
 
       # Step 3: Create 3rdparty directories in D:\a\DungGine
       - name: Create 3rdparty directories
+        if: false
         run: |
           New-Item -ItemType Directory -Force -Path $env:GITHUB_WORKSPACE\..\lib\3rdparty\include\OpenAL_Soft
           New-Item -ItemType Directory -Force -Path $env:GITHUB_WORKSPACE\..\lib\3rdparty\lib
 
       # Step 4: Download OpenAL Soft to D:\a\DungGine
       - name: Download OpenAL Soft
+        if: false
         run: curl -L https://www.openal-soft.org/openal-binaries/openal-soft-1.23.1-bin.zip -o $env:GITHUB_WORKSPACE\..\openal-soft.zip
 
       # Step 5: Unzip OpenAL Soft to D:\a\DungGine
       - name: Unzip OpenAL Soft
+        if: false
         run: |
           Expand-Archive -Path $env:GITHUB_WORKSPACE\..\openal-soft.zip -DestinationPath $env:GITHUB_WORKSPACE\..
 
 
       # Step 6: List contents of source directories to verify files
       - name: List contents of OpenAL Soft directories
+        if: false
         run: |
           Get-ChildItem -Recurse $env:GITHUB_WORKSPACE\..\openal-soft-1.23.1-bin\include
           Get-ChildItem -Recurse $env:GITHUB_WORKSPACE\..\openal-soft-1.23.1-bin\libs
           
       # Step 6: Copy OpenAL Soft files to 3rdparty directories
       - name: Copy OpenAL Soft files
+        if: false
         run: |
           # Copy OpenAL Soft headers
           Copy-Item -Path $env:GITHUB_WORKSPACE\..\openal-soft-1.23.1-bin\include\AL\* -Destination $env:GITHUB_WORKSPACE\..\lib\3rdparty\include\OpenAL_Soft\ -Force
@@ -63,6 +69,7 @@ jobs:
 
       # Step 6b: List contents of 3rdparty includes.
       - name: List 3rdparty/include files
+        if: false
       #  run: ls $env:GITHUB_WORKSPACE\..\3rpdarty\include\OpenAL_Soft
         run: |
           ls $env:GITHUB_WORKSPACE
