@@ -96,12 +96,17 @@ jobs:
       # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
       
       # Step 2: Move to the parent directory and fetch dependencies
       - name: Fetch dependencies
         run: |
           cd $env:GITHUB_WORKSPACE\..
-          python3 ./Pilot_Episode/fetch-dependencies.py Pilot_Episode/dependencies -y
+          python ./Pilot_Episode/fetch-dependencies.py Pilot_Episode/dependencies -y
 
       # Step 3: Change to the correct directory and build
       - name: Run build.bat
