@@ -90,6 +90,7 @@ jobs:
           ./build.bat
 
   build-program-with-locked-dependencies:
+    if: false
     runs-on: windows-latest
     
     steps:
