@@ -100,9 +100,7 @@ jobs:
       # Step 2: Move to the parent directory and fetch dependencies
       - name: Fetch dependencies
         run: |
-          cd ..
-          pwd
-          dir
+          cd $env:GITHUB_WORKSPACE\..
           ./Pilot_Episode/fetch-dependencies.py Pilot_Episode/dependencies -y
 
       # Step 3: Change to the correct directory and build
@@ -110,4 +108,5 @@ jobs:
         continue-on-error: false # Ensure errors are not bypassed
         run: |
           pwd
+          cd $env:GITHUB_WORKSPACE\Pilot_Episode
           ./build.bat
