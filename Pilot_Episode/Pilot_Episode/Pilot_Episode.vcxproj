@@ -150,7 +150,8 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy $(SolutionDir)\chiptune2.ct $(TargetDir) /Y
-xcopy $(SolutionDir)\..\..\lib\Termin8or\fonts\* $(TargetDir)\fonts\ /Y</Command>
+xcopy $(SolutionDir)\..\..\lib\Termin8or\fonts\* $(TargetDir)\fonts\ /Y
+xcopy $(SolutionDir)..\..\lib\3rdparty_OpenAL\lib\OpenAL32.dll $(TargetDir) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -174,7 +175,8 @@ xcopy $(SolutionDir)\..\..\lib\Termin8or\fonts\* $(TargetDir)\fonts\ /Y</Command
     </Link>
     <PostBuildEvent>
       <Command>xcopy $(SolutionDir)\chiptune2.ct $(TargetDir) /Y
-xcopy $(SolutionDir)\..\..\lib\Termin8or\fonts\* $(TargetDir)\fonts\ /Y</Command>
+xcopy $(SolutionDir)\..\..\lib\Termin8or\fonts\* $(TargetDir)\fonts\ /Y
+xcopy $(SolutionDir)..\..\lib\3rdparty_OpenAL\lib\OpenAL32.dll $(TargetDir) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
