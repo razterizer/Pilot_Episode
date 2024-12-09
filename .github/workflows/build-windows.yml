@@ -102,7 +102,7 @@ jobs:
         run: |
           cd ..
           pwd
-          ls
+          dir
           ./Pilot_Episode/fetch-dependencies.py Pilot_Episode/dependencies -y
 
       # Step 3: Change to the correct directory and build
