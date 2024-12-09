@@ -88,3 +88,25 @@ jobs:
         run: |
           cd $env:GITHUB_WORKSPACE\Pilot_Episode
           ./build.bat
+
+  build-program-with-locked-dependencies:
+    runs-on: windows-latest
+    
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      # Step 2: Move to the parent directory and fetch dependencies
+      - name: Fetch dependencies
+        run: |
+          cd ..
+          python Pilot_Episode\fetch-dependencies.py Pilot_Episode\dependencies -y
+
+      # Step 3: Change to the correct directory and build
+      - name: Build project
+        run: |
+          cd Pilot_Episode
+          build.bat
+        continue-on-error: false # Ensure errors are not bypassed
+
