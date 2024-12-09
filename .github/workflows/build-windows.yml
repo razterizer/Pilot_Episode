@@ -101,7 +101,7 @@ jobs:
       - name: Fetch dependencies
         run: |
           cd $env:GITHUB_WORKSPACE\..
-          ./Pilot_Episode/fetch-dependencies.py Pilot_Episode/dependencies -y
+          python3 ./Pilot_Episode/fetch-dependencies.py Pilot_Episode/dependencies -y
 
       # Step 3: Change to the correct directory and build
       - name: Run build.bat
