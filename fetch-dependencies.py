@@ -100,7 +100,8 @@ def parse_dependencies(f) -> Iterator[Dependency]:
         match d:
             case [] | ['#', *_]:
                 pass
-            case [path, repo, ref, os]:
+            case [path, repo, ref, *os]:
+                os = os[0] if os else "any"
                 yield Dependency(Path(path), repo, ref, os)
             case _:
                 print(f'Error in dependencies file. I do not understand line {i}.', file=sys.stderr)
