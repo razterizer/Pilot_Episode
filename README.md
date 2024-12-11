@@ -49,7 +49,7 @@ There are two options on dealing with repo dependencies:
 This method will ensure that you are running the latest stable versions of the dependencies that work with `Pilot_Episode`.
 
 The script `fetch-dependencies.py` used for this was created by [Thibaut Buchert](https://github.com/thibautbuchert).
-`fetch-dependencies.py` are used in the following scripts below:
+`fetch-dependencies.py` is used in the following scripts below:
 
 After a successful build, the scripts will then prompt you with the question if you want to run the program.
 
