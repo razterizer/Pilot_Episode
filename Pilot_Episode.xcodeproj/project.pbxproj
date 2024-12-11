@@ -46,6 +46,9 @@
 		070D10FB29113DDB00543913 /* PlaneData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaneData.h; sourceTree = "<group>"; };
 		070D10FC2911441200543913 /* Hud.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hud.h; sourceTree = "<group>"; };
 		070D10FD2911484900543913 /* Sky.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sky.h; sourceTree = "<group>"; };
+		072AE7F02D09B6F9004F92D3 /* setup_and_build_debian.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = setup_and_build_debian.sh; sourceTree = SOURCE_ROOT; };
+		072AE7F12D09B6F9004F92D3 /* setup_and_build.bat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setup_and_build.bat; sourceTree = SOURCE_ROOT; };
+		072AE7F22D09B6F9004F92D3 /* setup_and_build_macos.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = setup_and_build_macos.sh; sourceTree = SOURCE_ROOT; };
 		0739DB1E2BB351DE00964E96 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		0739DB1F2BB351DE00964E96 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		0760B6ED2B9C37FE0032CACD /* chiptune2.ct */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chiptune2.ct; sourceTree = "<group>"; };
@@ -84,6 +87,9 @@
 		076D86722D05CA96003BF28D /* scripts */ = {
 			isa = PBXGroup;
 			children = (
+				072AE7F12D09B6F9004F92D3 /* setup_and_build.bat */,
+				072AE7F02D09B6F9004F92D3 /* setup_and_build_debian.sh */,
+				072AE7F22D09B6F9004F92D3 /* setup_and_build_macos.sh */,
 				076D86732D05CAC3003BF28D /* fetch-dependencies.py */,
 				076D86742D05CAF2003BF28D /* dependencies */,
 				07844E4A28FDECEC00B30C0D /* build.sh */,
