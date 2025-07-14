@@ -107,23 +107,28 @@ public:
     GameEngine::set_anim_rate(5, 3); // Seagulls
     GameEngine::set_anim_rate(6, 5); // Balloons
   //#endif
-    //if (argc >= 2)
-    //  GameEngine::set_delay_us(atoi(argv[1]));
-    if (argc >= 2)
-      GameEngine::set_real_fps(static_cast<float>(atoi(argv[1])));
     
     auto set_alt = [&]() -> float { return -alt_km_f * 1e3f / pix_to_m + ground_level + 13 * pix_ar2; };
     plane_data::y_pos = set_alt();
-    if (argc >= 3)
+  
+    if (argc >= 2 && strcmp(argv[1], "--log_mode") != 0)
     {
-      alt_km_f = static_cast<float>(atof(argv[2]));
-      plane_data::y_pos = set_alt();
-    }
-    
-    if (argc >= 4)
-    {
-      if (strcmp(argv[3], "off") == 0)
-        enable_alt_limiting = false;
+      //if (argc >= 2)
+      //  GameEngine::set_delay_us(atoi(argv[1]));
+      if (argc >= 2)
+        GameEngine::set_real_fps(static_cast<float>(atoi(argv[1])));
+      
+      if (argc >= 3)
+      {
+        alt_km_f = static_cast<float>(atof(argv[2]));
+        plane_data::y_pos = set_alt();
+      }
+      
+      if (argc >= 4)
+      {
+        if (strcmp(argv[3], "off") == 0)
+          enable_alt_limiting = false;
+      }
     }
   }
   
@@ -469,11 +474,20 @@ int main(int argc, char** argv)
   params.screen_bg_color_title = Color::Blue;
   params.screen_bg_color_instructions = Color::Black;
   
+  if (argc >= 2 && strcmp(argv[1], "--log_mode") == 0)
+  {
+    if (strcmp(argv[2], "record") == 0)
+      params.log_mode = LogMode::Record;
+    else if (strcmp(argv[2], "replay") == 0)
+      params.log_mode = LogMode::Replay;
+    params.xcode_log_filepath = "../../../../../../../../Documents/xcode/Pilot_Episode/Pilot_Episode/";
+  }
+  
   Game game(argc, argv, params);
 
   if (argc >= 2 && strcmp(argv[1], "--help") == 0)
   {
-    std::cout << "pilot_episode (\"--help\" | [<frame-delay-us> [<altitude-km> [<altitude-limiting \"on\"|\"off\">]]])" << std::endl;
+    std::cout << "pilot_episode (\"--help\" | [--log_mode (record | replay)] | [<frame-delay-us> [<altitude-km> [<altitude-limiting \"on\"|\"off\">]]])" << std::endl;
     std::cout << "  default values:" << std::endl;
     std::cout << "    <frame-delay-us>    : " << game.get_sim_delay_us() << std::endl;
     std::cout << "    <altitude-km>       : " << game.get_alt_km() << std::endl;
