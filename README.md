@@ -9,6 +9,7 @@
 
 ![Top Languages](https://img.shields.io/github/languages/top/razterizer/Pilot_Episode)
 ![GitHub repo size](https://img.shields.io/github/repo-size/razterizer/Pilot_Episode)
+![](https://tokei.rs/b1/github/razterizer/Pilot_Episode)
 ![Commit Activity](https://img.shields.io/github/commit-activity/t/razterizer/Pilot_Episode)
 ![Last Commit](https://img.shields.io/github/last-commit/razterizer/Pilot_Episode?color=blue)
 ![Contributors](https://img.shields.io/github/contributors/razterizer/Pilot_Episode?color=blue)
