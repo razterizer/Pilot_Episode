@@ -40,43 +40,18 @@ jobs:
           ./build.sh
         continue-on-error: false # Ensure errors are not bypassed
   
-      # Run program
+      # Step 5: Run program
       - name: Run program
         if: false
         run: |
              cd Pilot_Episode
              ./bin/pilot_episode
-
-  build-program-with-locked-dependencies:
-    runs-on: ubuntu-latest
-    
-    steps:
-      # Step 1: Checkout the repository
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      
-      # Step 2: Move to the parent directory and fetch dependencies
-      - name: Fetch dependencies
-        run: |
-          cd ..
-          ./Pilot_Episode/fetch-dependencies.py Pilot_Episode/dependencies -y
-
-      # Step 3: Install OpenAL
-      - name: Install OpenAL
-        run: sudo apt install libopenal-dev
-      
-      # Step 4: Change to the correct directory and build
-      - name: Build project
-        run: |
-          cd Pilot_Episode
-          ./build.sh
-        continue-on-error: false # Ensure errors are not bypassed
-
-      # Step 5: Install cloc
+             
+      # Step 6: Install cloc
       - name: Install cloc
         run: sudo apt-get install -y cloc
       
-      # Step 6: Count C++ LOC and generate badge as SVG
+      # Step 7: Count C++ LOC and generate badge as SVG
       - name: Count C++ LOC and generate badge
         run: |
           mkdir -p badges
@@ -105,7 +80,7 @@ jobs:
           </svg>
           EOF
 
-      # Step 7: Commit and push the badge to the "badges" branch
+      # Step 8: Commit and push the badge to the "badges" branch
       - name: Commit and push badge to badges branch
         run: |
           git config --global user.name "github-actions[bot]"
@@ -127,3 +102,29 @@ jobs:
           git push origin badges --force
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+  build-program-with-locked-dependencies:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      # Step 2: Move to the parent directory and fetch dependencies
+      - name: Fetch dependencies
+        run: |
+          cd ..
+          ./Pilot_Episode/fetch-dependencies.py Pilot_Episode/dependencies -y
+
+      # Step 3: Install OpenAL
+      - name: Install OpenAL
+        run: sudo apt install libopenal-dev
+      
+      # Step 4: Change to the correct directory and build
+      - name: Build project
+        run: |
+          cd Pilot_Episode
+          ./build.sh
+        continue-on-error: false # Ensure errors are not bypassed
