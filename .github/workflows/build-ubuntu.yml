@@ -73,7 +73,7 @@ jobs:
         continue-on-error: false # Ensure errors are not bypassed
 
   generate-loc-badge:
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
 
     steps:
       # Step 1: Checkout the repository
