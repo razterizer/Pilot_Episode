@@ -27,15 +27,15 @@ void draw_sky(ScreenHandler<NR, NC>& sh)
     //auto t = (alt_km - 85)/(100 - 85);
     auto t = (plane_data::alt_ft - alt_soft_limit_ft)/(alt_hard_limit_ft - alt_soft_limit_ft);
     if (t > 1) t = 1;
-    int h_offs = math::roundI(27*t);
-    sh.replace_bg_color(Color::Transparent, Color::DarkBlue, { 1, 1, h_offs, 77 });
-    sh.replace_bg_color(Color::Transparent2, Color::DarkBlue, { 1, 1, h_offs, 77 });
+    int h_offs = 1 + math::roundI(27*t);
+    sh.replace_bg_color(Color::Transparent, Color::DarkBlue, { 1, 1, h_offs, 78 });
+    sh.replace_bg_color(Color::Transparent2, Color::DarkBlue, { 1, 1, h_offs, 78 });
     if (plane_data::alt_km >= 100) // Kármán line.
     {
       auto t = (plane_data::alt_km - 100)/(400 - 100);
       if (t > 1) t = 1;
-      int h_offs = math::roundI(27*t);
-      sh.replace_bg_color(Color::DarkBlue, Color::Black, { 1, 1, h_offs, 77 });
+      int h_offs = 1 + math::roundI(27*t);
+      sh.replace_bg_color(Color::DarkBlue, Color::Black, { 1, 1, h_offs, 78 });
     }
   }
 }
