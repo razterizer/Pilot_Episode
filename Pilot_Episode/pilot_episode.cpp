@@ -487,7 +487,7 @@ int main(int argc, char** argv)
   {
     if (strcmp(argv[i], "--help") == 0)
     {
-      std::cout << "demo --help | (--log_mode (record | replay)) | --suppress_tty_output | --suppress_tty_input | (--altitude_start_km <altitude_km>) | --disable_altitude_limiting" << std::endl;
+      std::cout << "demo --help | [--log_mode (record | replay)] [--suppress_tty_output] [--suppress_tty_input] [--altitude_start_km <altitude_km>] [--disable_altitude_limiting]" << std::endl;
       std::cout << "  default values:" << std::endl;
       std::cout << "    <altitude_km> : " << game.get_alt_km() << std::endl;
       return EXIT_SUCCESS;
