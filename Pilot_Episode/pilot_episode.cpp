@@ -111,24 +111,15 @@ public:
     auto set_alt = [&]() -> float { return -alt_km_f * 1e3f / pix_to_m + ground_level + 13 * pix_ar2; };
     plane_data::y_pos = set_alt();
   
-    if (argc >= 2 && strcmp(argv[1], "--log_mode") != 0)
+    for (int i = 1; i < argc; ++i)
     {
-      //if (argc >= 2)
-      //  GameEngine::set_delay_us(atoi(argv[1]));
-      if (argc >= 2)
-        GameEngine::set_real_fps(static_cast<float>(atoi(argv[1])));
-      
-      if (argc >= 3)
+      if (i + 1 < argc && strcmp(argv[i],  "--altitude_start_km") == 0)
       {
-        alt_km_f = static_cast<float>(atof(argv[2]));
+        alt_km_f = static_cast<float>(atof(argv[i + 1]));
         plane_data::y_pos = set_alt();
       }
-      
-      if (argc >= 4)
-      {
-        if (strcmp(argv[3], "off") == 0)
-          enable_alt_limiting = false;
-      }
+      else if (strcmp(argv[i], "--disable_altitude_limiting") == 0)
+        enable_alt_limiting = false;
     }
   }
   
@@ -474,25 +465,33 @@ int main(int argc, char** argv)
   params.screen_bg_color_title = Color::Blue;
   params.screen_bg_color_instructions = Color::Black;
   
-  if (argc >= 2 && strcmp(argv[1], "--log_mode") == 0)
+  for (int i = 1; i < argc; ++i)
   {
-    if (strcmp(argv[2], "record") == 0)
-      params.log_mode = LogMode::Record;
-    else if (strcmp(argv[2], "replay") == 0)
-      params.log_mode = LogMode::Replay;
-    params.xcode_log_filepath = "../../../../../../../../Documents/xcode/Pilot_Episode/Pilot_Episode/";
+    if (strcmp(argv[i],  "--suppress_tty_output") == 0)
+      params.suppress_tty_output = true;
+    else if (strcmp(argv[i], "--suppress_tty_input") == 0)
+      params.suppress_tty_input = true;
+    else if (i + 1 < argc && strcmp(argv[i], "--log_mode") == 0)
+    {
+      if (strcmp(argv[i + 1], "record") == 0)
+        params.log_mode = LogMode::Record;
+      else if (strcmp(argv[i + 1], "replay") == 0)
+        params.log_mode = LogMode::Replay;
+      params.xcode_log_filepath = "../../../../../../../../Documents/xcode/lib/DungGine/demo";
+    }
   }
   
   Game game(argc, argv, params);
-
-  if (argc >= 2 && strcmp(argv[1], "--help") == 0)
+  
+  for (int i = 1; i < argc; ++i)
   {
-    std::cout << "pilot_episode (\"--help\" | [--log_mode (record | replay)] | [<frame-delay-us> [<altitude-km> [<altitude-limiting \"on\"|\"off\">]]])" << std::endl;
-    std::cout << "  default values:" << std::endl;
-    std::cout << "    <frame-delay-us>    : " << game.get_sim_delay_us() << std::endl;
-    std::cout << "    <altitude-km>       : " << game.get_alt_km() << std::endl;
-    std::cout << "    <altitude-limiting> : off" << std::endl;
-    return EXIT_SUCCESS;
+    if (strcmp(argv[i], "--help") == 0)
+    {
+      std::cout << "demo --help | (--log_mode (record | replay)) | --suppress_tty_output | --suppress_tty_input | (--altitude_start_km <altitude_km>) | --disable_altitude_limiting" << std::endl;
+      std::cout << "  default values:" << std::endl;
+      std::cout << "    <altitude_km> : " << game.get_alt_km() << std::endl;
+      return EXIT_SUCCESS;
+    }
   }
 
   game.init();
