@@ -494,7 +494,10 @@ int main(int argc, char** argv)
       std::cout << "    <delay_us>    : " << game.get_sim_delay_us() << std::endl;
       return EXIT_SUCCESS;
     }
-    
+  }
+  
+  for (int i = 1; i < argc; ++i)
+  {
     if (i + 1 < argc && strcmp(argv[i], "--set_fps") == 0)
       game.set_real_fps(atof(argv[i + 1]));
     else if (i + 1 < argc && strcmp(argv[i], "--set_sim_delay_us") == 0)
