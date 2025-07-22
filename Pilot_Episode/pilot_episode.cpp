@@ -120,6 +120,8 @@ public:
       }
       else if (strcmp(argv[i], "--disable_altitude_limiting") == 0)
         enable_alt_limiting = false;
+      else if (i + 1 < argc && strcmp(argv[i], "--set_fps") == 0)
+        GameEngine::set_real_fps(atof(argv[i + 1]));
     }
   }
   
@@ -487,9 +489,10 @@ int main(int argc, char** argv)
   {
     if (strcmp(argv[i], "--help") == 0)
     {
-      std::cout << "demo --help | [--log_mode (record | replay)] [--suppress_tty_output] [--suppress_tty_input] [--altitude_start_km <altitude_km>] [--disable_altitude_limiting]" << std::endl;
+      std::cout << "demo --help | [--log_mode (record | replay)] [--suppress_tty_output] [--suppress_tty_input] [--altitude_start_km <altitude_km>] [--disable_altitude_limiting] [--set_fps <fps>]" << std::endl;
       std::cout << "  default values:" << std::endl;
       std::cout << "    <altitude_km> : " << game.get_alt_km() << std::endl;
+      std::cout << "    <fps>         : " << game.get_real_fps() << std::endl;
       return EXIT_SUCCESS;
     }
   }
