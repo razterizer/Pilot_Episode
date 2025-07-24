@@ -71,6 +71,48 @@ jobs:
           cd Pilot_Episode
           ./build.sh
         continue-on-error: false # Ensure errors are not bypassed
+        
+      # Step 5: Upload executable for valgrind.
+      - name: Upload binary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: program-binary
+          path: Pilot_Episode/bin
+
+  valgrind-check:
+    runs-on: ubuntu-latest
+    needs: build-program
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Fetch dependencies
+        if: false
+        run: |
+          cd ..
+          git clone https://github.com/razterizer/Core.git
+          git clone https://github.com/razterizer/Termin8or.git
+          git clone https://github.com/razterizer/8Beat.git
+          git clone https://github.com/razterizer/AudioLibSwitcher_OpenAL.git --recurse-submodules
+          git clone https://github.com/razterizer/TrainOfThought.git
+
+      - name: Install Valgrind
+        run: sudo apt-get update && sudo apt-get install -y valgrind
+
+      - name: Download binary artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: program-binary
+          path: Pilote_Episode/bin
+
+      - name: Run Valgrind
+        run: |
+          cd Pilote_Episode
+          # rm rec.txt # remove if any checked in.
+          cp rec_valgrind.txt rec.txt
+          chmod +x bin/pilote_episode
+          valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./bin/pilote_episode --log_mode replay --suppress_tty_input --suppress_tty_output
 
   generate-loc-badge:
     runs-on: ubuntu-latest
