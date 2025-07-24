@@ -68,9 +68,12 @@ void generate_engine_smoke(ScreenHandler<NR, NC>& sh,
       
       auto wd = SFX::generate(SFXType::EXPLOSION, vp);
       wd = WaveformHelper::envelope_adsr(wd, adsr);
-      src_fx_0->update_buffer(wd);
-      src_fx_0->set_volume(vol);
-      src_fx_0->play();
+      if (src_fx_0 != nullptr)
+      {
+        src_fx_0->update_buffer(wd);
+        src_fx_0->set_volume(vol);
+        src_fx_0->play();
+      }
     }
     if (time - trg_timestamp_1 > 0.2f + rnd::rand_float(-0.02f, 0.02f) && sfx_trigger_1.once())
     {
@@ -79,9 +82,12 @@ void generate_engine_smoke(ScreenHandler<NR, NC>& sh,
       
       auto wd = SFX::generate(SFXType::EXPLOSION, vp);
       wd = WaveformHelper::envelope_adsr(wd, adsr);
-      src_fx_1->update_buffer(wd);
-      src_fx_1->set_volume(vol);
-      src_fx_1->play();
+      if (src_fx_1 != nullptr)
+      {
+        src_fx_1->update_buffer(wd);
+        src_fx_1->set_volume(vol);
+        src_fx_1->play();
+      }
     }
   }
 
@@ -319,9 +325,12 @@ void update_plane_controls(ScreenHandler<NR, NC>& sh,
       audio::Decay { audio::ADSRMode::LIN, 8 },
       audio::Sustain { 0.6f },
       audio::Release { audio::ADSRMode::LOG, 50 } );
-    src_fx->update_buffer(wd);
-    src_fx->stop();
-    src_fx->play();
+    if (src_fx != nullptr)
+    {
+      src_fx->update_buffer(wd);
+      src_fx->stop();
+      src_fx->play();
+    }
   }
   else
   {

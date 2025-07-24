@@ -120,14 +120,19 @@ public:
       }
       else if (strcmp(argv[i], "--disable_altitude_limiting") == 0)
         enable_alt_limiting = false;
+      else if (strcmp(argv[i], "--disable_audio") == 0)
+        enable_audio = false;
     }
   }
   
   ~Game()
   {
-    audio.remove_source(src_fx_0);
-    audio.remove_source(src_fx_1);
-    audio.remove_source(src_fx_2);
+    if (enable_audio)
+    {
+      audio.remove_source(src_fx_0);
+      audio.remove_source(src_fx_1);
+      audio.remove_source(src_fx_2);
+    }
   }
 
   virtual void generate_data() override
@@ -184,7 +189,7 @@ public:
         tune_path = "../../../../../../../../Documents/xcode/Pilot_Episode/Pilot_Episode/"; // #FIXME: Find a better solution!
 #endif
     
-      if (chip_tune.load_tune(folder::join_path({ tune_path, "chiptune2.ct" })))
+      if (enable_audio && chip_tune.load_tune(folder::join_path({ tune_path, "chiptune2.ct" })))
       {
           //chip_tune.play_tune();
           chip_tune.play_tune_async();
@@ -196,9 +201,12 @@ public:
       std::cerr << "Caught exception: " << e.what() << std::endl;
     }
     
-    src_fx_0 = audio.create_stream_source();
-    src_fx_1 = audio.create_stream_source();
-    src_fx_2 = audio.create_stream_source();
+    if (enable_audio)
+    {
+      src_fx_0 = audio.create_stream_source();
+      src_fx_1 = audio.create_stream_source();
+      src_fx_2 = audio.create_stream_source();
+    }
     
     std::string font_data_path = ASCII_Fonts::get_path_to_font_data(get_exe_folder());
     std::cout << font_data_path << std::endl;
@@ -385,7 +393,8 @@ private:
   
   virtual void on_quit() override
   {
-    chip_tune.stop_tune_async();
+    if (enable_audio)
+      chip_tune.stop_tune_async();
   }
   
   virtual void draw_title() override
@@ -400,7 +409,8 @@ private:
   
   virtual void on_exit_instructions() override
   {
-    chip_tune.stop_tune_async();
+    if (enable_audio)
+      chip_tune.stop_tune_async();
   }
 
   //////////////////////////////////////////////////////////////////////////
@@ -487,7 +497,7 @@ int main(int argc, char** argv)
   {
     if (strcmp(argv[i], "--help") == 0)
     {
-      std::cout << "demo --help | [--log_mode (record | replay)] [--suppress_tty_output] [--suppress_tty_input] [--altitude_start_km <altitude_km>] [--disable_altitude_limiting] [--set_fps <fps>] [--set_sim_delay_us <delay_us>]" << std::endl;
+      std::cout << "demo --help | [--log_mode (record | replay)] [--suppress_tty_output] [--suppress_tty_input] [--altitude_start_km <altitude_km>] [--disable_altitude_limiting] [--set_fps <fps>] [--set_sim_delay_us <delay_us>] [--disable_audio]" << std::endl;
       std::cout << "  default values:" << std::endl;
       // Will unfortunately report the wrong default value for <altitude_km> if ordering the arguments like this "--altitude_start_km <altitude_km> --help".
       std::cout << "    <altitude_km> : " << game.get_alt_km() << std::endl;

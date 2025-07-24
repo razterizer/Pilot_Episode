@@ -114,8 +114,11 @@ void draw_explosion(ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr,
     
     using namespace audio;
     auto wd = SFX::generate(SFXType::EXPLOSION, expl_vp);
-    src_fx->update_buffer(wd);
-    src_fx->stop();
-    src_fx->play();
+    if (src_fx != nullptr)
+    {
+      src_fx->update_buffer(wd);
+      src_fx->stop();
+      src_fx->play();
+    }
   }
 }
