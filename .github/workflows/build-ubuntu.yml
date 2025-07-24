@@ -101,9 +101,7 @@ jobs:
           cd Pilot_Episode
           # rm rec.txt # remove if any checked in.
           cp rec_valgrind.txt rec.txt
-          ls
-          ls bin
-          chmod +x bin/pilote_episode
+          chmod +x bin/pilot_episode
           valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./bin/pilote_episode --log_mode replay --suppress_tty_input --suppress_tty_output
 
   generate-loc-badge:
