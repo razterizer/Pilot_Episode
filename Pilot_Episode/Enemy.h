@@ -178,9 +178,12 @@ EnemyData enemy_step_ai(ScreenHandler<NR, NC>& sh, EnemyData ed,
       {
         using namespace audio;
         auto wd = SFX::generate(SFXType::LASER);
-        src_fx->update_buffer(wd);
-        src_fx->stop();
-        src_fx->play();
+        if (src_fx != nullptr)
+        {
+          src_fx->update_buffer(wd);
+          src_fx->stop();
+          src_fx->play();
+        }
         
         if (ed.shot_hit)
         {

@@ -102,9 +102,12 @@ void draw_update_powerup(ScreenHandler<NR, NC>& sh, std::array<PowerUpData, N>& 
         
         using namespace audio;
         auto wd = SFX::generate(SFXType::COIN);
-        src_fx->update_buffer(wd);
-        src_fx->stop();
-        src_fx->play();
+        if (src_fx != nullptr)
+        {
+          src_fx->update_buffer(wd);
+          src_fx->stop();
+          src_fx->play();
+        }
       }
     }
   }
