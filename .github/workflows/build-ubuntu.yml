@@ -46,6 +46,13 @@ jobs:
         run: |
              cd Pilot_Episode
              ./bin/pilot_episode
+             
+      # Step 6: Upload executable for valgrind.
+      - name: Upload binary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: program-binary
+          path: Pilot_Episode/bin
 
   build-program-with-locked-dependencies:
     runs-on: ubuntu-latest
@@ -71,13 +78,6 @@ jobs:
           cd Pilot_Episode
           ./build.sh
         continue-on-error: false # Ensure errors are not bypassed
-        
-      # Step 5: Upload executable for valgrind.
-      - name: Upload binary artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: program-binary
-          path: Pilot_Episode/bin
 
   valgrind-check:
     runs-on: ubuntu-latest
@@ -94,12 +94,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: program-binary
-          path: Pilote_Episode/bin
+          path: Pilot_Episode/bin
 
       - name: Run Valgrind
         run: |
-          cd Pilote_Episode
-          ls -la
+          cd Pilot_Episode
           # rm rec.txt # remove if any checked in.
           cp rec_valgrind.txt rec.txt
           chmod +x bin/pilote_episode
