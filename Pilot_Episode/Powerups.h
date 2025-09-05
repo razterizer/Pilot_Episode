@@ -1,5 +1,6 @@
 #pragma once
 #include "Globals.h"
+#include <Termin8or/ScreenHandler.h>
 #include <8Beat/SFX.h>
 
 
@@ -10,13 +11,15 @@ struct PowerUpData
   float y_vel = 0.f;
 };
 template<size_t N, int NR, int NC>
-void draw_update_powerup(ScreenHandler<NR, NC>& sh, std::array<PowerUpData, N>& powerups,
+void draw_update_powerup(t8::screen::ScreenHandler<NR, NC>& sh, std::array<PowerUpData, N>& powerups,
                          audio::AudioStreamSource* src_fx,
                          std::vector<std::tuple<int, int, bool>>& plane_hull,
                          float x_pos, float y_pos,
                          float cloud_limit, float ground_level,
                          float dt)
 {
+  using Color = t8::Color;
+
   const float y_acc = 5.f;
   auto reset_pud = [cloud_limit](PowerUpData& pud)
   {

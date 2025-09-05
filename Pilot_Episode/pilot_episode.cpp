@@ -90,10 +90,10 @@
 
 ///////////////////////////////
 
-class Game : public GameEngine<>
+class Game : public t8x::GameEngine<>
 {
 public:
-  Game(int argc, char** argv, const GameEngineParams& params)
+  Game(int argc, char** argv, const t8x::GameEngineParams& params)
     : GameEngine(argv[0], params)
   {
   //#ifndef _WIN32
@@ -108,7 +108,7 @@ public:
     GameEngine::set_anim_rate(6, 5); // Balloons
   //#endif
     
-    auto set_alt = [&]() -> float { return -alt_km_f * 1e3f / pix_to_m + ground_level + 13 * pix_ar2; };
+    auto set_alt = [&]() -> float { return -alt_km_f * 1e3f / pix_to_m + ground_level + 13 * t8::screen::pix_ar2; };
     plane_data::y_pos = set_alt();
   
     for (int i = 1; i < argc; ++i)
@@ -137,6 +137,8 @@ public:
 
   virtual void generate_data() override
   {
+    using Color = t8::Color;
+  
     // Mountain Range
     generate_mountain_range(mountain_data::mountain_range_height_fields, cloud_limit);
 
@@ -208,7 +210,7 @@ public:
       src_fx_2 = audio.create_stream_source();
     }
     
-    std::string font_data_path = ASCII_Fonts::get_path_to_font_data(get_exe_folder());
+    std::string font_data_path = t8x::fonts::get_path_to_font_data(get_exe_folder());
     std::cout << font_data_path << std::endl;
     
     auto& cs0 = color_schemes.emplace_back();
@@ -218,7 +220,7 @@ public:
     cs1.internal.fg_color = Color::White;
     cs1.internal.bg_color = Color::Black;
     
-    font_data = ASCII_Fonts::load_font_data(font_data_path);
+    font_data = t8x::fonts::load_font_data(font_data_path);
   }
   
   float get_alt_km() const { return alt_km_f; }
@@ -227,6 +229,8 @@ private:
 
   virtual void update() override
   {
+    using Color = t8::Color;
+  
     Key curr_special_key = register_keypresses(kpdp);
     
     update_plane_controls(sh, src_fx_0, wave_gen, kpdp, curr_special_key,
@@ -268,7 +272,7 @@ private:
     {
       shot_angle = std::atan2(plane_data::y_vel, plane_data::x_vel);
       x_pos_shot = 5.f * std::cos(shot_angle);
-      y_pos_shot = 5.f * std::sin(shot_angle) / pix_ar2;
+      y_pos_shot = 5.f * std::sin(shot_angle) / t8::screen::pix_ar2;
       shot_fired = true;
       shot_timeout = static_cast<int>(50 / shot_speed); //  ft / (ft/s) -> s
       shot_hit = false;
@@ -276,7 +280,7 @@ private:
     else if (shot_fired && shot_timeout > 0)
     {
       x_pos_shot += shot_speed * std::cos(shot_angle);
-      y_pos_shot += shot_speed * std::sin(shot_angle) / pix_ar2;
+      y_pos_shot += shot_speed * std::sin(shot_angle) / t8::screen::pix_ar2;
       shot_timeout--;
     }
     
@@ -457,20 +461,21 @@ private:
   audio::AudioStreamSource* src_fx_1 = nullptr;
   audio::AudioStreamSource* src_fx_2 = nullptr;
   
-  std::vector<ASCII_Fonts::ColorScheme> color_schemes;
-  ASCII_Fonts::FontDataColl font_data;
+  std::vector<t8x::fonts::ColorScheme> color_schemes;
+  t8x::fonts::FontDataColl font_data;
 };
 
 //////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char** argv)
 {
+  using Color = t8::Color;
   //initscr();
   //noecho();
   //cbreak();
   //keypad(stdscr, true);
   
-  GameEngineParams params;
+  t8x::GameEngineParams params;
   params.screen_bg_color_default = Color::Blue;
   params.screen_bg_color_title = Color::Blue;
   params.screen_bg_color_instructions = Color::Black;

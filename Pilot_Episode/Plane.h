@@ -12,11 +12,13 @@
 #define HILITE_PLANE_SURFACES
 
 template<int NR, int NC>
-void generate_engine_smoke(ScreenHandler<NR, NC>& sh,
+void generate_engine_smoke(t8::screen::ScreenHandler<NR, NC>& sh,
                     audio::AudioStreamSource* src_fx_0, audio::AudioStreamSource* src_fx_1,
-                    const RC& rc_plane_engine,
+                    const t8::RC& rc_plane_engine,
                     float dt, float time)
 {
+  using Color = t8::Color;
+  
   //bool trig = (plane_data::blackout_state == plane_data::BlackoutState::WarnOut
   //  || plane_data::blackout_state == plane_data::BlackoutState::Stall);
   
@@ -95,7 +97,7 @@ void generate_engine_smoke(ScreenHandler<NR, NC>& sh,
   const float acc = -10.f, spread = 13.f, life_time = math::linmap(health_ratio, 0.f, c_health_ratio_threshold, 2.f, 0.1f);
   const int cluster_size = 10;
   plane_data::smoke_engine.update(rc_plane_engine, trig, vel_r, vel_c, acc, spread, life_time, cluster_size, dt, time);
-  Gradient<Color> smoke_fg_0
+  t8x::drawing::Gradient<Color> smoke_fg_0
   {
     {
       { 0.f, Color::Red },
@@ -104,7 +106,7 @@ void generate_engine_smoke(ScreenHandler<NR, NC>& sh,
       { 0.85f, Color::DarkGray },
     }
   };
-  Gradient<Color> smoke_fg_1
+  t8x::drawing::Gradient<Color> smoke_fg_1
   {
     {
       { 0.f, Color::Red },
@@ -113,7 +115,7 @@ void generate_engine_smoke(ScreenHandler<NR, NC>& sh,
       { 0.9f, Color::LightGray },
     }
   };
-  Gradient<Color> smoke_bg_0
+  t8x::drawing::Gradient<Color> smoke_bg_0
   {
     {
       { 0.f, Color::DarkRed },
@@ -121,7 +123,7 @@ void generate_engine_smoke(ScreenHandler<NR, NC>& sh,
       { 0.9f, Color::Black },
     }
   };
-  Gradient<Color> smoke_bg_1
+  t8x::drawing::Gradient<Color> smoke_bg_1
   {
     {
       { 0.f, Color::DarkRed },
@@ -129,7 +131,7 @@ void generate_engine_smoke(ScreenHandler<NR, NC>& sh,
       { 0.9f, Color::DarkGray },
     }
   };
-  std::vector<std::pair<float, std::pair<Gradient<Color>, Gradient<Color>>>> smoke_color_gradients;
+  std::vector<std::pair<float, std::pair<t8x::drawing::Gradient<Color>, t8x::drawing::Gradient<Color>>>> smoke_color_gradients;
   smoke_color_gradients.emplace_back(0.5f, std::pair { smoke_fg_0, smoke_bg_0 });
   smoke_color_gradients.emplace_back(0.6f, std::pair { smoke_fg_1, smoke_bg_1 });
   std::vector<std::string> smoke_txt { "&", "*", "&", "%", "&", "@" };
@@ -137,12 +139,14 @@ void generate_engine_smoke(ScreenHandler<NR, NC>& sh,
 }
 
 template<int NR, int NC>
-void draw_plane(ScreenHandler<NR, NC>& sh,
+void draw_plane(t8::screen::ScreenHandler<NR, NC>& sh,
                 int r, int r0, int c,
                 int anim_ctr,
                 int x_mv_dir, int y_mv_dir,
                 std::vector<std::tuple<int, int, bool>>& plane_hull)
 {
+  using Color = t8::Color;
+
   std::string sprite_part;
   Color sprite_part_fg_color;
   Color sprite_part_bg_color = Color::Transparent2;
@@ -266,13 +270,15 @@ void draw_plane(ScreenHandler<NR, NC>& sh,
 }
 
 template<int NR, int NC>
-void draw_crosshair(ScreenHandler<NR, NC>& sh, float x_vel, float y_vel)
+void draw_crosshair(t8::screen::ScreenHandler<NR, NC>& sh, float x_vel, float y_vel)
 {
+  using Color = t8::Color;
+
   float dist = std::sqrt(x_vel*x_vel + y_vel*y_vel);
   float x_vel_norm = x_vel / dist;
   float y_vel_norm = y_vel / dist;
   float len = 7.f;
-  float r = r_mid + 1.f + len*y_vel_norm / pix_ar2_sq;
+  float r = r_mid + 1.f + len*y_vel_norm / t8::screen::pix_ar2_sq;
   float c = c_mid + plane_half_len_2 + len*x_vel_norm;
 
   sh.write_buffer("+", math::roundI(r), math::roundI(c), Color::Black, Color::Transparent2);
@@ -280,31 +286,34 @@ void draw_crosshair(ScreenHandler<NR, NC>& sh, float x_vel, float y_vel)
 
 
 template<int NR, int NC>
-void update_plane_controls(ScreenHandler<NR, NC>& sh,
+void update_plane_controls(t8::screen::ScreenHandler<NR, NC>& sh,
                            audio::AudioStreamSource* src_fx, audio::WaveformGeneration& wave_gen,
-                           const keyboard::KeyPressDataPair& kpdp, Key curr_special_key,
+                           const t8::input::KeyPressDataPair& kpdp, Key curr_special_key,
                            float ground_level, float dt)
 {
-  auto special_key = keyboard::get_special_key(kpdp.held);
-  if (special_key == keyboard::SpecialKey::Left || curr_special_key == Key::Left)
+  using namespace t8::input;
+  using Color = t8::Color;
+
+  auto special_key = get_special_key(kpdp.held);
+  if (special_key == SpecialKey::Left || curr_special_key == Key::Left)
   {
     plane_data::x_vel -= plane_data::x_acc * dt;
     plane_data::y_vel *= 0.9f;
     sh.write_buffer("L", 2, 1, Color::Cyan);
   }
-  else if (special_key == keyboard::SpecialKey::Right || curr_special_key == Key::Right)
+  else if (special_key == SpecialKey::Right || curr_special_key == Key::Right)
   {
     plane_data::x_vel += plane_data::x_acc * dt;
     plane_data::y_vel *= 0.9f;
     sh.write_buffer("R", 2, 3, Color::Cyan);
   }
-  else if (special_key == keyboard::SpecialKey::Down || curr_special_key == Key::Down)
+  else if (special_key == SpecialKey::Down || curr_special_key == Key::Down)
   {
     plane_data::y_vel += plane_data::y_acc * dt;
     plane_data::x_vel *= 0.9f;
     sh.write_buffer("D", 3, 2, Color::Cyan);
   }
-  else if (special_key == keyboard::SpecialKey::Up || curr_special_key == Key::Up)
+  else if (special_key == SpecialKey::Up || curr_special_key == Key::Up)
   {
     plane_data::y_vel -= plane_data::y_acc * dt;
     plane_data::x_vel *= 0.9f;
@@ -352,9 +361,9 @@ void update_plane_controls(ScreenHandler<NR, NC>& sh,
   bool at_max_vel = false;
   if (std::abs(plane_data::x_vel) > plane_data::vel_max)
     plane_data::x_vel = static_cast<float>(plane_data::x_mv_dir*plane_data::vel_max);
-  if (std::abs(plane_data::y_vel) > plane_data::vel_max/pix_ar2)
+  if (std::abs(plane_data::y_vel) > plane_data::vel_max/t8::screen::pix_ar2)
   {
-    plane_data::y_vel = plane_data::y_mv_dir*plane_data::vel_max/pix_ar2;
+    plane_data::y_vel = plane_data::y_mv_dir*plane_data::vel_max/t8::screen::pix_ar2;
     if (plane_data::y_mv_dir == -1)
       at_max_vel = true;
   }
@@ -471,6 +480,6 @@ void update_plane_controls(ScreenHandler<NR, NC>& sh,
       health = 0; // Crash.
   }
   if (enable_alt_limiting && plane_data::alt_ft > alt_hard_limit_ft)
-    plane_data::y_pos = -(alt_hard_limit_ft/pix_to_ft - ground_level - 13*pix_ar2);
+    plane_data::y_pos = -(alt_hard_limit_ft/pix_to_ft - ground_level - 13*t8::screen::pix_ar2);
 }
 

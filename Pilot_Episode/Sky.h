@@ -2,12 +2,14 @@
 
 
 template<int NR, int NC>
-void draw_sky(ScreenHandler<NR, NC>& sh)
+void draw_sky(t8::screen::ScreenHandler<NR, NC>& sh)
 {
-  auto sky_bb = ttl::Rectangle { 1, 1, 28, 78 };
+  using Color = t8::Color;
+  
+  auto sky_bb = t8::Rectangle { 1, 1, 28, 78 };
   //if (alt_km >= 85) // End of mesosphere.
   if (plane_data::blackout_state == plane_data::BlackoutState::WarnIn
-    || plane_data::blackout_state == plane_data::BlackoutState::WarnOut)
+      || plane_data::blackout_state == plane_data::BlackoutState::WarnOut)
   {
     sh.replace_bg_color(Color::Transparent, Color::DarkRed, sky_bb);
     sh.replace_bg_color(Color::Transparent2, Color::DarkRed, sky_bb);

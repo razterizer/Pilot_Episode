@@ -3,7 +3,7 @@
 #include <8Beat/SFX.h>
 
 template<int NR, int NC>
-void draw_shot(ScreenHandler<NR, NC>& sh, bool shot_hit, float shot_angle, float bullet_offs_x, float bullet_offs_y, Color color)
+void draw_shot(t8::screen::ScreenHandler<NR, NC>& sh, bool shot_hit, float shot_angle, float bullet_offs_x, float bullet_offs_y, t8::Color color)
 {
   if (!shot_hit)
   {
@@ -31,14 +31,16 @@ void draw_shot(ScreenHandler<NR, NC>& sh, bool shot_hit, float shot_angle, float
     sh.write_buffer(bullet,
         r_mid + math::roundI(bullet_offs_y),
         c_mid + math::roundI(bullet_offs_x),
-        color, Color::Transparent2);
+        color, t8::Color::Transparent2);
   }
 }
 
 template<int NR, int NC>
-void draw_explosion(ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr,
+void draw_explosion(t8::screen::ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr,
                     audio::AudioStreamSource* src_fx, int expl_sound)
 {
+  using Color = t8::Color;
+
   sh.write_buffer("*", r, c, Color::DarkRed);
   int anim = anim_ctr % 3;
   if (1 <= anim)
