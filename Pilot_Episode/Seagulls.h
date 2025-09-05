@@ -1,11 +1,14 @@
 #pragma once
 #include "Globals.h"
+#include "Effects.h"
 #include <8Beat/AudioSourceHandler.h>
 
 
 template<int NR, int NC>
-void draw_seagull(ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr)
+void draw_seagull(t8::screen::ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr)
 {
+  using Color = t8::Color;
+
   switch (anim_ctr % 5)
   {
     //case 0: sh.write_buffer("M", r, c, Color::White); break;
@@ -18,8 +21,10 @@ void draw_seagull(ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr)
 }
 
 template<int NR, int NC>
-void draw_seagull_small(ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr)
+void draw_seagull_small(t8::screen::ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr)
 {
+  using Color = t8::Color;
+  
   switch (anim_ctr % 6)
   {
     //case 0: sh.write_buffer("M", r, c, Color::White, Color::Transparent2); break;
@@ -57,7 +62,7 @@ struct SeagullFlockData
 
 
 template<size_t Nf, int NR, int NC>
-void draw_update_seagull_flocks(ScreenHandler<NR, NC>& sh,
+void draw_update_seagull_flocks(t8::screen::ScreenHandler<NR, NC>& sh,
                                 audio::AudioStreamSource* src_fx,
                                 std::array<SeagullFlockData, Nf>& seagull_flocks,
                                 float x_pos, float y_pos,

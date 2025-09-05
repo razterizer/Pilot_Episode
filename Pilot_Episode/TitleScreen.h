@@ -36,8 +36,10 @@
 //29//                                                                 (c) 2022       |
 //30//--------------------------------------------------------------------------------+
 template<int NR, int NC>
-void draw_title(ScreenHandler<NR, NC>& sh, const ASCII_Fonts::FontDataColl& font_data, const ASCII_Fonts::ColorScheme& font_colors)
+void draw_title(t8::screen::ScreenHandler<NR, NC>& sh, const t8x::fonts::FontDataColl& font_data, const t8x::fonts::ColorScheme& font_colors)
 {
+  using Color = t8::Color;
+
   sh.write_buffer("Rasmus Anthin", 0, 55, Color::Black, Color::Cyan);
   sh.write_buffer("__", 1, 12, Color::DarkBlue);
   sh.write_buffer("((((((,", 1, 17, Color::DarkYellow, Color::Yellow);
@@ -252,10 +254,10 @@ void draw_title(ScreenHandler<NR, NC>& sh, const ASCII_Fonts::FontDataColl& font
   sh.write_buffer("_'`~~", 24, 2, Color::DarkGray, Color::LightGray);
   sh.write_buffer("____ ", 24, 7, Color::Black, Color::LightGray);
   
-  ASCII_Fonts::draw_text(sh, font_data, font_colors, "Pilot Episode", 24, 6, ASCII_Fonts::Font::Avatar);
+  t8x::fonts::draw_text(sh, font_data, font_colors, "Pilot Episode", 24, 6, t8x::fonts::Font::Avatar);
   //sh.replace_bg_color(Color::Yellow, ttl::Rectangle { 25, 6, 69, 4 });
-  sh.replace_bg_color(Color::Yellow, ttl::Rectangle { 25, 6, 4, 28 });
-  sh.replace_bg_color(Color::Yellow, ttl::Rectangle { 25, 36, 4, 39 });
+  sh.replace_bg_color(Color::Yellow, t8::Rectangle { 25, 6, 4, 28 });
+  sh.replace_bg_color(Color::Yellow, t8::Rectangle { 25, 36, 4, 39 });
 
   sh.write_buffer("(c) 2022 - 2024", 29, 64, Color::White);
   
