@@ -2,7 +2,7 @@
 
 
 template<int NR, int NC>
-void draw_sun(t8::screen::ScreenHandler<NR, NC>& sh, int r, int c, float x_pos)
+void draw_sun(t8::ScreenHandler<NR, NC>& sh, int r, int c, float x_pos)
 {
   using Color = t8::Color;
 

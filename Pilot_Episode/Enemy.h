@@ -42,7 +42,7 @@ struct EnemyData
 };
 int EnemyData::g_id = -1;
 template<int NR, int NC>
-EnemyData enemy_step_ai(t8::screen::ScreenHandler<NR, NC>& sh, EnemyData ed,
+EnemyData enemy_step_ai(t8::ScreenHandler<NR, NC>& sh, EnemyData ed,
                         audio::AudioStreamSource* src_fx,
                         float x_pos_plane, float y_pos_plane, float x_vel_plane, float y_vel_plane,
                         const std::vector<std::tuple<int, int, bool>>& plane_hull, bool plane_hiding,
@@ -100,7 +100,7 @@ EnemyData enemy_step_ai(t8::screen::ScreenHandler<NR, NC>& sh, EnemyData ed,
           return math::sign(acc) * acc_scale * t_rnd;
         };
         ed.x_acc += calc_acc_f(ed.x_acc);
-        ed.y_acc += calc_acc_f(ed.y_acc)/t8::screen::pix_ar2;
+        ed.y_acc += calc_acc_f(ed.y_acc)/t8::pix_ar2;
       }
       else if (std::rand() % 100 == 0)
         ed.x_acc *= -1.f;
@@ -293,7 +293,7 @@ EnemyData enemy_step_ai(t8::screen::ScreenHandler<NR, NC>& sh, EnemyData ed,
 //    _
 // <oOOOo>
 template<int NR, int NC>
-void draw_enemy(t8::screen::ScreenHandler<NR, NC>& sh, int r, int r0, int c, bool destroyed, int anim_ctr)
+void draw_enemy(t8::ScreenHandler<NR, NC>& sh, int r, int r0, int c, bool destroyed, int anim_ctr)
 {
   using Color = t8::Color;
   
@@ -324,7 +324,7 @@ void draw_enemy(t8::screen::ScreenHandler<NR, NC>& sh, int r, int r0, int c, boo
 }
 
 template<int NR, int NC>
-void draw_enemy_shadow(t8::screen::ScreenHandler<NR, NC>& sh, float dist, int r_plane, int c_plane, float x_diff, float y_diff, EnemyState es, int anim_ctr)
+void draw_enemy_shadow(t8::ScreenHandler<NR, NC>& sh, float dist, int r_plane, int c_plane, float x_diff, float y_diff, EnemyState es, int anim_ctr)
 {
   using Color = t8::Color;
 
@@ -372,7 +372,7 @@ void draw_enemy_shadow(t8::screen::ScreenHandler<NR, NC>& sh, float dist, int r_
 }
 
 template<int NR, int NC>
-void draw_enemy_shot(t8::screen::ScreenHandler<NR, NC>& sh, EnemyData& ed)
+void draw_enemy_shot(t8::ScreenHandler<NR, NC>& sh, EnemyData& ed)
 {
   if (ed.state == EnemyState::SHOOT)
     draw_shot(sh, ed.shot_hit, ed.shot_angle, ed.bullet_offs_x, ed.bullet_offs_y, t8::Color::Cyan);

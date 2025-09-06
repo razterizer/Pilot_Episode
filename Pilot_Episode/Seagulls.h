@@ -5,7 +5,7 @@
 
 
 template<int NR, int NC>
-void draw_seagull(t8::screen::ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr)
+void draw_seagull(t8::ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr)
 {
   using Color = t8::Color;
 
@@ -21,7 +21,7 @@ void draw_seagull(t8::screen::ScreenHandler<NR, NC>& sh, int r, int c, int anim_
 }
 
 template<int NR, int NC>
-void draw_seagull_small(t8::screen::ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr)
+void draw_seagull_small(t8::ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr)
 {
   using Color = t8::Color;
   
@@ -62,7 +62,7 @@ struct SeagullFlockData
 
 
 template<size_t Nf, int NR, int NC>
-void draw_update_seagull_flocks(t8::screen::ScreenHandler<NR, NC>& sh,
+void draw_update_seagull_flocks(t8::ScreenHandler<NR, NC>& sh,
                                 audio::AudioStreamSource* src_fx,
                                 std::array<SeagullFlockData, Nf>& seagull_flocks,
                                 float x_pos, float y_pos,

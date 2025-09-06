@@ -2,7 +2,7 @@
 
 
 template<int NR, int NC>
-void draw_sky(t8::screen::ScreenHandler<NR, NC>& sh)
+void draw_sky(t8::ScreenHandler<NR, NC>& sh)
 {
   using Color = t8::Color;
   

@@ -2,7 +2,7 @@
 
 
 template<int NR, int NC>
-void draw_hud(t8::screen::ScreenHandler<NR, NC>& sh,
+void draw_hud(t8::ScreenHandler<NR, NC>& sh,
               float ground_level,
               int health, int max_health,
               int score)
@@ -28,7 +28,7 @@ void draw_hud(t8::screen::ScreenHandler<NR, NC>& sh,
   //sh.write_buffer(std::to_string(health), 5, 5, Color::Black);
   hud_c += 1 + static_cast<int>(life_str.size());
   std::string alt_str = "Alt: ";
-  plane_data::alt_px = ground_level - plane_data::y_pos + 13*t8::screen::pix_ar2;
+  plane_data::alt_px = ground_level - plane_data::y_pos + 13*t8::pix_ar2;
   plane_data::alt_ft = std::round(plane_data::alt_px*pix_to_ft);
   plane_data::alt_km = std::round(plane_data::alt_px*pix_to_m/1e3f);
   alt_str += std::to_string(static_cast<int>(plane_data::alt_ft));
