@@ -1,6 +1,6 @@
 #pragma once
-#include <Termin8or/ScreenUtils.h>
-#include <Termin8or/ParticleSystem.h>
+#include <Termin8or/screen/ScreenUtils.h>
+#include <Termin8or/physics/ParticleSystem.h>
 
 namespace plane_data
 {
@@ -8,7 +8,7 @@ namespace plane_data
   float x_vel = 0.f;
   float x_pos = 0.f;
   int x_mv_dir = 0;
-  const float y_acc = x_acc/t8::screen::pix_ar2;
+  const float y_acc = x_acc/t8::pix_ar2;
   float y_vel = 0.f;
   float y_pos = 0.f;
   int y_mv_dir = 0;
@@ -30,5 +30,5 @@ namespace plane_data
   float fix_time = 0.f;
   float fix_press_rate = 0.f;
   
-  t8x::physics::ParticleHandler smoke_engine(500);
+  t8x::ParticleHandler smoke_engine(500);
 }

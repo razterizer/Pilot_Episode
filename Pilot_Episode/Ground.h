@@ -7,7 +7,7 @@ namespace ground
 {
   using Color = t8::Color;
   template<int NR, int NC>
-  using ScreenHandler = t8::screen::ScreenHandler<NR, NC>;
+  using ScreenHandler = t8::ScreenHandler<NR, NC>;
 
 
   const auto fg_color_grass = Color::Green;

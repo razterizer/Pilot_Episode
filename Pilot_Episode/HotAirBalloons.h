@@ -2,7 +2,7 @@
 
 
 template<size_t N, int NR, int NC>
-void draw_hot_air_balloon_small(t8::screen::ScreenHandler<NR, NC>& sh,
+void draw_hot_air_balloon_small(t8::ScreenHandler<NR, NC>& sh,
                                 const std::array<std::pair<int, int>, N>& balloon_rc,
                                 float x_pos, float y_pos, int anim_ctr)
 {
@@ -21,7 +21,7 @@ void draw_hot_air_balloon_small(t8::screen::ScreenHandler<NR, NC>& sh,
 }
 
 template<size_t N, int NR, int NC>
-void draw_hot_air_balloon(t8::screen::ScreenHandler<NR, NC>& sh,
+void draw_hot_air_balloon(t8::ScreenHandler<NR, NC>& sh,
                           const std::array<std::pair<int, int>, N>& balloon_rc,
                           float x_pos, float y_pos, int anim_ctr)
 {

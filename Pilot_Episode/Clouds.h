@@ -1,6 +1,6 @@
 #pragma once
 #include "Globals.h"
-#include <Termin8or/ScreenHandler.h>
+#include <Termin8or/screen/ScreenHandler.h>
 #include <Core/Math.h>
 #include <Core/Rand.h>
 #include <execution>
@@ -10,7 +10,7 @@ namespace clouds
 {
   using Color = t8::Color;
   template<int NR, int NC>
-  using ScreenHandler = t8::screen::ScreenHandler<NR, NC>;
+  using ScreenHandler = t8::ScreenHandler<NR, NC>;
   
   
   auto rnd_cloud_pos = []()
