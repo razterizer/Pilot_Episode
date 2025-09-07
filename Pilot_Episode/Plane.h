@@ -13,7 +13,7 @@
 
 template<int NR, int NC>
 void generate_engine_smoke(t8::ScreenHandler<NR, NC>& sh,
-                    audio::AudioStreamSource* src_fx_0, audio::AudioStreamSource* src_fx_1,
+                    beat::AudioStreamSource* src_fx_0, beat::AudioStreamSource* src_fx_1,
                     const t8::RC& rc_plane_engine,
                     float dt, float time)
 {
@@ -31,7 +31,7 @@ void generate_engine_smoke(t8::ScreenHandler<NR, NC>& sh,
   static float trg_timestamp_1 = time;
   if (trig)
   {
-    using namespace audio;
+    using namespace beat;
     
     static std::vector<float> vp
     {
@@ -287,7 +287,7 @@ void draw_crosshair(t8::ScreenHandler<NR, NC>& sh, float x_vel, float y_vel)
 
 template<int NR, int NC>
 void update_plane_controls(t8::ScreenHandler<NR, NC>& sh,
-                           audio::AudioStreamSource* src_fx, audio::WaveformGeneration& wave_gen,
+                           beat::AudioStreamSource* src_fx, beat::WaveformGeneration& wave_gen,
                            const t8::KeyPressDataPair& kpdp, Key curr_special_key,
                            float ground_level, float dt)
 {
@@ -322,17 +322,17 @@ void update_plane_controls(t8::ScreenHandler<NR, NC>& sh,
   {
     sh.write_buffer("F", 2, 2, Color::Cyan);
     auto duration = 0.2f;
-    audio::WaveformGenerationParams params;
+    beat::WaveformGenerationParams params;
     params.noise_filter_order = 2;
     params.noise_filter_rel_bw = 0.6f;
     params.noise_filter_slot_dur_s = 1e-2f;
     params.freq_slide_vel = -4.f;
-    auto wd = wave_gen.generate_waveform(audio::WaveformType::NOISE, duration, 3400.f, params);
-    wd = audio::WaveformHelper::envelope_adsr(wd,
-      audio::Attack { audio::ADSRMode::LOG, 5, 0.f, 0.5f },
-      audio::Decay { audio::ADSRMode::LIN, 8 },
-      audio::Sustain { 0.6f },
-      audio::Release { audio::ADSRMode::LOG, 50 } );
+    auto wd = wave_gen.generate_waveform(beat::WaveformType::NOISE, duration, 3400.f, params);
+    wd = beat::WaveformHelper::envelope_adsr(wd,
+      beat::Attack { beat::ADSRMode::LOG, 5, 0.f, 0.5f },
+      beat::Decay { beat::ADSRMode::LIN, 8 },
+      beat::Sustain { 0.6f },
+      beat::Release { beat::ADSRMode::LOG, 50 } );
     if (src_fx != nullptr)
     {
       src_fx->update_buffer(wd);
