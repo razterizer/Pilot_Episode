@@ -12,7 +12,7 @@ struct PowerUpData
 };
 template<size_t N, int NR, int NC>
 void draw_update_powerup(t8::ScreenHandler<NR, NC>& sh, std::array<PowerUpData, N>& powerups,
-                         audio::AudioStreamSource* src_fx,
+                         beat::AudioStreamSource* src_fx,
                          std::vector<std::tuple<int, int, bool>>& plane_hull,
                          float x_pos, float y_pos,
                          float cloud_limit, float ground_level,
@@ -103,8 +103,8 @@ void draw_update_powerup(t8::ScreenHandler<NR, NC>& sh, std::array<PowerUpData, 
         if (health > max_health)
           health = max_health;
         
-        using namespace audio;
-        auto wd = SFX::generate(SFXType::COIN);
+        using namespace beat;
+        auto wd = beat::SFX::generate(SFXType::COIN);
         if (src_fx != nullptr)
         {
           src_fx->update_buffer(wd);

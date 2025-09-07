@@ -454,12 +454,12 @@ private:
   
   float alt_km_f = 0.5f; // 14 = very high up.
   
-  audio::AudioSourceHandler audio;
-  audio::WaveformGeneration wave_gen;
-  audio::ChipTuneEngine chip_tune { audio, wave_gen };
-  audio::AudioStreamSource* src_fx_0 = nullptr;
-  audio::AudioStreamSource* src_fx_1 = nullptr;
-  audio::AudioStreamSource* src_fx_2 = nullptr;
+  beat::AudioSourceHandler audio;
+  beat::WaveformGeneration wave_gen;
+  beat::ChipTuneEngine chip_tune { audio, wave_gen };
+  beat::AudioStreamSource* src_fx_0 = nullptr;
+  beat::AudioStreamSource* src_fx_1 = nullptr;
+  beat::AudioStreamSource* src_fx_2 = nullptr;
   
   std::vector<t8x::ColorScheme> color_schemes;
   t8x::FontDataColl font_data;

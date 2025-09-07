@@ -37,7 +37,7 @@ void draw_shot(t8::ScreenHandler<NR, NC>& sh, bool shot_hit, float shot_angle, f
 
 template<int NR, int NC>
 void draw_explosion(t8::ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr,
-                    audio::AudioStreamSource* src_fx, int expl_sound)
+                    beat::AudioStreamSource* src_fx, int expl_sound)
 {
   using Color = t8::Color;
 
@@ -114,7 +114,7 @@ void draw_explosion(t8::ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr,
     else if (expl_sound == 2)
       expl_vp = expl_vp2;
     
-    using namespace audio;
+    using namespace beat;
     auto wd = SFX::generate(SFXType::EXPLOSION, expl_vp);
     if (src_fx != nullptr)
     {
