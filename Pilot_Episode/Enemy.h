@@ -100,7 +100,7 @@ EnemyData enemy_step_ai(t8::ScreenHandler<NR, NC>& sh, EnemyData ed,
           return math::sign(acc) * acc_scale * t_rnd;
         };
         ed.x_acc += calc_acc_f(ed.x_acc);
-        ed.y_acc += calc_acc_f(ed.y_acc)/t8::pix_ar2;
+        ed.y_acc += calc_acc_f(ed.y_acc)/t8x::pix_ar2;
       }
       else if (std::rand() % 100 == 0)
         ed.x_acc *= -1.f;

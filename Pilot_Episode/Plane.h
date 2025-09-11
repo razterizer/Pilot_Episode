@@ -278,7 +278,7 @@ void draw_crosshair(t8::ScreenHandler<NR, NC>& sh, float x_vel, float y_vel)
   float x_vel_norm = x_vel / dist;
   float y_vel_norm = y_vel / dist;
   float len = 7.f;
-  float r = r_mid + 1.f + len*y_vel_norm / t8::pix_ar2_sq;
+  float r = r_mid + 1.f + len*y_vel_norm / t8x::pix_ar2_sq;
   float c = c_mid + plane_half_len_2 + len*x_vel_norm;
 
   sh.write_buffer("+", math::roundI(r), math::roundI(c), Color::Black, Color::Transparent2);
@@ -360,9 +360,9 @@ void update_plane_controls(t8::ScreenHandler<NR, NC>& sh,
   bool at_max_vel = false;
   if (std::abs(plane_data::x_vel) > plane_data::vel_max)
     plane_data::x_vel = static_cast<float>(plane_data::x_mv_dir*plane_data::vel_max);
-  if (std::abs(plane_data::y_vel) > plane_data::vel_max/t8::pix_ar2)
+  if (std::abs(plane_data::y_vel) > plane_data::vel_max/t8x::pix_ar2)
   {
-    plane_data::y_vel = plane_data::y_mv_dir*plane_data::vel_max/t8::pix_ar2;
+    plane_data::y_vel = plane_data::y_mv_dir*plane_data::vel_max/t8x::pix_ar2;
     if (plane_data::y_mv_dir == -1)
       at_max_vel = true;
   }
@@ -479,6 +479,6 @@ void update_plane_controls(t8::ScreenHandler<NR, NC>& sh,
       health = 0; // Crash.
   }
   if (enable_alt_limiting && plane_data::alt_ft > alt_hard_limit_ft)
-    plane_data::y_pos = -(alt_hard_limit_ft/pix_to_ft - ground_level - 13*t8::pix_ar2);
+    plane_data::y_pos = -(alt_hard_limit_ft/pix_to_ft - ground_level - 13*t8x::pix_ar2);
 }
 

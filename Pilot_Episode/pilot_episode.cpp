@@ -108,7 +108,7 @@ public:
     GameEngine::set_anim_rate(6, 5); // Balloons
   //#endif
     
-    auto set_alt = [&]() -> float { return -alt_km_f * 1e3f / pix_to_m + ground_level + 13 * t8::pix_ar2; };
+    auto set_alt = [&]() -> float { return -alt_km_f * 1e3f / pix_to_m + ground_level + 13 * t8x::pix_ar2; };
     plane_data::y_pos = set_alt();
   
     for (int i = 1; i < argc; ++i)
@@ -272,7 +272,7 @@ private:
     {
       shot_angle = std::atan2(plane_data::y_vel, plane_data::x_vel);
       x_pos_shot = 5.f * std::cos(shot_angle);
-      y_pos_shot = 5.f * std::sin(shot_angle) / t8::pix_ar2;
+      y_pos_shot = 5.f * std::sin(shot_angle) / t8x::pix_ar2;
       shot_fired = true;
       shot_timeout = static_cast<int>(50 / shot_speed); //  ft / (ft/s) -> s
       shot_hit = false;
@@ -280,7 +280,7 @@ private:
     else if (shot_fired && shot_timeout > 0)
     {
       x_pos_shot += shot_speed * std::cos(shot_angle);
-      y_pos_shot += shot_speed * std::sin(shot_angle) / t8::pix_ar2;
+      y_pos_shot += shot_speed * std::sin(shot_angle) / t8x::pix_ar2;
       shot_timeout--;
     }
     

@@ -8,7 +8,7 @@ namespace plane_data
   float x_vel = 0.f;
   float x_pos = 0.f;
   int x_mv_dir = 0;
-  const float y_acc = x_acc/t8::pix_ar2;
+  const float y_acc = x_acc/t8x::pix_ar2;
   float y_vel = 0.f;
   float y_pos = 0.f;
   int y_mv_dir = 0;
