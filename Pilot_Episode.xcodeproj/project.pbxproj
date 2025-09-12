@@ -347,6 +347,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = (
 					"/opt/homebrew/opt/openal-soft/include/",
+					../lib/Termin8or/include/,
 					../lib/,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -363,6 +364,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = (
 					"/opt/homebrew/opt/openal-soft/include/",
+					../lib/Termin8or/include/,
 					../lib/,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
