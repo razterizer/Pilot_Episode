@@ -349,6 +349,7 @@
 					"/opt/homebrew/opt/openal-soft/include/",
 					../lib/Core/include/,
 					../lib/Termin8or/include/,
+					../lib/8Beat/include/,
 					../lib/,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -367,6 +368,7 @@
 					"/opt/homebrew/opt/openal-soft/include/",
 					../lib/Core/include/,
 					../lib/Termin8or/include/,
+					../lib/8Beat/include/,
 					../lib/,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
