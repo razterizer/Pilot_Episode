@@ -350,6 +350,7 @@
 					../lib/Core/include/,
 					../lib/Termin8or/include/,
 					../lib/8Beat/include/,
+					../lib/TrainOfThought/include/,
 					../lib/,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -369,6 +370,7 @@
 					../lib/Core/include/,
 					../lib/Termin8or/include/,
 					../lib/8Beat/include/,
+					../lib/TrainOfThought/include/,
 					../lib/,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
