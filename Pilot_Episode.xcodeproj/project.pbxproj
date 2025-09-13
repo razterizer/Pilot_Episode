@@ -351,7 +351,6 @@
 					../lib/Termin8or/include/,
 					../lib/8Beat/include/,
 					../lib/TrainOfThought/include/,
-					../lib/AudioLibSwitcher/include/,
 					../lib/AudioLibSwitcher_OpenAL/include/,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -372,7 +371,6 @@
 					../lib/Termin8or/include/,
 					../lib/8Beat/include/,
 					../lib/TrainOfThought/include/,
-					../lib/AudioLibSwitcher/include/,
 					../lib/AudioLibSwitcher_OpenAL/include/,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
