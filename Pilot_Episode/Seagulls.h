@@ -66,7 +66,7 @@ void draw_update_seagull_flocks(t8::ScreenHandler<NR, NC>& sh,
                                 beat::AudioStreamSource* src_fx,
                                 std::array<SeagullFlockData, Nf>& seagull_flocks,
                                 float x_pos, float y_pos,
-                                float x_pos_shot, float y_pos_shot, bool& shot_hit, bool shot_fired,
+                                float x_pos_shot, float y_pos_shot, bool& shot_hit, bool& shot_fired,
                                 float cloud_limit, float ground_level,
                                 int& score,
                                 int anim_ctr, std::function<int(int&)>& expl_anim_func,
@@ -96,7 +96,7 @@ void draw_update_seagull_flocks(t8::ScreenHandler<NR, NC>& sh,
       {
         bird.killed = true;
         score -= 10;
-        //shot_fired = false;
+        shot_fired = false;
         //x_pos_shot = 0.f;
         //y_pos_shot = 0.f;
         shot_hit = true;
