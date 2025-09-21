@@ -15,4 +15,3 @@ const float ground_level = 5000.f;
 const int alt_soft_limit_ft = 40'000;
 const int alt_hard_limit_ft = 51'000;
 bool enable_alt_limiting = true;
-bool enable_audio = true;

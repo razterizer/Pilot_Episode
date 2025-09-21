@@ -93,8 +93,10 @@
 class Game : public t8x::GameEngine<>
 {
 public:
-  Game(int argc, char** argv, const t8x::GameEngineParams& params)
+  Game(int argc, char** argv, const t8x::GameEngineParams& params, bool use_audio)
     : GameEngine(argv[0], params)
+    , enable_audio(use_audio)
+    , audio(use_audio)
   {
   //#ifndef _WIN32
     GameEngine::set_real_fps(15);
@@ -120,8 +122,6 @@ public:
       }
       else if (std::strcmp(argv[i], "--disable_altitude_limiting") == 0)
         enable_alt_limiting = false;
-      else if (std::strcmp(argv[i], "--disable_audio") == 0)
-        enable_audio = false;
     }
   }
   
@@ -454,6 +454,7 @@ private:
   
   float alt_km_f = 0.5f; // 14 = very high up.
   
+  bool enable_audio = true;
   beat::AudioSourceHandler audio;
   beat::WaveformGeneration wave_gen;
   beat::ChipTuneEngine chip_tune { audio, wave_gen };
@@ -480,6 +481,8 @@ int main(int argc, char** argv)
   params.screen_bg_color_title = Color::Blue;
   params.screen_bg_color_instructions = Color::Black;
   
+  bool use_audio = true;
+  
   for (int i = 1; i < argc; ++i)
   {
     if (std::strcmp(argv[i],  "--suppress_tty_output") == 0)
@@ -494,9 +497,11 @@ int main(int argc, char** argv)
         params.log_mode = LogMode::Replay;
       params.xcode_log_path = "../../../../../../../../Documents/xcode/Pilot_Episode/Pilot_Episode/bin/";
     }
+    else if (std::strcmp(argv[i], "--disable_audio") == 0)
+      use_audio = false;
   }
   
-  Game game(argc, argv, params);
+  Game game(argc, argv, params, use_audio);
   
   for (int i = 1; i < argc; ++i)
   {
