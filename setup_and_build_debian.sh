@@ -2,7 +2,7 @@
 
 REPO_DIR="Pilot_Episode"
 
-sudo apt install libopenal-dev
+# sudo apt install libopenal-dev
 
 cd ..
 

@@ -2,7 +2,7 @@
 
 REPO_DIR="Pilot_Episode"
 
-brew install openal-soft
+# brew install openal-soft
 
 cd ..
 
