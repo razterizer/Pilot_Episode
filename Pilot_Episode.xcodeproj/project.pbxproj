@@ -61,6 +61,9 @@
 		07844E3E28FDEBAA00B30C0D /* Pilot_Episode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Pilot_Episode; sourceTree = BUILT_PRODUCTS_DIR; };
 		07844E4828FDEBEB00B30C0D /* pilot_episode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pilot_episode.cpp; sourceTree = "<group>"; };
 		07844E4A28FDECEC00B30C0D /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
+		07980B952E82FD53007A0EB4 /* release-linux.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = "release-linux.yml"; path = ".github/workflows/release-linux.yml"; sourceTree = SOURCE_ROOT; };
+		07980B962E82FD53007A0EB4 /* release-macos.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = "release-macos.yml"; path = ".github/workflows/release-macos.yml"; sourceTree = SOURCE_ROOT; };
+		07980B972E82FD53007A0EB4 /* release-windows.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = "release-windows.yml"; path = ".github/workflows/release-windows.yml"; sourceTree = SOURCE_ROOT; };
 		0799EFF62E78876400BAE112 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0799EFF82E78876E00BAE112 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		0799EFFA2E78877E00BAE112 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -89,6 +92,9 @@
 				0709B9C42C97113D00A43834 /* build-macos.yml */,
 				0709B9C32C97113C00A43834 /* build-ubuntu.yml */,
 				0709B9C52C97113D00A43834 /* build-windows.yml */,
+				07980B962E82FD53007A0EB4 /* release-macos.yml */,
+				07980B952E82FD53007A0EB4 /* release-linux.yml */,
+				07980B972E82FD53007A0EB4 /* release-windows.yml */,
 			);
 			name = workflows;
 			sourceTree = "<group>";
