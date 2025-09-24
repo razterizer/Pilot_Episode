@@ -15,6 +15,9 @@
 ![Last Commit](https://img.shields.io/github/last-commit/razterizer/Pilot_Episode?color=blue)
 ![Contributors](https://img.shields.io/github/contributors/razterizer/Pilot_Episode?color=blue)
 
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/razterizer/Pilot_Episode/total)
+
+
 ## Licensing
 
 For 3rd-party license compatibility issues, please refer to the information here: https://github.com/razterizer/8Beat/blob/main/README.md
