@@ -79,6 +79,7 @@ jobs:
           ./build.sh
         continue-on-error: false
 
+      # Step 5: Upload build artifact.
       - name: Upload Legacy Linux build artifact
         uses: actions/upload-artifact@v4
         with:
