@@ -120,6 +120,11 @@ jobs:
           echo "- pilot_episode-glibc2.35: for legacy systems (WSL, Ubuntu 22.04)" >> pilot_episode-${{ github.ref_name }}/README.txt
           echo "" >> pilot_episode-${{ github.ref_name }}/README.txt
           echo "Run the binary that matches your system's glibc version." >> pilot_episode-${{ github.ref_name }}/README.txt
+          echo "" >> pilot_episode-${{ github.ref_name }}/README.txt
+          echo "To run either executable, you might have to first do:" >> pilot_episode-${{ github.ref_name }}/README.txt
+          echo "  chmod ugo+x pilot_episode-glibc2.38" >> pilot_episode-${{ github.ref_name }}/README.txt
+          echo " or:" >> pilot_episode-${{ github.ref_name }}/README.txt
+          echo "  chmod ugo+x pilot_episode-glibc2.35" >> pilot_episode-${{ github.ref_name }}/README.txt
           tar -czf pilot_episode-${{ github.ref_name }}-linux.tar.gz pilot_episode-${{ github.ref_name }}/
 
       - name: Upload Linux package to release

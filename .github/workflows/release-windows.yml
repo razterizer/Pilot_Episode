@@ -90,6 +90,12 @@ jobs:
           if (Test-Path "fonts") {
             Copy-Item -Recurse "fonts" "pilot_episode-${{ github.ref_name }}/"
           }
+          echo "Unblock instructions:" > pilot_episode-${{ github.ref_name }}/README.txt
+          echo "=====================" >> pilot_episode-${{ github.ref_name }}/README.txt
+          echo "To tell Windows that this executable is fine" >> pilot_episode-${{ github.ref_name }}/README.txt
+          echo " you can unblock the executable by" >> pilot_episode-${{ github.ref_name }}/README.txt
+          echo " rightclicking the exe, then:" >> pilot_episode-${{ github.ref_name }}/README.txt
+          echo "   Properties -> Unblock (check this)." >> pilot_episode-${{ github.ref_name }}/README.txt
           # Create zip archive
           Compress-Archive -Path "pilot_episode-${{ github.ref_name }}" -DestinationPath "pilot_episode-${{ github.ref_name }}-windows.zip"
           
