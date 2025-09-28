@@ -17,11 +17,6 @@
 
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/razterizer/Pilot_Episode/total)
 
-
-## Licensing
-
-For 3rd-party license compatibility issues, please refer to the information here: https://github.com/razterizer/8Beat/blob/main/README.md
-
 ## About the Game
 
 A cross-platform (Lin/Mac/Win) terminal-based shooter game.
@@ -91,19 +86,19 @@ You need the following header-only libraries:
 * https://github.com/razterizer/Core
 * https://github.com/razterizer/Termin8or
 * https://github.com/razterizer/8Beat
-* https://github.com/razterizer/AudioLibSwitcher_OpenAL ; Will be changed to something like AudioLibSwitcher_libsoundio in the future.
+* https://github.com/razterizer/AudioLibSwitcher_applaudio
 * https://github.com/razterizer/TrainOfThought
-* https://github.com/razterizer/3rdparty_OpenAL ; Only needed for building on Windows.
+* https://github.com/razterizer/applaudio
 
 Make sure the folder structure looks like this:
 ```
-<my_source_code_dir>/lib/Core/                   ; Core repo workspace/checkout goes here.
-<my_source_code_dir>/lib/Termin8or/              ; Termin8or repo workspace/checkout goes here.
-<my_source_code_dir>/lib/8Beat/                  ; 8Beat repo workspace/checkout goes here.
-<my_source_code_dir>/lib/AudioLibSwitcher_OpenAL ; AudioLibSwitcher_OpenAL repo workspace/checkout goes here.
-<my_source_code_dir>/lib/TrainOfThought          ; TrainOfThought repo workspace/checkout goes here.
-<my_source_code_dir>/lib/3rdparty_OpenAL         ; 3rdparty_OpenAL repo workspace/checkout goes here (only needed for Windows).
-<my_source_code_dir>Pilot_Episode/               ; Pilot_Episode repo workspace/checkout goes here.
+<my_source_code_dir>/lib/Core/                      ; Core repo workspace/checkout goes here.
+<my_source_code_dir>/lib/Termin8or/                 ; Termin8or repo workspace/checkout goes here.
+<my_source_code_dir>/lib/8Beat/                     ; 8Beat repo workspace/checkout goes here.
+<my_source_code_dir>/lib/AudioLibSwitcher_applaudio ; AudioLibSwitcher_applaudio repo workspace/checkout goes here.
+<my_source_code_dir>/lib/TrainOfThought             ; TrainOfThought repo workspace/checkout goes here.
+<my_source_code_dir>/lib/applaudio                  ; applaudio repo workspace/checkout goes here (only needed for Windows).
+<my_source_code_dir>Pilot_Episode/                  ; Pilot_Episode repo workspace/checkout goes here.
 ```
 
 These repos are not guaranteed to all the time work with the latest version of `Pilot_Episode`. If you want the more stable aproach then look at Option 1 instead.
@@ -117,15 +112,11 @@ Then you run by typing `run.bat`.
 
 ### MacOS
 
-Make sure you have OpenAL-Soft installed: `brew install openal-soft`.
-
 Then goto `<my_source_code_dir>/Pilot_Episode/Pilot_Episode/` and build with `./build.sh`.
 
 Then run by typing `./bin/pilot_episode`.
 
 ### Linux (Ubuntu)
-
-Make sure you have OpenAL-Soft installed: `sudo apt install libopenal-dev`.
 
 Then goto `<my_source_code_dir>/Pilot_Episode/Pilot_Episode/` and build with `./build.sh`.
 
