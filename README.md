@@ -116,7 +116,7 @@ Then goto `<my_source_code_dir>/Pilot_Episode/Pilot_Episode/` and build with `./
 
 Then run by typing `./bin/pilot_episode`.
 
-### Linux (Ubuntu)
+### Linux
 
 Then goto `<my_source_code_dir>/Pilot_Episode/Pilot_Episode/` and build with `./build.sh`.
 
