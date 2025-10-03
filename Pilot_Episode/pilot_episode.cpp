@@ -482,6 +482,7 @@ int main(int argc, char** argv)
   params.screen_bg_color_instructions = Color::Black;
   
   bool use_audio = true;
+  bool show_help = false;
   
   for (int i = 1; i < argc; ++i)
   {
@@ -499,22 +500,24 @@ int main(int argc, char** argv)
     }
     else if (std::strcmp(argv[i], "--disable_audio") == 0)
       use_audio = false;
+    else if (std::strcmp(argv[i], "--help") == 0)
+      show_help = true;
   }
+  
+  if (show_help)
+    use_audio = false;
   
   Game game(argc, argv, params, use_audio);
   
-  for (int i = 1; i < argc; ++i)
+  if (show_help)
   {
-    if (std::strcmp(argv[i], "--help") == 0)
-    {
-      std::cout << "demo --help | [--log_mode (record | replay)] [--suppress_tty_output] [--suppress_tty_input] [--altitude_start_km <altitude_km>] [--disable_altitude_limiting] [--set_fps <fps>] [--set_sim_delay_us <delay_us>] [--disable_audio]" << std::endl;
-      std::cout << "  default values:" << std::endl;
-      // Will unfortunately report the wrong default value for <altitude_km> if ordering the arguments like this "--altitude_start_km <altitude_km> --help".
-      std::cout << "    <altitude_km> : " << game.get_alt_km() << std::endl;
-      std::cout << "    <fps>         : " << game.get_real_fps() << std::endl;
-      std::cout << "    <delay_us>    : " << game.get_sim_delay_us() << std::endl;
-      return EXIT_SUCCESS;
-    }
+    std::cout << "pilot_episode --help | [--log_mode (record | replay)] [--suppress_tty_output] [--suppress_tty_input] [--altitude_start_km <altitude_km>] [--disable_altitude_limiting] [--set_fps <fps>] [--set_sim_delay_us <delay_us>] [--disable_audio]" << std::endl;
+    std::cout << "  default values:" << std::endl;
+    // Will unfortunately report the wrong default value for <altitude_km> if ordering the arguments like this "--altitude_start_km <altitude_km> --help".
+    std::cout << "    <altitude_km> : " << game.get_alt_km() << std::endl;
+    std::cout << "    <fps>         : " << game.get_real_fps() << std::endl;
+    std::cout << "    <delay_us>    : " << game.get_sim_delay_us() << std::endl;
+    return EXIT_SUCCESS;
   }
   
   for (int i = 1; i < argc; ++i)
