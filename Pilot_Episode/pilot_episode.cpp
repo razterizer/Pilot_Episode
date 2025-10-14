@@ -205,9 +205,9 @@ public:
     
     if (enable_audio)
     {
-      src_fx_0 = audio.create_stream_source();
-      src_fx_1 = audio.create_stream_source();
-      src_fx_2 = audio.create_stream_source();
+      src_fx_0 = audio.create_source();
+      src_fx_1 = audio.create_source();
+      src_fx_2 = audio.create_source();
     }
     
     std::string font_data_path = t8x::get_path_to_font_data(get_exe_folder());
@@ -458,9 +458,9 @@ private:
   beat::AudioSourceHandler audio;
   beat::WaveformGeneration wave_gen;
   beat::ChipTuneEngine chip_tune { audio, wave_gen };
-  beat::AudioStreamSource* src_fx_0 = nullptr;
-  beat::AudioStreamSource* src_fx_1 = nullptr;
-  beat::AudioStreamSource* src_fx_2 = nullptr;
+  beat::AudioSource* src_fx_0 = nullptr;
+  beat::AudioSource* src_fx_1 = nullptr;
+  beat::AudioSource* src_fx_2 = nullptr;
   
   std::vector<t8x::ColorScheme> color_schemes;
   t8x::FontDataColl font_data;

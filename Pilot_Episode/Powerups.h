@@ -12,7 +12,7 @@ struct PowerUpData
 };
 template<size_t N, int NR, int NC>
 void draw_update_powerup(t8::ScreenHandler<NR, NC>& sh, std::array<PowerUpData, N>& powerups,
-                         beat::AudioStreamSource* src_fx,
+                         beat::AudioSource* src_fx,
                          std::vector<std::tuple<int, int, bool>>& plane_hull,
                          float x_pos, float y_pos,
                          float cloud_limit, float ground_level,
