@@ -13,7 +13,7 @@
 
 template<int NR, int NC>
 void generate_engine_smoke(t8::ScreenHandler<NR, NC>& sh,
-                    beat::AudioStreamSource* src_fx_0, beat::AudioStreamSource* src_fx_1,
+                    beat::AudioSource* src_fx_0, beat::AudioSource* src_fx_1,
                     const t8::RC& rc_plane_engine,
                     float dt, float time)
 {
@@ -287,7 +287,7 @@ void draw_crosshair(t8::ScreenHandler<NR, NC>& sh, float x_vel, float y_vel)
 
 template<int NR, int NC>
 void update_plane_controls(t8::ScreenHandler<NR, NC>& sh,
-                           beat::AudioStreamSource* src_fx, beat::WaveformGeneration& wave_gen,
+                           beat::AudioSource* src_fx, beat::WaveformGeneration& wave_gen,
                            const t8::KeyPressDataPair& kpdp, Key curr_special_key,
                            float ground_level, float dt)
 {

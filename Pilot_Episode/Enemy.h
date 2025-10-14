@@ -43,7 +43,7 @@ struct EnemyData
 int EnemyData::g_id = -1;
 template<int NR, int NC>
 EnemyData enemy_step_ai(t8::ScreenHandler<NR, NC>& sh, EnemyData ed,
-                        beat::AudioStreamSource* src_fx,
+                        beat::AudioSource* src_fx,
                         float x_pos_plane, float y_pos_plane, float x_vel_plane, float y_vel_plane,
                         const std::vector<std::tuple<int, int, bool>>& plane_hull, bool plane_hiding,
                         int plane_shot_r, int plane_shot_c, bool plane_shot_fired, bool& shot_down,

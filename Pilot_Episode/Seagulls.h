@@ -63,7 +63,7 @@ struct SeagullFlockData
 
 template<size_t Nf, int NR, int NC>
 void draw_update_seagull_flocks(t8::ScreenHandler<NR, NC>& sh,
-                                beat::AudioStreamSource* src_fx,
+                                beat::AudioSource* src_fx,
                                 std::array<SeagullFlockData, Nf>& seagull_flocks,
                                 float x_pos, float y_pos,
                                 float x_pos_shot, float y_pos_shot, bool& shot_hit, bool& shot_fired,

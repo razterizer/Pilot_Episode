@@ -37,7 +37,7 @@ void draw_shot(t8::ScreenHandler<NR, NC>& sh, bool shot_hit, float shot_angle, f
 
 template<int NR, int NC>
 void draw_explosion(t8::ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr,
-                    beat::AudioStreamSource* src_fx, int expl_sound)
+                    beat::AudioSource* src_fx, int expl_sound)
 {
   using Color = t8::Color;
 
