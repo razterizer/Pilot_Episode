@@ -61,7 +61,7 @@ void generate_engine_smoke(t8::ScreenHandler<NR, NC>& sh,
       Sustain { 1.f },
       Release { ADSRMode::LIN, rnd::rand_float(20, 70) }
     };
-    float vol = rnd::randn_clamp(1.f, 0.2f, 0.4f, 1.2f) * (1.f - health_ratio / c_health_ratio_threshold);
+    float gain = rnd::randn_clamp(1.f, 0.2f, 0.4f, 1.2f) * (1.f - health_ratio / c_health_ratio_threshold);
     
     if (time - trg_timestamp_0 > 0.2f + rnd::rand_float(-0.02f, 0.02f) && sfx_trigger_0.once())
     {
@@ -73,7 +73,7 @@ void generate_engine_smoke(t8::ScreenHandler<NR, NC>& sh,
       if (src_fx_0 != nullptr)
       {
         src_fx_0->update_buffer(wd);
-        src_fx_0->set_volume(vol);
+        src_fx_0->set_gain(gain);
         src_fx_0->play();
       }
     }
@@ -87,7 +87,7 @@ void generate_engine_smoke(t8::ScreenHandler<NR, NC>& sh,
       if (src_fx_1 != nullptr)
       {
         src_fx_1->update_buffer(wd);
-        src_fx_1->set_volume(vol);
+        src_fx_1->set_gain(gain);
         src_fx_1->play();
       }
     }

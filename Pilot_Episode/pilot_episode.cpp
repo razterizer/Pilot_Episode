@@ -94,12 +94,12 @@ class Game : public t8x::GameEngine<>
 {
 public:
   Game(int argc, char** argv, const t8x::GameEngineParams& params,
-       bool use_audio, float music_volume, float sfx_volume)
+       bool use_audio, float music_gain, float sfx_gain)
     : GameEngine(argv[0], params)
     , enable_audio(use_audio)
     , audio(use_audio)
-    , volume_music(music_volume)
-    , volume_sfx(sfx_volume)
+    , gain_music(music_gain)
+    , gain_sfx(sfx_gain)
   {
   //#ifndef _WIN32
     GameEngine::set_real_fps(15);
@@ -197,7 +197,7 @@ public:
       if (enable_audio && chip_tune.load_tune(folder::join_path({ tune_path, "chiptune2.ct" })))
       {
           //chip_tune.play_tune();
-          chip_tune.set_volume(volume_music);
+          chip_tune.set_gain(gain_music);
           chip_tune.play_tune_async();
           chip_tune.wait_for_completion();
       }
@@ -210,13 +210,13 @@ public:
     if (enable_audio)
     {
       src_fx_0 = audio.create_source();
-      src_fx_0->set_volume(volume_sfx);
+      src_fx_0->set_gain(gain_sfx);
       
       src_fx_1 = audio.create_source();
-      src_fx_1->set_volume(volume_sfx);
+      src_fx_1->set_gain(gain_sfx);
       
       src_fx_2 = audio.create_source();
-      src_fx_2->set_volume(volume_sfx);
+      src_fx_2->set_gain(gain_sfx);
     }
     
     std::string font_data_path = t8x::get_path_to_font_data(get_exe_folder());
@@ -470,8 +470,8 @@ private:
   beat::AudioSource* src_fx_0 = nullptr;
   beat::AudioSource* src_fx_1 = nullptr;
   beat::AudioSource* src_fx_2 = nullptr;
-  float volume_music = 0.5f;
-  float volume_sfx = 0.5f;
+  float gain_music = 0.5f;
+  float gain_sfx = 0.5f;
   
   std::vector<t8x::ColorScheme> color_schemes;
   t8x::FontDataColl font_data;
@@ -494,8 +494,8 @@ int main(int argc, char** argv)
   
   bool use_audio = true;
   bool show_help = false;
-  float music_volume = 0.5f;
-  float sfx_volume = 0.5f;
+  float music_gain = 0.5f;
+  float sfx_gain = 0.5f;
   
   for (int i = 1; i < argc; ++i)
   {
@@ -513,10 +513,10 @@ int main(int argc, char** argv)
     }
     else if (std::strcmp(argv[i], "--disable_audio") == 0)
       use_audio = false;
-    else if (std::strcmp(argv[i], "--music_volume") == 0)
-      music_volume = static_cast<float>(std::atof(argv[i + 1]));
-    else if (std::strcmp(argv[i], "--sfx_volume") == 0)
-      sfx_volume = static_cast<float>(std::atof(argv[i + 1]));
+    else if (std::strcmp(argv[i], "--music_gain") == 0)
+      music_gain = static_cast<float>(std::atof(argv[i + 1]));
+    else if (std::strcmp(argv[i], "--sfx_gain") == 0)
+      sfx_gain = static_cast<float>(std::atof(argv[i + 1]));
     else if (std::strcmp(argv[i], "--help") == 0)
       show_help = true;
   }
@@ -525,7 +525,7 @@ int main(int argc, char** argv)
     use_audio = false;
   
   Game game(argc, argv, params,
-            use_audio, std::clamp(music_volume, 0.f, 1.f), std::clamp(sfx_volume, 0.f, 1.f));
+            use_audio, std::clamp(music_gain, 0.f, 1.f), std::clamp(sfx_gain, 0.f, 1.f));
   
   if (show_help)
   {
@@ -538,16 +538,16 @@ int main(int argc, char** argv)
     std::cout << "   [--set_fps <fps>]" << std::endl;
     std::cout << "   [--set_sim_delay_us <delay_us>]" << std::endl;
     std::cout << "   [--disable_audio]" << std::endl;
-    std::cout << "   [--music_volume <music_vol>]" << std::endl;
-    std::cout << "   [--sfx_volume <sfx_vol>]" << std::endl;
+    std::cout << "   [--music_gain <music_gain>]" << std::endl;
+    std::cout << "   [--sfx_gain <sfx_gain>]" << std::endl;
     std::cout << std::endl;
     std::cout << "  default values:" << std::endl;
     // Will unfortunately report the wrong default value for <altitude_km> if ordering the arguments like this "--altitude_start_km <altitude_km> --help".
     std::cout << "    <altitude_km> : " << game.get_alt_km() << std::endl;
     std::cout << "    <fps>         : " << game.get_real_fps() << std::endl;
     std::cout << "    <delay_us>    : " << game.get_sim_delay_us() << std::endl;
-    std::cout << "    <music_vol>   : " << music_volume << " (valid range: [0, 1])" <<std::endl;
-    std::cout << "    <sfx_vol>     : " << sfx_volume << " (valid range: [0, 1])" <<std::endl;
+    std::cout << "    <music_gain>   : " << music_gain << " (valid range: [0, 1])" <<std::endl;
+    std::cout << "    <sfx_gain>     : " << sfx_gain << " (valid range: [0, 1])" <<std::endl;
     return EXIT_SUCCESS;
   }
   
