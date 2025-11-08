@@ -85,13 +85,22 @@ jobs:
           # Create zip archive
           zip -r pilot_episode-${{ github.ref_name }}-macos.zip pilot_episode-${{ github.ref_name }}/
           
-      - name: Upload MacOS package to release
+      - name: Extract tag annotation as release notes
+        id: notes
+        run: |
+          git fetch --tags --force
+          TAG="${{ github.ref_name }}"
+          git tag -l --format='%(contents)' "$TAG" > RELEASE_NOTES.txt
+          echo "Release notes extracted from tag annotation:"
+          cat RELEASE_NOTES.txt
+          
+      - name: Upload package to release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ github.ref_name }}  # Note: just the tag name, not refs/tags/
+          tag: ${{ github.ref_name }}
           artifacts: macos-build/pilot_episode-${{ github.ref_name }}-macos.zip
-          allowUpdates: true  # ← This is the key!
-          body: ${{ github.event.release.body || github.event.head_commit.message }}
+          allowUpdates: true
+          bodyFile: RELEASE_NOTES.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
