@@ -53,6 +53,7 @@
 		072AE7F22D09B6F9004F92D3 /* setup_and_build_macos.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = setup_and_build_macos.sh; sourceTree = SOURCE_ROOT; };
 		072AE7F32D09B805004F92D3 /* run.bat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = run.bat; sourceTree = "<group>"; };
 		072AE7F42D09B805004F92D3 /* run.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = run.sh; sourceTree = "<group>"; };
+		0733A5A12EBF5C560045BCFD /* RELEASE_NOTES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RELEASE_NOTES.md; sourceTree = "<group>"; };
 		0739DB1E2BB351DE00964E96 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		0739DB1F2BB351DE00964E96 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		0760B6ED2B9C37FE0032CACD /* chiptune2.ct */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chiptune2.ct; sourceTree = "<group>"; };
@@ -122,6 +123,7 @@
 			children = (
 				0739DB1E2BB351DE00964E96 /* LICENSE */,
 				0739DB1F2BB351DE00964E96 /* README.md */,
+				0733A5A12EBF5C560045BCFD /* RELEASE_NOTES.md */,
 				07844E4028FDEBAA00B30C0D /* Pilot_Episode */,
 				07844E3F28FDEBAA00B30C0D /* Products */,
 				07A763372B5C795B00705D31 /* Frameworks */,
