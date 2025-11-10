@@ -27,6 +27,8 @@
 
 #include <iostream>
 
+static const float c_default_vol = 0.5f;
+
 // TODO:
 // --1. Seagulls.--
 // --2. Hide from enemies in the clouds.--
@@ -197,7 +199,7 @@ public:
       if (enable_audio && chip_tune.load_tune(folder::join_path({ tune_path, "chiptune2.ct" })))
       {
           //chip_tune.play_tune();
-          chip_tune.set_volume_slider(volume_music);
+          chip_tune.set_volume_slider(volume_music, min_dB, nl_taper);
           chip_tune.play_tune_async();
           chip_tune.wait_for_completion();
       }
@@ -210,13 +212,13 @@ public:
     if (enable_audio)
     {
       src_fx_0 = audio.create_source();
-      src_fx_0->set_volume_slider(volume_sfx);
+      src_fx_0->set_volume_slider(volume_sfx, min_dB, nl_taper);
       
       src_fx_1 = audio.create_source();
-      src_fx_1->set_volume_slider(volume_sfx);
+      src_fx_1->set_volume_slider(volume_sfx, min_dB, nl_taper);
       
       src_fx_2 = audio.create_source();
-      src_fx_2->set_volume_slider(volume_sfx);
+      src_fx_2->set_volume_slider(volume_sfx, min_dB, nl_taper);
     }
     
     std::string font_data_path = t8x::get_path_to_font_data(get_exe_folder());
@@ -470,8 +472,10 @@ private:
   beat::AudioSource* src_fx_0 = nullptr;
   beat::AudioSource* src_fx_1 = nullptr;
   beat::AudioSource* src_fx_2 = nullptr;
-  float volume_music = 1.f;
-  float volume_sfx = 1.f;
+  float volume_music = c_default_vol;
+  float volume_sfx = c_default_vol;
+  float min_dB = -60.f;
+  float nl_taper = 0.28f;
   
   std::vector<t8x::ColorScheme> color_schemes;
   t8x::FontDataColl font_data;
@@ -494,8 +498,8 @@ int main(int argc, char** argv)
   
   bool use_audio = true;
   bool show_help = false;
-  float music_volume = 1.f;
-  float sfx_volume = 1.f;
+  float music_volume = c_default_vol;
+  float sfx_volume = c_default_vol;
   
   for (int i = 1; i < argc; ++i)
   {
@@ -546,8 +550,8 @@ int main(int argc, char** argv)
     std::cout << "    <altitude_km> : " << game.get_alt_km() << std::endl;
     std::cout << "    <fps>         : " << game.get_real_fps() << std::endl;
     std::cout << "    <delay_us>    : " << game.get_sim_delay_us() << std::endl;
-    std::cout << "    <music_vol>   : " << music_volume << " (valid range: [0, 1])" <<std::endl;
-    std::cout << "    <sfx_vol>     : " << sfx_volume << " (valid range: [0, 1])" <<std::endl;
+    std::cout << "    <music_vol>   : " << c_default_vol << " (valid range: [0, 1])" <<std::endl;
+    std::cout << "    <sfx_vol>     : " << c_default_vol << " (valid range: [0, 1])" <<std::endl;
     return EXIT_SUCCESS;
   }
   
