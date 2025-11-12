@@ -1,7 +1,7 @@
 #pragma once
 #include "Globals.h"
 #include <Termin8or/screen/ScreenHandler.h>
-#include <Core/Math.h>
+#include <Core/MathUtils.h>
 #include <Core/Rand.h>
 #include <execution>
 

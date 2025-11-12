@@ -23,7 +23,7 @@
 #include <Termin8or/title/ASCII_Fonts.h>
 #include <8Beat/AudioSourceHandler.h>
 #include <8Beat/ChipTuneEngine.h>
-#include <Core/Math.h>
+#include <Core/MathUtils.h>
 
 #include <iostream>
 
