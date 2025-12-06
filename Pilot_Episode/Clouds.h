@@ -8,7 +8,7 @@
 
 namespace clouds
 {
-  using Color = t8::Color;
+  using Color16 = t8::Color16;
   template<int NR, int NC>
   using ScreenHandler = t8::ScreenHandler<NR, NC>;
   
@@ -62,14 +62,14 @@ namespace clouds
     if (r < 0-5 || r > 29+5)
       return;
     
-    auto white = Color::White;
-    auto light_gray = Color::LightGray;
-    auto dark_gray = Color::DarkGray;
-    //auto light_blue = Color::Blue;
-    //auto dark_blue = Color::DarkBlue;
-    auto light_cyan = Color::Cyan;
-    auto dark_cyan = Color::DarkCyan;
-    //auto black = Color::Black;
+    auto white = Color16::White;
+    auto light_gray = Color16::LightGray;
+    auto dark_gray = Color16::DarkGray;
+    //auto light_blue = Color16::Blue;
+    //auto dark_blue = Color16::DarkBlue;
+    auto light_cyan = Color16::Cyan;
+    auto dark_cyan = Color16::DarkCyan;
+    //auto black = Color16::Black;
     
     auto register_cloud_line = [&plane_hull](const std::string& str, int r, int c)
     {
@@ -126,14 +126,14 @@ namespace clouds
     if (r < 0-7 || r > 29+7)
       return;
     
-    auto white = Color::White;
-    auto light_gray = Color::LightGray;
-    auto dark_gray = Color::DarkGray;
-    //auto light_blue = Color::Blue;
-    //auto dark_blue = Color::DarkBlue;
-    auto light_cyan = Color::Cyan;
-    auto dark_cyan = Color::DarkCyan;
-    auto black = Color::Black;
+    auto white = Color16::White;
+    auto light_gray = Color16::LightGray;
+    auto dark_gray = Color16::DarkGray;
+    //auto light_blue = Color16::Blue;
+    //auto dark_blue = Color16::DarkBlue;
+    auto light_cyan = Color16::Cyan;
+    auto dark_cyan = Color16::DarkCyan;
+    auto black = Color16::Black;
     
     auto register_cloud_line = [&plane_hull](const std::string& str, int r, int c)
     {

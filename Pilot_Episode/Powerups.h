@@ -18,7 +18,7 @@ void draw_update_powerup(t8::ScreenHandler<NR, NC>& sh, std::array<PowerUpData, 
                          float cloud_limit, float ground_level,
                          float dt)
 {
-  using Color = t8::Color;
+  using Color16 = t8::Color16;
 
   const float y_acc = 5.f;
   auto reset_pud = [cloud_limit](PowerUpData& pud)
@@ -55,27 +55,27 @@ void draw_update_powerup(t8::ScreenHandler<NR, NC>& sh, std::array<PowerUpData, 
     float y_diff = pud.y_pos - y_pos;
     int r = r_mid + math::roundI(y_diff);
     int c = c_mid + math::roundI(x_diff);
-    sh.write_buffer("/", r+0, c+1, Color::Black, Color::Cyan);
-    sh.write_buffer("^^^^^^^", r+0, c+1, Color::Black, Color::White);
-    sh.write_buffer("\\", r+0, c+8, Color::Black, Color::Cyan);
-    sh.write_buffer("(", r+1, c, Color::Black, Color::Cyan);
-    sh.write_buffer("        ", r+1, c+1, Color::Default, Color::White);
-    sh.write_buffer(")", r+1, c+9, Color::Black, Color::Cyan);
-    sh.write_buffer("\\", r+2, c+1, Color::Black, Color::Cyan);
-    sh.write_buffer("v^v^v^v", r+2, c+1, Color::Black, Color::White);
-    sh.write_buffer("/", r+2, c+8, Color::Black, Color::Cyan);
-    sh.write_buffer("  \\ \\ / / ", r+3, c, Color::LightGray, Color::Transparent2);
-    sh.write_buffer("   \\ Y /  ", r+4, c, Color::LightGray, Color::Transparent2);
-    sh.write_buffer("    \\|/     ", r+5, c, Color::LightGray, Color::Transparent2);
-    sh.write_buffer("+---+---+", r+6, c+1, Color::DarkYellow, Color::DarkGreen);
-    sh.write_buffer("|   |   |", r+7, c+1, Color::DarkYellow, Color::DarkGreen);
-    sh.write_buffer("+---+---+", r+8, c+1, Color::DarkYellow, Color::DarkGreen);
-    sh.write_buffer("|", r+9, c+1, Color::DarkYellow, Color::DarkGreen);
-    sh.write_buffer("ACM", r+9, c+2, Color::Green, Color::DarkGreen);
-    sh.write_buffer("|", r+9, c+5, Color::DarkYellow, Color::DarkGreen);
-    sh.write_buffer("E", r+9, c+6, Color::Green, Color::DarkGreen);
-    sh.write_buffer("  |", r+9, c+7, Color::DarkYellow, Color::DarkGreen);
-    sh.write_buffer("+---+---+", r+10, c+1, Color::DarkYellow, Color::DarkGreen);
+    sh.write_buffer("/", r+0, c+1, Color16::Black, Color16::Cyan);
+    sh.write_buffer("^^^^^^^", r+0, c+1, Color16::Black, Color16::White);
+    sh.write_buffer("\\", r+0, c+8, Color16::Black, Color16::Cyan);
+    sh.write_buffer("(", r+1, c, Color16::Black, Color16::Cyan);
+    sh.write_buffer("        ", r+1, c+1, Color16::Default, Color16::White);
+    sh.write_buffer(")", r+1, c+9, Color16::Black, Color16::Cyan);
+    sh.write_buffer("\\", r+2, c+1, Color16::Black, Color16::Cyan);
+    sh.write_buffer("v^v^v^v", r+2, c+1, Color16::Black, Color16::White);
+    sh.write_buffer("/", r+2, c+8, Color16::Black, Color16::Cyan);
+    sh.write_buffer("  \\ \\ / / ", r+3, c, Color16::LightGray, Color16::Transparent2);
+    sh.write_buffer("   \\ Y /  ", r+4, c, Color16::LightGray, Color16::Transparent2);
+    sh.write_buffer("    \\|/     ", r+5, c, Color16::LightGray, Color16::Transparent2);
+    sh.write_buffer("+---+---+", r+6, c+1, Color16::DarkYellow, Color16::DarkGreen);
+    sh.write_buffer("|   |   |", r+7, c+1, Color16::DarkYellow, Color16::DarkGreen);
+    sh.write_buffer("+---+---+", r+8, c+1, Color16::DarkYellow, Color16::DarkGreen);
+    sh.write_buffer("|", r+9, c+1, Color16::DarkYellow, Color16::DarkGreen);
+    sh.write_buffer("ACM", r+9, c+2, Color16::Green, Color16::DarkGreen);
+    sh.write_buffer("|", r+9, c+5, Color16::DarkYellow, Color16::DarkGreen);
+    sh.write_buffer("E", r+9, c+6, Color16::Green, Color16::DarkGreen);
+    sh.write_buffer("  |", r+9, c+7, Color16::DarkYellow, Color16::DarkGreen);
+    sh.write_buffer("+---+---+", r+10, c+1, Color16::DarkYellow, Color16::DarkGreen);
 
     int plane_r_min = INT_MAX;
     int plane_r_max = -INT_MAX;

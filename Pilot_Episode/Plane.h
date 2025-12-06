@@ -17,6 +17,7 @@ void generate_engine_smoke(t8::ScreenHandler<NR, NC>& sh,
                     const t8::RC& rc_plane_engine,
                     float dt, float time)
 {
+  using Color16 = t8::Color16;
   using Color = t8::Color;
   
   //bool trig = (plane_data::blackout_state == plane_data::BlackoutState::WarnOut
@@ -100,35 +101,35 @@ void generate_engine_smoke(t8::ScreenHandler<NR, NC>& sh,
   t8x::Gradient<Color> smoke_fg_0
   {
     {
-      { 0.f, Color::Red },
-      { 0.15f, Color::Yellow },
-      { 0.3f, Color::LightGray },
-      { 0.85f, Color::DarkGray },
+      { 0.f, Color16::Red },
+      { 0.15f, Color16::Yellow },
+      { 0.3f, Color16::LightGray },
+      { 0.85f, Color16::DarkGray },
     }
   };
   t8x::Gradient<Color> smoke_fg_1
   {
     {
-      { 0.f, Color::Red },
-      { 0.1f, Color::Yellow },
-      { 0.25f, Color::DarkGray },
-      { 0.9f, Color::LightGray },
+      { 0.f, Color16::Red },
+      { 0.1f, Color16::Yellow },
+      { 0.25f, Color16::DarkGray },
+      { 0.9f, Color16::LightGray },
     }
   };
   t8x::Gradient<Color> smoke_bg_0
   {
     {
-      { 0.f, Color::DarkRed },
-      { 0.3f, Color::DarkGray },
-      { 0.9f, Color::Black },
+      { 0.f, Color16::DarkRed },
+      { 0.3f, Color16::DarkGray },
+      { 0.9f, Color16::Black },
     }
   };
   t8x::Gradient<Color> smoke_bg_1
   {
     {
-      { 0.f, Color::DarkRed },
-      { 0.2f, Color::Black },
-      { 0.9f, Color::DarkGray },
+      { 0.f, Color16::DarkRed },
+      { 0.2f, Color16::Black },
+      { 0.9f, Color16::DarkGray },
     }
   };
   std::vector<std::pair<float, std::pair<t8x::Gradient<Color>, t8x::Gradient<Color>>>> smoke_color_gradients;
@@ -145,11 +146,11 @@ void draw_plane(t8::ScreenHandler<NR, NC>& sh,
                 int x_mv_dir, int y_mv_dir,
                 std::vector<std::tuple<int, int, bool>>& plane_hull)
 {
-  using Color = t8::Color;
+  using Color16 = t8::Color16;
 
   std::string sprite_part;
-  Color sprite_part_fg_color;
-  Color sprite_part_bg_color = Color::Transparent2;
+  Color16 sprite_part_fg_color;
+  Color16 sprite_part_bg_color = Color16::Transparent2;
   int anim = anim_ctr % 4;
 
   r0 = math::clamp(r0, 2, 29 - 3);
@@ -187,7 +188,7 @@ void draw_plane(t8::ScreenHandler<NR, NC>& sh,
   }
 
   // Draw Propeller
-  sprite_part_fg_color = Color::Black;
+  sprite_part_fg_color = Color16::Black;
   if (dr == pr0)
   {
       switch (anim)
@@ -229,26 +230,26 @@ void draw_plane(t8::ScreenHandler<NR, NC>& sh,
         sprite_part = "  __!__    ";
       else
         sprite_part = "   __!__   ";
-      sprite_part_fg_color = Color::DarkYellow;
+      sprite_part_fg_color = Color16::DarkYellow;
   }
   else if (dr == p1)
   {
       sprite_part = "/----^----\\";
-      sprite_part_fg_color = Color::DarkYellow;
-      sprite_part_bg_color = Color::Red;
+      sprite_part_fg_color = Color16::DarkYellow;
+      sprite_part_bg_color = Color16::Red;
   }
   else if (dr == p2)
   {
       sprite_part = "-----o-----";
-      sprite_part_fg_color = Color::DarkYellow;
+      sprite_part_fg_color = Color16::DarkYellow;
       //if (y_mv_dir != 0)
-      //  sprite_part_bg_color = Color::Red;
+      //  sprite_part_bg_color = Color16::Red;
   }
   else if (dr == p3)
   {
       sprite_part = "\\____v____/";
-      sprite_part_fg_color = Color::DarkYellow;
-      sprite_part_bg_color = Color::Red;
+      sprite_part_fg_color = Color16::DarkYellow;
+      sprite_part_bg_color = Color16::Red;
   }
   else if (dr == p4)
   {
@@ -258,10 +259,10 @@ void draw_plane(t8::ScreenHandler<NR, NC>& sh,
         sprite_part = "     \" \"   ";
       else
         sprite_part = "    \" \"    ";
-      sprite_part_fg_color = Color::Black;
+      sprite_part_fg_color = Color16::Black;
   }
 #ifndef HILITE_PLANE_SURFACES
-  sprite_part_bg_color = Color::Transparent2;
+  sprite_part_bg_color = Color16::Transparent2;
 #endif
   sh.write_buffer(sprite_part, r, c, sprite_part_fg_color, sprite_part_bg_color);
   for (size_t i = 0; i < sprite_part.size(); ++i)
@@ -272,7 +273,7 @@ void draw_plane(t8::ScreenHandler<NR, NC>& sh,
 template<int NR, int NC>
 void draw_crosshair(t8::ScreenHandler<NR, NC>& sh, float x_vel, float y_vel)
 {
-  using Color = t8::Color;
+  using Color16 = t8::Color16;
 
   float dist = std::sqrt(x_vel*x_vel + y_vel*y_vel);
   float x_vel_norm = x_vel / dist;
@@ -281,7 +282,7 @@ void draw_crosshair(t8::ScreenHandler<NR, NC>& sh, float x_vel, float y_vel)
   float r = r_mid + 1.f + len*y_vel_norm / t8x::pix_ar2_sq;
   float c = c_mid + plane_half_len_2 + len*x_vel_norm;
 
-  sh.write_buffer("+", math::roundI(r), math::roundI(c), Color::Black, Color::Transparent2);
+  sh.write_buffer("+", math::roundI(r), math::roundI(c), Color16::Black, Color16::Transparent2);
 }
 
 
@@ -291,36 +292,36 @@ void update_plane_controls(t8::ScreenHandler<NR, NC>& sh,
                            const t8::KeyPressDataPair& kpdp, Key curr_special_key,
                            float ground_level, float dt)
 {
-  using Color = t8::Color;
+  using Color16 = t8::Color16;
 
   auto special_key = get_special_key(kpdp.held);
   if (special_key == t8::SpecialKey::Left || curr_special_key == Key::Left)
   {
     plane_data::x_vel -= plane_data::x_acc * dt;
     plane_data::y_vel *= 0.9f;
-    sh.write_buffer("L", 2, 1, Color::Cyan);
+    sh.write_buffer("L", 2, 1, Color16::Cyan);
   }
   else if (special_key == t8::SpecialKey::Right || curr_special_key == Key::Right)
   {
     plane_data::x_vel += plane_data::x_acc * dt;
     plane_data::y_vel *= 0.9f;
-    sh.write_buffer("R", 2, 3, Color::Cyan);
+    sh.write_buffer("R", 2, 3, Color16::Cyan);
   }
   else if (special_key == t8::SpecialKey::Down || curr_special_key == Key::Down)
   {
     plane_data::y_vel += plane_data::y_acc * dt;
     plane_data::x_vel *= 0.9f;
-    sh.write_buffer("D", 3, 2, Color::Cyan);
+    sh.write_buffer("D", 3, 2, Color16::Cyan);
   }
   else if (special_key == t8::SpecialKey::Up || curr_special_key == Key::Up)
   {
     plane_data::y_vel -= plane_data::y_acc * dt;
     plane_data::x_vel *= 0.9f;
-    sh.write_buffer("U", 1, 2, Color::Cyan);
+    sh.write_buffer("U", 1, 2, Color16::Cyan);
   }
   else if (curr_special_key == Key::Fire)
   {
-    sh.write_buffer("F", 2, 2, Color::Cyan);
+    sh.write_buffer("F", 2, 2, Color16::Cyan);
     auto duration = 0.2f;
     beat::WaveformGenerationParams params;
     params.noise_filter_order = 2;
@@ -344,15 +345,15 @@ void update_plane_controls(t8::ScreenHandler<NR, NC>& sh,
   {
     plane_data::x_vel *= 0.8f;
     plane_data::y_vel *= 0.8f;
-    //bg_color = Color::Blue;
+    //bg_color = Color16::Blue;
     //gotorc(31, 1);
-    //t.print_line("Wind break!", Color::Blue, Color::Black);
+    //t.print_line("Wind break!", Color16::Blue, Color16::Black);
   }
-  sh.write_buffer("L", 2, 1, Color::DarkCyan);
-  sh.write_buffer("R", 2, 3, Color::DarkCyan);
-  sh.write_buffer("U", 1, 2, Color::DarkCyan);
-  sh.write_buffer("D", 3, 2, Color::DarkCyan);
-  sh.write_buffer("F", 2, 2, Color::DarkCyan);
+  sh.write_buffer("L", 2, 1, Color16::DarkCyan);
+  sh.write_buffer("R", 2, 3, Color16::DarkCyan);
+  sh.write_buffer("U", 1, 2, Color16::DarkCyan);
+  sh.write_buffer("D", 3, 2, Color16::DarkCyan);
+  sh.write_buffer("F", 2, 2, Color16::DarkCyan);
   
   plane_data::x_mv_dir = plane_data::x_vel < -1 ? -1 : (plane_data::x_vel > 1 ? 1 : 0);
   plane_data::y_mv_dir = plane_data::y_vel < -1 ? -1 : (plane_data::y_vel > 1 ? 1 : 0);

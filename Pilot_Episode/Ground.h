@@ -5,23 +5,23 @@
 
 namespace ground
 {
-  using Color = t8::Color;
+  using Color16 = t8::Color16;
   template<int NR, int NC>
   using ScreenHandler = t8::ScreenHandler<NR, NC>;
 
 
-  const auto fg_color_grass = Color::Green;
-  const auto bg_color_grass = Color::DarkGreen;
-  const auto fg_color_lake = Color::Blue;
-  const auto bg_color_lake = Color::DarkBlue;
-  const auto fg_color_sand = Color::Yellow;
-  const auto bg_color_sand = Color::DarkYellow;
-  const auto fg_color_canopy = Color::Green;
-  const auto bg_color_canopy = Color::DarkGreen;
-  const auto fg_color_trunk = Color::DarkYellow;
-  const auto fg_def = Color::Default;
-  const auto bg_def = Color::Transparent2;
-  using LineData = std::tuple<std::string, Color, Color>;
+  const auto fg_color_grass = Color16::Green;
+  const auto bg_color_grass = Color16::DarkGreen;
+  const auto fg_color_lake = Color16::Blue;
+  const auto bg_color_lake = Color16::DarkBlue;
+  const auto fg_color_sand = Color16::Yellow;
+  const auto bg_color_sand = Color16::DarkYellow;
+  const auto fg_color_canopy = Color16::Green;
+  const auto bg_color_canopy = Color16::DarkGreen;
+  const auto fg_color_trunk = Color16::DarkYellow;
+  const auto fg_def = Color16::Default;
+  const auto bg_def = Color16::Transparent2;
+  using LineData = std::tuple<std::string, Color16, Color16>;
   std::vector<std::array<LineData, 3>> line_type_data_ground // 4 .. 0
   {
     { LineData { "", fg_def, bg_def }, { "", fg_def, bg_def }, { "^", fg_color_canopy, bg_color_canopy } },
@@ -33,13 +33,13 @@ namespace ground
   std::vector<std::array<LineData, 1>> line_type_data_house // 4 .. 1
   {
     { LineData { "", fg_def, bg_def } },
-    { LineData { "/ \\", Color::Yellow, Color::DarkYellow } },
-    { LineData { "###", Color::Red, Color::DarkRed } },
-    { LineData { "###", Color::Red, Color::DarkRed } }
+    { LineData { "/ \\", Color16::Yellow, Color16::DarkYellow } },
+    { LineData { "###", Color16::Red, Color16::DarkRed } },
+    { LineData { "###", Color16::Red, Color16::DarkRed } }
   };
   std::vector<std::array<LineData, 1>> line_type_data_boat // 4 .. 1
   {
-    { LineData { "\\===/", Color::White, Color::DarkGray } }
+    { LineData { "\\===/", Color16::White, Color16::DarkGray } }
   };
   
   struct GroundData
@@ -110,8 +110,8 @@ namespace ground
                         size_t N_gnd,
                         Lambda&& pred)
     {
-      auto fg_color = Color::Default;
-      auto bg_color = Color::Transparent2;
+      auto fg_color = Color16::Default;
+      auto bg_color = Color16::Transparent2;
     
       const int vertical_offs = 28;
       for (int y_offs = 4; y_offs >= 0; --y_offs)
@@ -125,8 +125,8 @@ namespace ground
             auto c = static_cast<int>(gnd_idx - N/2 - parallax * x_pos);
             if (1 <= c && c <= 79)
             {
-              fg_color = Color::Default;
-              bg_color = Color::Transparent2;
+              fg_color = Color16::Default;
+              bg_color = Color16::Transparent2;
               std::string str;
               pred(y_offs, gnd_idx, fg_color, bg_color, str);
               sh.write_buffer(str, r, c, fg_color, bg_color);
@@ -144,7 +144,7 @@ namespace ground
     
       const int vertical_offs = 28;
     
-      auto format_line = [&](int y_offs, int data_idx, Color& fg_color, Color& bg_color, std::string& str)
+      auto format_line = [&](int y_offs, int data_idx, Color16& fg_color, Color16& bg_color, std::string& str)
       {
         auto& ld = ground::line_type_data_ground[4 - y_offs][data_idx];
         fg_color = std::get<1>(ld);
@@ -152,7 +152,7 @@ namespace ground
         str = std::get<0>(ld);
       };
     
-      auto format_ground_line = [&](int y_offs, int gnd_idx, Color& fg_color, Color& bg_color, std::string& str)
+      auto format_ground_line = [&](int y_offs, int gnd_idx, Color16& fg_color, Color16& bg_color, std::string& str)
       {
         if (y_offs == 0)
           format_line(y_offs, ground_data[gnd_idx], fg_color, bg_color, str);
@@ -176,7 +176,7 @@ namespace ground
     {
       float parallax = 1.f;
     
-      auto format_line = [&](int y_offs, int data_idx, Color& fg_color, Color& bg_color, std::string& str)
+      auto format_line = [&](int y_offs, int data_idx, Color16& fg_color, Color16& bg_color, std::string& str)
       {
         if (data_idx == 0)
           return;
@@ -186,7 +186,7 @@ namespace ground
         str = std::get<0>(ld);
       };
     
-      auto format_house_line = [&](int y_offs, int gnd_idx, Color& fg_color, Color& bg_color, std::string& str)
+      auto format_house_line = [&](int y_offs, int gnd_idx, Color16& fg_color, Color16& bg_color, std::string& str)
       {
         if (y_offs > 0)
           format_line(y_offs, house_data[gnd_idx], fg_color, bg_color, str);
@@ -203,7 +203,7 @@ namespace ground
     {
       float parallax = 1.f;
     
-      auto format_line = [&](int y_offs, int data_idx, Color& fg_color, Color& bg_color, std::string& str)
+      auto format_line = [&](int y_offs, int data_idx, Color16& fg_color, Color16& bg_color, std::string& str)
       {
         if (y_offs != 1 || data_idx == 0)
           return;
@@ -213,7 +213,7 @@ namespace ground
         str = std::get<0>(ld);
       };
     
-      auto format_boat_line = [&](int y_offs, int gnd_idx, Color& fg_color, Color& bg_color, std::string& str)
+      auto format_boat_line = [&](int y_offs, int gnd_idx, Color16& fg_color, Color16& bg_color, std::string& str)
       {
         if (y_offs > 0)
           format_line(y_offs, boat_data[gnd_idx], fg_color, bg_color, str);

@@ -96,28 +96,28 @@ void draw_mountain_range(t8::ScreenHandler<NR, NC>& sh,
                          float x_pos, float y_pos,
                          float ground_level)
 {
-  using Color = t8::Color;
+  using Color16 = t8::Color16;
   
   for (const auto& mountain_hfd : mountain_range_height_fields)
   {
-    auto bg_color = Color::LightGray;
-    auto fg_color = Color::DarkGray;
-    auto fg2_color = Color::DarkGray;
+    auto bg_color = Color16::LightGray;
+    auto fg_color = Color16::DarkGray;
+    auto fg2_color = Color16::DarkGray;
     bool is_far = mountain_hfd.parallax < 0.015f;
     bool is_really_far = mountain_hfd.parallax < 0.003f;
     bool is_near = false;
-    auto bush_bg_color = Color::Green;
-    auto bush_fg_color = Color::DarkGreen;
+    auto bush_bg_color = Color16::Green;
+    auto bush_fg_color = Color16::DarkGreen;
     if (is_really_far)
     {
-      bg_color = Color::Black;
-      fg_color = Color::Black;
-      fg2_color = Color::Black;
+      bg_color = Color16::Black;
+      fg_color = Color16::Black;
+      fg2_color = Color16::Black;
     }
     else if (is_far)
     {
-      bg_color = Color::DarkGray;
-      fg_color = Color::Black;
+      bg_color = Color16::DarkGray;
+      fg_color = Color16::Black;
     }
     else
       is_near = true;

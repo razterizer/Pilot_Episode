@@ -31,7 +31,7 @@ void draw_shot(t8::ScreenHandler<NR, NC>& sh, bool shot_hit, float shot_angle, f
     sh.write_buffer(bullet,
         r_mid + math::roundI(bullet_offs_y),
         c_mid + math::roundI(bullet_offs_x),
-        color, t8::Color::Transparent2);
+        color, t8::Color16::Transparent2);
   }
 }
 
@@ -39,27 +39,27 @@ template<int NR, int NC>
 void draw_explosion(t8::ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr,
                     beat::AudioSource* src_fx, int expl_sound)
 {
-  using Color = t8::Color;
+  using Color16 = t8::Color16;
 
-  sh.write_buffer("*", r, c, Color::DarkRed);
+  sh.write_buffer("*", r, c, Color16::DarkRed);
   int anim = anim_ctr % 3;
   if (1 <= anim)
   {
-    sh.write_buffer("<", r, c-2, Color::Red, Color::Transparent2);
-    sh.write_buffer(">", r, c+2, Color::Red, Color::Transparent2);
-    sh.write_buffer("^", r+1, c, Color::Red, Color::Transparent2);
-    sh.write_buffer("v", r-1, c, Color::Red, Color::Transparent2);
+    sh.write_buffer("<", r, c-2, Color16::Red, Color16::Transparent2);
+    sh.write_buffer(">", r, c+2, Color16::Red, Color16::Transparent2);
+    sh.write_buffer("^", r+1, c, Color16::Red, Color16::Transparent2);
+    sh.write_buffer("v", r-1, c, Color16::Red, Color16::Transparent2);
   }
   if (2 <= anim)
   {
-    sh.write_buffer("|", r, c-4, Color::Yellow, Color::Transparent2);
-    sh.write_buffer("|", r, c+4, Color::Yellow, Color::Transparent2);
-    sh.write_buffer("---", r+2, c-1, Color::Yellow, Color::Transparent2);
-    sh.write_buffer("---", r-2, c-1, Color::Yellow, Color::Transparent2);
-    sh.write_buffer("/", r-1, c-4, Color::Yellow, Color::Transparent2);
-    sh.write_buffer("\\", r-1, c+4, Color::Yellow, Color::Transparent2);
-    sh.write_buffer("\\", r+1, c-4, Color::Yellow, Color::Transparent2);
-    sh.write_buffer("/", r+1, c+4, Color::Yellow, Color::Transparent2);
+    sh.write_buffer("|", r, c-4, Color16::Yellow, Color16::Transparent2);
+    sh.write_buffer("|", r, c+4, Color16::Yellow, Color16::Transparent2);
+    sh.write_buffer("---", r+2, c-1, Color16::Yellow, Color16::Transparent2);
+    sh.write_buffer("---", r-2, c-1, Color16::Yellow, Color16::Transparent2);
+    sh.write_buffer("/", r-1, c-4, Color16::Yellow, Color16::Transparent2);
+    sh.write_buffer("\\", r-1, c+4, Color16::Yellow, Color16::Transparent2);
+    sh.write_buffer("\\", r+1, c-4, Color16::Yellow, Color16::Transparent2);
+    sh.write_buffer("/", r+1, c+4, Color16::Yellow, Color16::Transparent2);
   }
   
   if (anim == 0)

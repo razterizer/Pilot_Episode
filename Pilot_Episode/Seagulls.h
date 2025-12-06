@@ -7,34 +7,34 @@
 template<int NR, int NC>
 void draw_seagull(t8::ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr)
 {
-  using Color = t8::Color;
+  using Color16 = t8::Color16;
 
   switch (anim_ctr % 5)
   {
-    //case 0: sh.write_buffer("M", r, c, Color::White); break;
-    case 0: sh.write_buffer("/v\\", r, c-1, Color::White, Color::Transparent2); break;
-    case 1: sh.write_buffer("-v-", r, c-1, Color::White, Color::Transparent2); break;
-    case 2: sh.write_buffer("\\v/", r, c-1, Color::White, Color::Transparent2); break;
-    case 3: sh.write_buffer("-v-", r, c-1, Color::White, Color::Transparent2); break;
-    case 4: sh.write_buffer("/v\\", r, c-1, Color::White, Color::Transparent2); break;
+    //case 0: sh.write_buffer("M", r, c, Color16::White); break;
+    case 0: sh.write_buffer("/v\\", r, c-1, Color16::White, Color16::Transparent2); break;
+    case 1: sh.write_buffer("-v-", r, c-1, Color16::White, Color16::Transparent2); break;
+    case 2: sh.write_buffer("\\v/", r, c-1, Color16::White, Color16::Transparent2); break;
+    case 3: sh.write_buffer("-v-", r, c-1, Color16::White, Color16::Transparent2); break;
+    case 4: sh.write_buffer("/v\\", r, c-1, Color16::White, Color16::Transparent2); break;
   }
 }
 
 template<int NR, int NC>
 void draw_seagull_small(t8::ScreenHandler<NR, NC>& sh, int r, int c, int anim_ctr)
 {
-  using Color = t8::Color;
+  using Color16 = t8::Color16;
   
   switch (anim_ctr % 6)
   {
-    //case 0: sh.write_buffer("M", r, c, Color::White, Color::Transparent2); break;
-    case 0: sh.write_buffer("A", r, c, Color::White, Color::Transparent2); break;
-    case 1: sh.write_buffer("T", r, c, Color::White, Color::Transparent2); break;
-    case 2: sh.write_buffer("Y", r, c, Color::White, Color::Transparent2); break;
-    case 3: sh.write_buffer("Y", r, c, Color::White, Color::Transparent2); break;
-    case 4: sh.write_buffer("T", r, c, Color::White, Color::Transparent2); break;
-    case 5: sh.write_buffer("A", r, c, Color::White, Color::Transparent2); break;
-    //case 7: sh.write_buffer("M", r, c, Color::White, Color::Transparent2); break;
+    //case 0: sh.write_buffer("M", r, c, Color16::White, Color16::Transparent2); break;
+    case 0: sh.write_buffer("A", r, c, Color16::White, Color16::Transparent2); break;
+    case 1: sh.write_buffer("T", r, c, Color16::White, Color16::Transparent2); break;
+    case 2: sh.write_buffer("Y", r, c, Color16::White, Color16::Transparent2); break;
+    case 3: sh.write_buffer("Y", r, c, Color16::White, Color16::Transparent2); break;
+    case 4: sh.write_buffer("T", r, c, Color16::White, Color16::Transparent2); break;
+    case 5: sh.write_buffer("A", r, c, Color16::White, Color16::Transparent2); break;
+    //case 7: sh.write_buffer("M", r, c, Color16::White, Color16::Transparent2); break;
   }
 }
 

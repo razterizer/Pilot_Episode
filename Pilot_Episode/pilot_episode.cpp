@@ -142,7 +142,7 @@ public:
 
   virtual void generate_data() override
   {
-    using Color = t8::Color;
+    using Color16 = t8::Color16;
   
     // Mountain Range
     generate_mountain_range(mountain_data::mountain_range_height_fields, cloud_limit);
@@ -225,11 +225,11 @@ public:
     std::cout << font_data_path << std::endl;
     
     auto& cs0 = color_schemes.emplace_back();
-    cs0.internal.fg_color = Color::Black;
-    cs0.internal.bg_color = Color::Yellow;
+    cs0.internal.fg_color = Color16::Black;
+    cs0.internal.bg_color = Color16::Yellow;
     auto& cs1 = color_schemes.emplace_back();
-    cs1.internal.fg_color = Color::White;
-    cs1.internal.bg_color = Color::Black;
+    cs1.internal.fg_color = Color16::White;
+    cs1.internal.bg_color = Color16::Black;
     
     font_data = t8x::load_font_data(font_data_path);
   }
@@ -240,7 +240,7 @@ private:
 
   virtual void update() override
   {
-    using Color = t8::Color;
+    using Color16 = t8::Color16;
   
     Key curr_special_key = register_keypresses(kpdp);
     
@@ -249,7 +249,7 @@ private:
     
     draw_hud(sh, ground_level, health, max_health, GameEngine::ref_score());
     
-    draw_frame(sh, Color::DarkBlue);
+    draw_frame(sh, Color16::DarkBlue);
     
     if (health < 0)
       health = 0;
@@ -317,8 +317,8 @@ private:
     // #DEBUG
     //int r_offs_dbg = 10;
     //for (const auto& rch : plane_hull)
-    //  sh.write_buffer(std::get<2>(rch) ? "-" : "*", std::get<0>(rch) + r_offs_dbg, std::get<1>(rch), Color::Black);
-    //sh.write_buffer("Plane Hiding: " + std::to_string(plane_hiding), 27, 3, Color::White);
+    //  sh.write_buffer(std::get<2>(rch) ? "-" : "*", std::get<0>(rch) + r_offs_dbg, std::get<1>(rch), Color16::Black);
+    //sh.write_buffer("Plane Hiding: " + std::to_string(plane_hiding), 27, 3, Color16::White);
     
     draw_crosshair(sh, plane_data::x_vel, plane_data::y_vel);
     
@@ -358,7 +358,7 @@ private:
       draw_plane(sh, r, r_mid, c_mid, get_anim_count(4), plane_data::x_mv_dir, plane_data::y_mv_dir, plane_hull);
     
     if (shot_fired)
-      draw_shot(sh, shot_hit, shot_angle, x_pos_shot + plane_half_len, y_pos_shot + 1, Color::Black);
+      draw_shot(sh, shot_hit, shot_angle, x_pos_shot + plane_half_len, y_pos_shot + 1, Color16::Black);
     
     draw_update_seagull_flocks<4000>(sh,
                                      src_fx_0,
@@ -397,10 +397,10 @@ private:
     draw_sun(sh, 3, 60, plane_data::x_pos);
     
     // Space Tests
-    //sh.write_buffer("\u2591\u2592\u2593", 27, 78, Color::Black);
-    //sh.write_buffer("####", 25, 70, Color::Blue, Color::Black);
-    //sh.write_buffer("####", 26, 70, Color::Blue, Color::Black);
-    //sh.write_buffer("####", 27, 70, Color::Blue, Color::Black);
+    //sh.write_buffer("\u2591\u2592\u2593", 27, 78, Color16::Black);
+    //sh.write_buffer("####", 25, 70, Color16::Blue, Color16::Black);
+    //sh.write_buffer("####", 26, 70, Color16::Blue, Color16::Black);
+    //sh.write_buffer("####", 27, 70, Color16::Blue, Color16::Black);
     ///
     
     draw_sky(sh);
@@ -485,16 +485,16 @@ private:
 
 int main(int argc, char** argv)
 {
-  using Color = t8::Color;
+  using Color16 = t8::Color16;
   //initscr();
   //noecho();
   //cbreak();
   //keypad(stdscr, true);
   
   t8x::GameEngineParams params;
-  params.screen_bg_color_default = Color::Blue;
-  params.screen_bg_color_title = Color::Blue;
-  params.screen_bg_color_instructions = Color::Black;
+  params.screen_bg_color_default = Color16::Blue;
+  params.screen_bg_color_title = Color16::Blue;
+  params.screen_bg_color_instructions = Color16::Black;
   
   bool use_audio = true;
   bool show_help = false;

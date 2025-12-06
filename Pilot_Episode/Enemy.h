@@ -89,7 +89,7 @@ EnemyData enemy_step_ai(t8::ScreenHandler<NR, NC>& sh, EnemyData ed,
     {
 #ifdef DEBUG_ENEMY
       if (ed.id == sel_id)
-        sh.write_buffer("PATROL", 2, 5, Color::Green);
+        sh.write_buffer("PATROL", 2, 5, Color16::Green);
 #endif
       if (anim_ctr % 40 == 0)
       {
@@ -153,7 +153,7 @@ EnemyData enemy_step_ai(t8::ScreenHandler<NR, NC>& sh, EnemyData ed,
     {
 #ifdef DEBUG_ENEMY
       if (ed.id == sel_id)
-        sh.write_buffer("HUNT", 2, 5, Color::Green);
+        sh.write_buffer("HUNT", 2, 5, Color16::Green);
 #endif
       ed.time_shooting = 0;
       float ang = std::atan2(ed.y_diff, ed.x_diff);
@@ -170,7 +170,7 @@ EnemyData enemy_step_ai(t8::ScreenHandler<NR, NC>& sh, EnemyData ed,
     {
 #ifdef DEBUG_ENEMY
       if (ed.id == sel_id)
-        sh.write_buffer("SHOOT", 2, 5, Color::Green);
+        sh.write_buffer("SHOOT", 2, 5, Color16::Green);
 #endif
       // Shoot at plane.
       const float shot_speed = 0.6f;
@@ -227,7 +227,7 @@ EnemyData enemy_step_ai(t8::ScreenHandler<NR, NC>& sh, EnemyData ed,
     {
 #ifdef DEBUG_ENEMY
       if (ed.id == sel_id)
-        sh.write_buffer("EVADE", 2, 5, Color::Green);
+        sh.write_buffer("EVADE", 2, 5, Color16::Green);
 #endif
       ed.time_shooting = 0;
       float ang = std::atan2(ed.y_diff, ed.x_diff);
@@ -242,7 +242,7 @@ EnemyData enemy_step_ai(t8::ScreenHandler<NR, NC>& sh, EnemyData ed,
     {
 #ifdef DEBUG_ENEMY
       if (ed.id == sel_id)
-        sh.write_buffer("DESTROYED", 2, 5, Color::Green);
+        sh.write_buffer("DESTROYED", 2, 5, Color16::Green);
 #endif
       if (ed.y_pos - 14 < ground_level)
       {
@@ -263,27 +263,27 @@ EnemyData enemy_step_ai(t8::ScreenHandler<NR, NC>& sh, EnemyData ed,
 #ifdef DEBUG_ENEMY
   if (ed.id == sel_id)
   {
-    sh.write_buffer("X: " + std::to_string(ed.x_pos), 3, 5, Color::Black);
-    sh.write_buffer("Y: " + std::to_string(ed.y_pos), 4, 5, Color::Black);
-    sh.write_buffer("XP: " + std::to_string(x_pos_plane), 5, 5, Color::Black);
-    sh.write_buffer("YP: " + std::to_string(y_pos_plane), 6, 5, Color::Black);
-    sh.write_buffer("D: " + std::to_string(ed.dist), 7, 5, Color::Black);
-    sh.write_buffer("E-R: " + std::to_string(r_mid + math::roundI(ed.y_pos - y_pos_plane)), 8, 5, Color::Black);
-    sh.write_buffer("E-C: " + std::to_string(c_mid + math::roundI(ed.x_pos - x_pos_plane)), 9, 5, Color::Black);
-    sh.write_buffer("XV: " + std::to_string(ed.x_vel), 10, 5, Color::Black);
-    sh.write_buffer("YV: " + std::to_string(ed.y_vel), 11, 5, Color::Black);
-    sh.write_buffer("XA: " + std::to_string(ed.x_acc), 12, 5, Color::Black);
-    sh.write_buffer("YA: " + std::to_string(ed.y_acc), 13, 5, Color::Black);
-    sh.write_buffer("S-X: " + std::to_string(ed.x_pos_shot), 14, 5, Color::Black);
-    sh.write_buffer("S-Y: " + std::to_string(ed.y_pos_shot), 15, 5, Color::Black);
-    //sh.write_buffer("TS: " + std::to_string(ed.time_shooting), 14, 5, Color::Black);
-    //sh.write_buffer("SH: " + std::to_string(ed.shot_hit), 15, 5, Color::Black);
-    //sh.write_buffer("ST: " + std::to_string(ed.shot_timeout), 16, 5, Color::Black);
-    sh.write_buffer("S-R: " + std::to_string(r_mid + math::roundI(ed.bullet_offs_y)), 16, 5, Color::Black);
-    sh.write_buffer("S-C: " + std::to_string(c_mid + math::roundI(ed.bullet_offs_x)), 17, 5, Color::Black);
-    sh.write_buffer("S-A: " + std::to_string(ed.shot_angle*180.f/math::c_pi), 18, 5, Color::Black);
-    sh.write_buffer("PS-R: " + std::to_string(plane_shot_r), 19, 5, Color::Black);
-    sh.write_buffer("PS-C: " + std::to_string(plane_shot_c), 20, 5, Color::Black);
+    sh.write_buffer("X: " + std::to_string(ed.x_pos), 3, 5, Color16::Black);
+    sh.write_buffer("Y: " + std::to_string(ed.y_pos), 4, 5, Color16::Black);
+    sh.write_buffer("XP: " + std::to_string(x_pos_plane), 5, 5, Color16::Black);
+    sh.write_buffer("YP: " + std::to_string(y_pos_plane), 6, 5, Color16::Black);
+    sh.write_buffer("D: " + std::to_string(ed.dist), 7, 5, Color16::Black);
+    sh.write_buffer("E-R: " + std::to_string(r_mid + math::roundI(ed.y_pos - y_pos_plane)), 8, 5, Color16::Black);
+    sh.write_buffer("E-C: " + std::to_string(c_mid + math::roundI(ed.x_pos - x_pos_plane)), 9, 5, Color16::Black);
+    sh.write_buffer("XV: " + std::to_string(ed.x_vel), 10, 5, Color16::Black);
+    sh.write_buffer("YV: " + std::to_string(ed.y_vel), 11, 5, Color16::Black);
+    sh.write_buffer("XA: " + std::to_string(ed.x_acc), 12, 5, Color16::Black);
+    sh.write_buffer("YA: " + std::to_string(ed.y_acc), 13, 5, Color16::Black);
+    sh.write_buffer("S-X: " + std::to_string(ed.x_pos_shot), 14, 5, Color16::Black);
+    sh.write_buffer("S-Y: " + std::to_string(ed.y_pos_shot), 15, 5, Color16::Black);
+    //sh.write_buffer("TS: " + std::to_string(ed.time_shooting), 14, 5, Color16::Black);
+    //sh.write_buffer("SH: " + std::to_string(ed.shot_hit), 15, 5, Color16::Black);
+    //sh.write_buffer("ST: " + std::to_string(ed.shot_timeout), 16, 5, Color16::Black);
+    sh.write_buffer("S-R: " + std::to_string(r_mid + math::roundI(ed.bullet_offs_y)), 16, 5, Color16::Black);
+    sh.write_buffer("S-C: " + std::to_string(c_mid + math::roundI(ed.bullet_offs_x)), 17, 5, Color16::Black);
+    sh.write_buffer("S-A: " + std::to_string(ed.shot_angle*180.f/math::c_pi), 18, 5, Color16::Black);
+    sh.write_buffer("PS-R: " + std::to_string(plane_shot_r), 19, 5, Color16::Black);
+    sh.write_buffer("PS-C: " + std::to_string(plane_shot_c), 20, 5, Color16::Black);
   }
 #endif
 
@@ -295,7 +295,7 @@ EnemyData enemy_step_ai(t8::ScreenHandler<NR, NC>& sh, EnemyData ed,
 template<int NR, int NC>
 void draw_enemy(t8::ScreenHandler<NR, NC>& sh, int r, int r0, int c, bool destroyed, int anim_ctr)
 {
-  using Color = t8::Color;
+  using Color16 = t8::Color16;
   
   //std::string sprite_part;
   //Color sprite_part_color;
@@ -308,17 +308,17 @@ void draw_enemy(t8::ScreenHandler<NR, NC>& sh, int r, int r0, int c, bool destro
   {
     case 0:
       if (anim1 < 5 && !destroyed)
-        sh.write_buffer("_", r, c+1+anim1, Color::Cyan, Color::Transparent2);
+        sh.write_buffer("_", r, c+1+anim1, Color16::Cyan, Color16::Transparent2);
       break;
     case 1:
       if (anim2 > 0 && !destroyed)
       {
         std::string window = (anim2 == 1 || anim2 == 5) ? "o" : "O";
-        sh.write_buffer(window, r, c+anim2, Color::Magenta, Color::Transparent2);
+        sh.write_buffer(window, r, c+anim2, Color16::Magenta, Color16::Transparent2);
       }
-      sh.write_buffer("<", r, c, destroyed ? Color::DarkGray : Color::DarkMagenta, Color::Transparent2);
-      sh.write_buffer("oOOOo", r, c+1, destroyed ? Color::LightGray : Color::DarkBlue, Color::Transparent2);
-      sh.write_buffer(">", r, c+6, destroyed ? Color::DarkGray : Color::DarkMagenta, Color::Transparent2);
+      sh.write_buffer("<", r, c, destroyed ? Color16::DarkGray : Color16::DarkMagenta, Color16::Transparent2);
+      sh.write_buffer("oOOOo", r, c+1, destroyed ? Color16::LightGray : Color16::DarkBlue, Color16::Transparent2);
+      sh.write_buffer(">", r, c+6, destroyed ? Color16::DarkGray : Color16::DarkMagenta, Color16::Transparent2);
       break;
   }
 }
@@ -326,7 +326,7 @@ void draw_enemy(t8::ScreenHandler<NR, NC>& sh, int r, int r0, int c, bool destro
 template<int NR, int NC>
 void draw_enemy_shadow(t8::ScreenHandler<NR, NC>& sh, float dist, int r_plane, int c_plane, float x_diff, float y_diff, EnemyState es, int anim_ctr)
 {
-  using Color = t8::Color;
+  using Color16 = t8::Color16;
 
   int r = r_plane + math::roundI(y_diff) + 1;
   int c = c_plane + math::roundI(x_diff) + 3;
@@ -356,15 +356,15 @@ void draw_enemy_shadow(t8::ScreenHandler<NR, NC>& sh, float dist, int r_plane, i
     case EnemyState::PATROL:
     case EnemyState::EVADE:
       if (dist < 500)
-        sh.write_buffer("o", r, c, es == EnemyState::EVADE ? Color::Cyan : Color::Black);
+        sh.write_buffer("o", r, c, es == EnemyState::EVADE ? Color16::Cyan : Color16::Black);
       else
-        sh.write_buffer(".", r, c, es == EnemyState::EVADE ? Color::Cyan : Color::Black);
+        sh.write_buffer(".", r, c, es == EnemyState::EVADE ? Color16::Cyan : Color16::Black);
       break;
     case EnemyState::HUNT:
-      sh.write_buffer(anim == 0 ? "o" : ".", r, c, anim == 0 ? Color::Red : Color::Black);
+      sh.write_buffer(anim == 0 ? "o" : ".", r, c, anim == 0 ? Color16::Red : Color16::Black);
       break;
     case EnemyState::SHOOT:
-      sh.write_buffer("o", r, c, Color::DarkRed);
+      sh.write_buffer("o", r, c, Color16::DarkRed);
       break;
     default:
       break;
@@ -375,5 +375,5 @@ template<int NR, int NC>
 void draw_enemy_shot(t8::ScreenHandler<NR, NC>& sh, EnemyData& ed)
 {
   if (ed.state == EnemyState::SHOOT)
-    draw_shot(sh, ed.shot_hit, ed.shot_angle, ed.bullet_offs_x, ed.bullet_offs_y, t8::Color::Cyan);
+    draw_shot(sh, ed.shot_hit, ed.shot_angle, ed.bullet_offs_x, ed.bullet_offs_y, t8::Color16::Cyan);
 }
