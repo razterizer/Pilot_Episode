@@ -1,5 +1,8 @@
 # Release Notes
 
+## 1.2.0.5
+- Using Termin8or 2.0.0.2 with 8-bit color support.
+
 ## 1.1.2.4
 - Fixes the --help argument so that it doesn't display audio settings on top of the help text, which seems a little out of place.
 - Using AudioSource objects instead of AudioStreamSource objects as AudioStreamSources were originally designed for streaming via listener interface.
