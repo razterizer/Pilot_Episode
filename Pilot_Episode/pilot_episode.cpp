@@ -495,6 +495,8 @@ int main(int argc, char** argv)
   params.screen_bg_color_default = Color16::Blue;
   params.screen_bg_color_title = Color16::Blue;
   params.screen_bg_color_instructions = Color16::Black;
+  //params.enable_benchmark = true;
+  //params.draw_policy = t8::DrawPolicy::MEASURE_SELECT;
   
   bool use_audio = true;
   bool show_help = false;
@@ -562,6 +564,8 @@ int main(int argc, char** argv)
     else if (i + 1 < argc && std::strcmp(argv[i], "--set_sim_delay_us") == 0)
       game.set_sim_delay_us(static_cast<float>(std::atof(argv[i + 1])));
   }
+  
+  //game.set_real_fps(10'000);
 
   game.run();
 
