@@ -1,5 +1,9 @@
 # Release Notes
 
+## 1.3.0.6
+- Bumped Termin8or dependency to 3.0.0.6.
+- Updated compatibility with Termin8or's Unicode/glyph API changes.
+
 ## 1.2.0.5
 - Using Termin8or 2.0.0.2 with 8-bit color support.
 
