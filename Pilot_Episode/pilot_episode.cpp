@@ -190,11 +190,6 @@ public:
     try
     {
       std::string tune_path = get_exe_folder();
-#ifndef _WIN32
-      const char* xcode_env = std::getenv("RUNNING_FROM_XCODE");
-      if (xcode_env != nullptr)
-        tune_path = "../../../../../../../../Documents/xcode/Pilot_Episode/Pilot_Episode/"; // #FIXME: Find a better solution!
-#endif
     
       if (enable_audio && chip_tune.load_tune(folder::join_path({ tune_path, "chiptune2.ct" })))
       {
@@ -221,7 +216,7 @@ public:
       src_fx_2->set_volume_slider(volume_sfx, min_dB, nl_taper);
     }
     
-    std::string font_data_path = t8x::get_path_to_font_data(get_exe_folder());
+    std::string font_data_path = folder::join_path({ get_exe_folder(), "fonts" });
     std::cout << font_data_path << std::endl;
     
     auto& cs0 = color_schemes.emplace_back();
@@ -515,7 +510,6 @@ int main(int argc, char** argv)
         params.log_mode = LogMode::Record;
       else if (std::strcmp(argv[i + 1], "replay") == 0)
         params.log_mode = LogMode::Replay;
-      params.xcode_log_path = "../../../../../../../../Documents/xcode/Pilot_Episode/Pilot_Episode/bin/";
     }
     else if (std::strcmp(argv[i], "--disable_audio") == 0)
       use_audio = false;

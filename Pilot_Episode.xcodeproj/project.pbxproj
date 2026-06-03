@@ -188,6 +188,7 @@
 				07844E3A28FDEBAA00B30C0D /* Sources */,
 				07844E3B28FDEBAA00B30C0D /* Frameworks */,
 				07844E3C28FDEBAA00B30C0D /* CopyFiles */,
+				07C80E302FCD500100106C83 /* Copy Runtime Assets */,
 			);
 			buildRules = (
 			);
@@ -229,6 +230,32 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		07C80E302FCD500100106C83 /* Copy Runtime Assets */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Pilot_Episode/chiptune2.ct",
+				"$(SRCROOT)/../lib/Termin8or/include/Termin8or/title/fonts",
+			);
+			name = "Copy Runtime Assets";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/chiptune2.ct",
+				"$(TARGET_BUILD_DIR)/fonts",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nmkdir -p \"$TARGET_BUILD_DIR/fonts\"\ncp \"$SRCROOT/Pilot_Episode/chiptune2.ct\" \"$TARGET_BUILD_DIR/\"\nif [ -f \"$SRCROOT/Pilot_Episode/bin/rec.txt\" ]; then\n  cp \"$SRCROOT/Pilot_Episode/bin/rec.txt\" \"$TARGET_BUILD_DIR/\"\nfi\ncp \"$SRCROOT/../lib/Termin8or/include/Termin8or/title/fonts/\"* \"$TARGET_BUILD_DIR/fonts/\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		07844E3A28FDEBAA00B30C0D /* Sources */ = {
@@ -365,6 +392,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HFL2Q84SZB;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					USE_APPLAUDIO,
@@ -390,6 +418,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HFL2Q84SZB;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = USE_APPLAUDIO;
 				HEADER_SEARCH_PATHS = (
 					../lib/Core/include/,
