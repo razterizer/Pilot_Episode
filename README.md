@@ -88,7 +88,6 @@ You need the following header-only libraries:
 * https://github.com/razterizer/Termin8or
 * https://github.com/razterizer/8Beat
 * https://github.com/razterizer/AudioLibSwitcher_applaudio
-* https://github.com/razterizer/TrainOfThought
 * https://github.com/razterizer/applaudio
 
 Make sure the folder structure looks like this:
@@ -97,7 +96,6 @@ Make sure the folder structure looks like this:
 <my_source_code_dir>/lib/Termin8or/                 ; Termin8or repo workspace/checkout goes here.
 <my_source_code_dir>/lib/8Beat/                     ; 8Beat repo workspace/checkout goes here.
 <my_source_code_dir>/lib/AudioLibSwitcher_applaudio ; AudioLibSwitcher_applaudio repo workspace/checkout goes here.
-<my_source_code_dir>/lib/TrainOfThought             ; TrainOfThought repo workspace/checkout goes here.
 <my_source_code_dir>/lib/applaudio                  ; applaudio repo workspace/checkout goes here (only needed for Windows).
 <my_source_code_dir>Pilot_Episode/                  ; Pilot_Episode repo workspace/checkout goes here.
 ```
