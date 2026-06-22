@@ -1,5 +1,9 @@
 # Release Notes
 
+## 1.3.2.8
+
+- Switch the Forge-hosted 8Beat dependency to the explicit applaudio cbox variant.
+
 ## 1.3.1.7
 - Adopted Forge release workflow packaging with direct Termin8or and 8Beat dependencies.
 - Verifies Core is resolved transitively through both dependency paths.
