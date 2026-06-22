@@ -1,5 +1,10 @@
 # Release Notes
 
+## 1.3.1.7
+- Adopted Forge release workflow packaging with direct Termin8or and 8Beat dependencies.
+- Verifies Core is resolved transitively through both dependency paths.
+- Uses Termin8or 3.0.3.9 exported font runtime assets staged as `Termin8or/fonts`.
+
 ## 1.3.0.6
 - Bumped Termin8or dependency to 3.0.0.6.
 - Updated compatibility with Termin8or's Unicode/glyph API changes.

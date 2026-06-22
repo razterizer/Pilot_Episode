@@ -1,0 +1,19 @@
+format = 2
+
+[[dependency]]
+name = "8Beat"
+github = "razterizer/8Beat"
+package = "8Beat"
+version = "1.0.0+build.1"
+target = "macos-arm64"
+url = "https://github.com/razterizer/8Beat/releases/download/release-1.0.0.1/8Beat-1.0.0+build.1-macos-arm64.cbox"
+sha256 = "f846957316cbdc7dc4c7cb52cd3b8fdf9faf852fce25343a9d59b68f8fae7d3f"
+
+[[dependency]]
+name = "Termin8or"
+github = "razterizer/Termin8or"
+package = "Termin8or"
+version = "3.0.3+build.9"
+target = "any"
+url = "https://github.com/razterizer/Termin8or/releases/download/release-3.0.3.9/Termin8or-3.0.3+build.9-ho.cbox"
+sha256 = "96db28b2275e173ed0aff714f5c605dfdcede934fa3a324b71f6ee250e3c8ef3"

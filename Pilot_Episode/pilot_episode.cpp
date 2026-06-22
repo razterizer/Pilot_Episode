@@ -25,6 +25,7 @@
 #include <8Beat/ChipTuneEngine.h>
 #include <Core/MathUtils.h>
 
+#include <filesystem>
 #include <iostream>
 
 static const float c_default_vol = 0.5f;
@@ -216,7 +217,10 @@ public:
       src_fx_2->set_volume_slider(volume_sfx, min_dB, nl_taper);
     }
     
-    std::string font_data_path = folder::join_path({ get_exe_folder(), "fonts" });
+    const auto exe_folder = get_exe_folder();
+    std::string font_data_path = folder::join_path({ exe_folder, "Termin8or", "fonts" });
+    if (!std::filesystem::is_directory(font_data_path))
+      font_data_path = folder::join_path({ exe_folder, "fonts" });
     std::cout << font_data_path << std::endl;
     
     auto& cs0 = color_schemes.emplace_back();
