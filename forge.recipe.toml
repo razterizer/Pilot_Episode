@@ -8,6 +8,10 @@ cpp_std = 20
 
 [build]
 number = 8
+defines = ["USE_APPLAUDIO"]
+
+[release]
+build_number_format = "dotted"
 
 [sources]
 paths = ["Pilot_Episode/pilot_episode.cpp"]
@@ -16,26 +20,15 @@ paths = ["Pilot_Episode/pilot_episode.cpp"]
 files = [{ source = "Pilot_Episode/chiptune2.ct", destination = "chiptune2.ct" }]
 
 [dependencies]
-8Beat = { path = "../lib/8Beat" }
-Termin8or = { path = "../lib/Termin8or" }
-
-[profile.applaudio.dependencies]
-8Beat = { path = "../lib/8Beat" }
-Termin8or = { path = "../lib/Termin8or" }
-
-[profile.applaudio.build]
-defines = ["USE_APPLAUDIO"]
-
-[profile.workflow-release.dependencies]
 8Beat = { github = "razterizer/8Beat", version = "1.0.1+build.2", variant = "applaudio" }
 Termin8or = { github = "razterizer/Termin8or", version = "3.0.3+build.9" }
 
-[release]
-build_number_format = "dotted"
+[profile.dev.dependencies]
+8Beat = { path = "../lib/8Beat" }
+Termin8or = { path = "../lib/Termin8or" }
 
 [profile.workflow-release.build]
 configuration = "Release"
-defines = ["USE_APPLAUDIO"]
 
 [profile.Debug.build]
 configuration = "Debug"
