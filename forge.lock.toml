@@ -8,7 +8,7 @@ variant = "applaudio"
 version = "1.0.1+build.2"
 target = "macos-arm64"
 url = "https://github.com/razterizer/8Beat/releases/download/release-1.0.1.2/8Beat-1.0.1+build.2-applaudio-macos-arm64.cbox"
-sha256 = "72c7762e120f3c1b65513aa4240df37853bb46b367edc1e4879c43cbfd9bd2b7"
+sha256 = "c3f7ada51def63d8262c52d23509a803a82e65c4c239655c4f90168acf101358"
 
 [[dependency]]
 name = "Termin8or"
