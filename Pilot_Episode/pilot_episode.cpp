@@ -221,7 +221,7 @@ public:
     std::string font_data_path = folder::join_path({ exe_folder, "Termin8or", "fonts" });
     if (!std::filesystem::is_directory(font_data_path))
       font_data_path = folder::join_path({ exe_folder, "fonts" });
-    std::cout << font_data_path << std::endl;
+    // std::cout << font_data_path << std::endl;
     
     auto& cs0 = color_schemes.emplace_back();
     cs0.internal.fg_color = Color16::Black;
