@@ -5,10 +5,10 @@ name = "8Beat"
 github = "razterizer/8Beat"
 package = "8Beat"
 variant = "applaudio"
-version = "1.0.1+build.3"
+version = "1.0.2+build.4"
 target = "any"
-url = "https://github.com/razterizer/8Beat/releases/download/release-1.0.1.3/8Beat-1.0.1+build.3-applaudio-ho.cbox"
-sha256 = "44ba336a83c83b03707a1ba8208ab2286b556e44876c3e716aadb0d586482605"
+url = "https://github.com/razterizer/8Beat/releases/download/release-1.0.2.4/8Beat-1.0.2+build.4-applaudio-ho.cbox"
+sha256 = "fbc0d78dc17f01773f3388f458487fd1f417243feeabf2227a75deb2f0cd7687"
 
 [[dependency]]
 name = "Termin8or"

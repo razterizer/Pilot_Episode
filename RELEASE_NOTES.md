@@ -1,5 +1,9 @@
 # Release Notes
 
+## 1.3.3.9
+
+- Using applaudio version with windows library dependency "ksguid".
+
 ## 1.3.2.8
 
 - Switch the Forge-hosted 8Beat dependency to the explicit applaudio cbox variant.
