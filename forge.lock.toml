@@ -8,7 +8,7 @@ variant = "applaudio"
 version = "1.0.2+build.4"
 target = "any"
 url = "https://github.com/razterizer/8Beat/releases/download/release-1.0.2.4/8Beat-1.0.2+build.4-applaudio-ho.cbox"
-sha256 = "fbc0d78dc17f01773f3388f458487fd1f417243feeabf2227a75deb2f0cd7687"
+sha256 = "8d80ac22b1881848b68291c982dccbda56d5fd28778fbc5507b742f9fff649c3"
 
 [[dependency]]
 name = "Termin8or"
