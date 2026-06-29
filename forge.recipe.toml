@@ -20,7 +20,7 @@ paths = ["Pilot_Episode/pilot_episode.cpp"]
 files = [{ source = "Pilot_Episode/chiptune2.ct", destination = "chiptune2.ct" }]
 
 [dependencies]
-8Beat = { github = "razterizer/8Beat", version = "1.0.2+build.4", variant = "applaudio" }
+8Beat = { github = "razterizer/8Beat", version = "1.0.3+build.5", variant = "applaudio" }
 Termin8or = { github = "razterizer/Termin8or", version = "3.0.3+build.9" }
 
 [profile.dev.dependencies]
