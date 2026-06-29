@@ -1,5 +1,9 @@
 # Release Notes
 
+## 1.3.4.10
+
+- Bumping dependencies.
+
 ## 1.3.3.9
 
 - Using applaudio version with windows library dependency "ksguid".
