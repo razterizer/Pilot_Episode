@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 REPO_DIR="Pilot_Episode"
 
 # sudo apt install libopenal-dev

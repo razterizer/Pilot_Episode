@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 REPO_DIR="Pilot_Episode"
 
 # brew install openal-soft
