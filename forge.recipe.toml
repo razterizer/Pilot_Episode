@@ -27,7 +27,7 @@ files = [{ source = "Pilot_Episode/chiptune2.ct", destination = "chiptune2.ct" }
 Termin8or = { path = "../lib/Termin8or" }
 
 [dependencies.style.git-source]
-8Beat = { git = "https://github.com/razterizer/8Beat.git", commit = "f3f7ab5cb2a519b37c432b538f697f2736f2a8ad" }
+8Beat = { git = "https://github.com/razterizer/8Beat.git", commit = "65284f0dc68d33e0c9cc6418181575f399e51514" }
 Termin8or = { git = "https://github.com/razterizer/Termin8or.git", commit = "d741a3dcaaeca9241ff394c38c068aa7cfddc6b6" }
 
 [dependencies.style.github-package]
