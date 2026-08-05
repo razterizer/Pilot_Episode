@@ -43,6 +43,39 @@ https://www.youtube.com/watch?v=MCauEDtP2ZU
 
 ## Build & Run Instructions
 
+### Forge (recommended)
+
+With [Forge](https://github.com/razterizer/forge) installed, a fresh checkout
+uses the locked applaudio packages by default. The following commands cover the
+most common build modes:
+
+| Use case | Command |
+| --- | --- |
+| Default applaudio Debug build | `forge build-and-run` |
+| Explicit applaudio Release build | `forge build-and-run --profile=applaudio --config=release` |
+| Reproducible OpenAL Release build | `forge build-and-run --style=git-source --profile=openal --config=release` |
+| Develop against local applaudio checkouts | `forge build-and-run --style=local-source --profile=applaudio` |
+| Develop against local OpenAL checkouts | `forge build-and-run --style=local-source --profile=openal` |
+
+The local-source commands expect the dependency repositories under
+`../lib/<repository>`. To build without starting the program, replace
+`build-and-run` with `build`; a built configuration can then be started with,
+for example, `forge run`.
+
+OpenAL is deliberately source-only and is not available through the
+`github-package` style. Install OpenAL Soft before using the OpenAL profile on
+macOS or Debian-based Linux:
+
+```sh
+# macOS
+brew install openal-soft
+
+# Debian/Ubuntu
+sudo apt install libopenal-dev
+```
+
+Windows resolves the pinned `3rdparty_OpenAL` source dependency automatically.
+
 There are two options on dealing with repo dependencies:
 
 ### Repo Dependencies Option 1

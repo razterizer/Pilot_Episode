@@ -2,6 +2,7 @@
 
 ## Next
 - Pin the source-only OpenAL profile to adapter release 1.0.1.14 through 8Beat.
+- Document Forge build modes for applaudio, OpenAL, Release, and local development.
 
 ## 1.3.4.11
 
