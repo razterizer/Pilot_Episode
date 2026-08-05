@@ -1,5 +1,10 @@
 # Release Notes
 
+## 1.3.4.11
+
+- Update the hosted applaudio dependency to 8Beat 1.0.3.6.
+- Pin Git-source builds to the corresponding 8Beat release commit.
+
 ## 1.3.4.10
 
 - Bumping dependencies.

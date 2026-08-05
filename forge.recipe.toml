@@ -7,7 +7,7 @@ type = "executable"
 cpp_std = 20
 
 [build]
-number = 10
+number = 11
 
 [defaults]
 style = "github-package"
@@ -27,17 +27,17 @@ files = [{ source = "Pilot_Episode/chiptune2.ct", destination = "chiptune2.ct" }
 Termin8or = { path = "../lib/Termin8or" }
 
 [dependencies.style.git-source]
-8Beat = { git = "https://github.com/razterizer/8Beat.git", commit = "65284f0dc68d33e0c9cc6418181575f399e51514" }
+8Beat = { git = "https://github.com/razterizer/8Beat.git", commit = "6fb807a9e93021b9e0e8c1ac39b601a5de72fd70" }
 Termin8or = { git = "https://github.com/razterizer/Termin8or.git", commit = "d741a3dcaaeca9241ff394c38c068aa7cfddc6b6" }
 
 [dependencies.style.github-package]
 Termin8or = { github = "razterizer/Termin8or", version = "3.0.3+build.9" }
 
 [dependencies.style.github-package.profile.applaudio]
-8Beat = { github = "razterizer/8Beat", version = "1.0.3+build.5", variant = "applaudio" }
+8Beat = { github = "razterizer/8Beat", version = "1.0.3+build.6", variant = "applaudio" }
 
 [profile.workflow-release.dependencies]
-8Beat = { github = "razterizer/8Beat", version = "1.0.3+build.5", variant = "applaudio" }
+8Beat = { github = "razterizer/8Beat", version = "1.0.3+build.6", variant = "applaudio" }
 Termin8or = { github = "razterizer/Termin8or", version = "3.0.3+build.9" }
 
 [profile.workflow-release.build]
