@@ -1,5 +1,8 @@
 # Release Notes
 
+## Next
+- Pin the source-only OpenAL profile to the adapter fix that keeps non-spatial audio listener-relative.
+
 ## 1.3.4.11
 
 - Update the hosted applaudio dependency to 8Beat 1.0.3.6.
