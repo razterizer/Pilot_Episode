@@ -1,6 +1,8 @@
 # Release Notes
 
-## Next
+## 1.3.5.12
+
+- Update hosted applaudio builds to 8Beat 1.0.4.7 with asynchronous chiptune playback and shutdown fixes.
 - Pin the source-only OpenAL profile to adapter release 1.0.1.14 through 8Beat.
 - Document Forge build modes for applaudio, OpenAL, Release, and local development.
 
