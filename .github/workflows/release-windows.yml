@@ -113,6 +113,7 @@ jobs:
           tag: ${{ github.ref_name }}
           artifacts: windows-build/pilot_episode-${{ github.ref_name }}-windows.zip
           allowUpdates: true
+          replacesArtifacts: false
           bodyFile: RELEASE_NOTES.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
