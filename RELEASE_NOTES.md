@@ -1,5 +1,9 @@
 # Release Notes
 
+## 1.3.6.13
+
+- Bumping dependencies Core, Termin8or and 8Beat.
+
 ## 1.3.5.12
 
 - Update hosted applaudio builds to 8Beat 1.0.4.7 with asynchronous chiptune playback and shutdown fixes.
