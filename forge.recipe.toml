@@ -27,18 +27,18 @@ files = [{ source = "Pilot_Episode/chiptune2.ct", destination = "chiptune2.ct" }
 Termin8or = { path = "../lib/Termin8or" }
 
 [dependencies.style.git-source]
-8Beat = { git = "https://github.com/razterizer/8Beat.git", commit = "1fcc2a80fb3a206f18ab2e8a36cf77bd44615627" }
-Termin8or = { git = "https://github.com/razterizer/Termin8or.git", commit = "d741a3dcaaeca9241ff394c38c068aa7cfddc6b6" }
+8Beat = { git = "https://github.com/razterizer/8Beat.git", commit = "fd1c58fd0886e4ed088d3c8af2d8932924f399a8" }
+Termin8or = { git = "https://github.com/razterizer/Termin8or.git", commit = "7fde54f2e8866df2299535802ff152f019a904b4" }
 
 [dependencies.style.github-package]
-Termin8or = { github = "razterizer/Termin8or", version = "3.0.3+build.9" }
+Termin8or = { github = "razterizer/Termin8or", version = "3.0.4+build.10" }
 
 [dependencies.style.github-package.profile.applaudio]
-8Beat = { github = "razterizer/8Beat", version = "1.0.4+build.7", variant = "applaudio" }
+8Beat = { github = "razterizer/8Beat", version = "1.0.5+build.8", variant = "applaudio" }
 
 [profile.workflow-release.dependencies]
-8Beat = { github = "razterizer/8Beat", version = "1.0.4+build.7", variant = "applaudio" }
-Termin8or = { github = "razterizer/Termin8or", version = "3.0.3+build.9" }
+8Beat = { github = "razterizer/8Beat", version = "1.0.5+build.8", variant = "applaudio" }
+Termin8or = { github = "razterizer/Termin8or", version = "3.0.4+build.10" }
 
 [profile.workflow-release.build]
 configuration = "Release"
